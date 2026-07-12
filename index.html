@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>العد التنازلي — الشهر المميز مالتنا</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rakkas&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+<style>
+  
+  *{ box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body{ margin:0; padding:0; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+  body{ font-family:'Tajawal', 'Segoe UI', sans-serif; }
+  h1,p{ margin:0; }
+  button{ background:none; border:none; cursor:pointer; font:inherit; color:inherit; padding:0; transition: transform .12s ease, opacity .12s ease; touch-action: manipulation; }
+  button:active{ transform: scale(0.9); opacity: 0.75; }
+  svg{ display:block; }
+  .font-display{ font-family:'Rakkas', serif; }
+
+  
+  .relative{ position:relative; }
+  .absolute{ position:absolute; }
+  .fixed{ position:fixed; }
+  .inset-0{ top:0; left:0; right:0; bottom:0; }
+  .min-h-screen{ min-height:100vh; }
+  .w-full{ width:100%; }
+  .flex{ display:flex; }
+  .inline-flex{ display:inline-flex; }
+  .flex-col{ flex-direction:column; }
+  .items-center{ align-items:center; }
+  .items-end{ align-items:flex-end; }
+  .justify-center{ justify-content:center; }
+  .justify-between{ justify-content:space-between; }
+  .overflow-hidden{ overflow:hidden; }
+  .overflow-visible{ overflow:visible; }
+  .pointer-events-none{ pointer-events:none; }
+  .text-center{ text-align:center; }
+  .hidden{ display:none; }
+  .rounded-2xl{ border-radius:1rem; }
+  .rounded-full{ border-radius:9999px; }
+  .rounded-br-sm{ border-bottom-right-radius:0.2rem; }
+  .shadow-xl{ box-shadow:0 18px 30px -8px rgba(0,0,0,.18); }
+  .shadow-lg{ box-shadow:0 10px 20px -5px rgba(0,0,0,.15); }
+  .backdrop-blur-xl{ backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); }
+  .backdrop-blur-md{ backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); }
+  .font-black{ font-weight:900; }
+  .tabular-nums{ font-variant-numeric:tabular-nums; }
+  .opacity-70{ opacity:.7; }
+  .opacity-80{ opacity:.8; }
+  .opacity-90{ opacity:.9; }
+  .z-10{ z-index:10; }
+  .z-20{ z-index:20; }
+  .mb-1{ margin-bottom:.25rem; }
+  .mb-2{ margin-bottom:.5rem; }
+  .mb-8{ margin-bottom:2rem; }
+  .mt-1{ margin-top:.25rem; }
+  .mt-8{ margin-top:2rem; }
+  .top-1{ top:.25rem; }
+  .top-4{ top:1rem; }
+  .top-20{ top:5rem; }
+  .bottom-4{ bottom:1rem; }
+  .right-4{ right:1rem; }
+  .left-4{ left:1rem; }
+  .gap-1\.5{ gap:.375rem; }
+  .gap-2{ gap:.5rem; }
+  .px-3{ padding-left:.75rem; padding-right:.75rem; }
+  .px-4{ padding-left:1rem; padding-right:1rem; }
+  .py-2{ padding-top:.5rem; padding-bottom:.5rem; }
+  .py-3{ padding-top:.75rem; padding-bottom:.75rem; }
+  .py-4{ padding-top:1rem; padding-bottom:1rem; }
+  .py-10{ padding-top:2.5rem; padding-bottom:2.5rem; }
+  .p-3{ padding:.75rem; }
+  .text-xs{ font-size:.75rem; }
+  .text-sm{ font-size:.875rem; }
+  .text-2xl{ font-size:1.5rem; }
+  .text-3xl{ font-size:1.875rem; }
+  .w-4{ width:1rem; }
+  .h-4{ height:1rem; }
+  .h-full{ height:100%; }
+  .h-2\.5{ height:.625rem; }
+  .w-\[70px\]{ width:70px; }
+  .max-w-\[220px\]{ max-width:220px; }
+  .max-w-md{ max-width:28rem; }
+  .text-\[10px\]{ font-size:10px; }
+
+  @media (min-width:768px){
+    .md\:top-6{ top:1.5rem; }
+    .md\:top-24{ top:6rem; }
+    .md\:left-6{ left:1.5rem; }
+    .md\:bottom-8{ bottom:2rem; }
+    .md\:right-8{ right:2rem; }
+    .md\:inline{ display:inline; }
+    .md\:text-base{ font-size:1rem; }
+    .md\:text-5xl{ font-size:3rem; }
+    .md\:text-4xl{ font-size:2.25rem; }
+    .md\:text-xs{ font-size:.75rem; }
+    .md\:text-lg{ font-size:1.125rem; }
+    .md\:text-sm{ font-size:.875rem; }
+    .md\:px-6{ padding-left:1.5rem; padding-right:1.5rem; }
+    .md\:py-6{ padding-top:1.5rem; padding-bottom:1.5rem; }
+    .md\:gap-4{ gap:1rem; }
+    .md\:w-\[110px\]{ width:110px; }
+    .md\:max-w-\[260px\]{ max-width:260px; }
+  }
+
+  
+  :root{
+    --bg: linear-gradient(160deg, #FFF6E9 0%, #FDE2EC 50%, #F3D6F5 100%);
+    --card-bg: rgba(255,255,255,0.5);
+    --card-border: rgba(255,255,255,0.75);
+    --text: #4A2E4A;
+    --accent: #E0648B;
+    --accent2: #F2C48A;
+    --bubble-bg: rgba(255,255,255,0.8);
+    --star-color: #E8956E;
+  }
+
+  #app{ background: var(--bg); transition: background 1.2s ease; }
+  .glass-card{
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    color: var(--text);
+    transition: background 1.2s ease, border-color 1.2s ease, color 1.2s ease;
+  }
+  .theme-text{ color: var(--text); transition: color 1.2s ease; }
+  .theme-accent{ color: var(--accent); transition: color 1.2s ease; }
+  .theme-bubble{
+    background: var(--bubble-bg);
+    border: 1px solid var(--card-border);
+    color: var(--text);
+    transition: background 1.2s ease, color 1.2s ease;
+  }
+  .progress-track{
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    transition: background 1.2s ease, border-color 1.2s ease;
+  }
+  .progress-fill{
+    background: linear-gradient(90deg, var(--accent2), var(--accent));
+    transition: width 1s ease, background 1.2s ease;
+  }
+
+  
+  @keyframes pulseIn{
+    0%{ opacity:0.5; transform:translateY(-4px) scale(0.92); }
+    100%{ opacity:1; transform:translateY(0) scale(1); }
+  }
+  .pulse{ animation: pulseIn 0.25s ease-out; }
+
+  @keyframes heartPop{
+    0%{ opacity:0.9; transform:translate(-50%,0) scale(0.5); }
+    100%{ opacity:0; transform:translate(-50%,-34px) scale(1.15); }
+  }
+  .heart-pop{ animation: heartPop 0.9s ease-out forwards; }
+
+  @keyframes twinkle{
+    0%,100%{ opacity:0.1; transform:scale(1); }
+    50%{ opacity:0.9; transform:scale(1.5); }
+  }
+  .particle{ animation-name: twinkle; animation-timing-function: ease-in-out; animation-iteration-count: infinite; }
+
+  @keyframes catSway{
+    0%,100%{ transform: rotate(0deg); }
+    25%{ transform: rotate(-3deg); }
+    75%{ transform: rotate(3deg); }
+  }
+  #cat-svg-inner{ animation: catSway 3s infinite; transform-origin: 50px 60px; }
+
+  @keyframes heartBeat{
+    0%,100%{ transform: scale(1); }
+    50%{ transform: scale(1.2); }
+  }
+  #music-icon.beat svg{ animation: heartBeat 0.8s ease-in-out infinite; }
+
+  @keyframes heartSpin{
+    to{ transform: rotate(360deg); }
+  }
+  #search-heart-icon svg{ transform-origin:50% 50%; }
+  #search-heart-icon.spin svg{ animation: heartSpin 0.9s linear infinite; }
+
+  @keyframes catBob{
+    0%,100%{ transform: translateY(0); }
+    50%{ transform: translateY(-6px); }
+  }
+  #cat-button{ animation: catBob 2.2s ease-in-out infinite; }
+
+  .bubble-fade{ transition: opacity 0.25s ease; }
+
+  .scene-sun{ display:none; }
+  #scene.is-day .scene-sun{ display:block; }
+  #scene.is-day .scene-moon{ display:none; }
+  .scene-lampglow{ opacity:0.9; transition: opacity 1.2s ease; }
+  #scene.is-day .scene-lampglow{ opacity:0; }
+  .scene-windows rect{ transition: opacity 1.2s ease; }
+  #scene.is-day .scene-windows rect{ opacity:0.1; }
+
+  @media (prefers-reduced-motion: reduce){
+    *, *::before, *::after{
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+</style>
+</head>
+
+<body>
+<main id="app" class="relative min-h-screen w-full flex flex-col items-center justify-center px-4 py-10 overflow-hidden">
+
+  
+  <div id="scene" class="absolute inset-0 overflow-hidden pointer-events-none is-night">
+    <svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMax slice" shape-rendering="crispEdges" style="position:absolute; bottom:0; left:0; width:100%; height:40vh;">
+      <defs>
+        <radialGradient id="celestialGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="var(--star-color)" stop-opacity="0.45"/>
+          <stop offset="100%" stop-color="var(--star-color)" stop-opacity="0"/>
+        </radialGradient>
+        <filter id="pixelGlow" x="-100%" y="-100%" width="300%" height="300%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"/>
+          <feMerge>
+            <feMergeNode in="blur"/>
+            <feMergeNode in="blur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+      </defs>
+
+      <g class="scene-moon" filter="url(#pixelGlow)">
+        <circle cx="330" cy="40" r="52" fill="url(#celestialGlow)"/>
+        <g fill="var(--star-color)">
+          <rect x="306" y="8" width="16" height="16"/><rect x="322" y="8" width="16" height="16"/><rect x="338" y="8" width="16" height="16"/>
+          <rect x="290" y="24" width="16" height="16"/><rect x="306" y="24" width="16" height="16"/><rect x="322" y="24" width="16" height="16"/><rect x="338" y="24" width="16" height="16"/><rect x="354" y="24" width="16" height="16"/>
+          <rect x="290" y="40" width="16" height="16"/><rect x="306" y="40" width="16" height="16"/><rect x="322" y="40" width="16" height="16"/><rect x="338" y="40" width="16" height="16"/><rect x="354" y="40" width="16" height="16"/>
+          <rect x="290" y="56" width="16" height="16"/><rect x="306" y="56" width="16" height="16"/><rect x="322" y="56" width="16" height="16"/><rect x="338" y="56" width="16" height="16"/><rect x="354" y="56" width="16" height="16"/>
+          <rect x="306" y="72" width="16" height="16"/><rect x="322" y="72" width="16" height="16"/><rect x="338" y="72" width="16" height="16"/>
+        </g>
+        <rect x="306" y="24" width="16" height="16" fill="var(--text)" opacity="0.18"/>
+        <rect x="346" y="56" width="12" height="12" fill="var(--text)" opacity="0.18"/>
+        <rect x="322" y="8" width="16" height="6" fill="#fff" opacity="0.25"/>
+      </g>
+
+      <g class="scene-sun" filter="url(#pixelGlow)">
+        <circle cx="330" cy="40" r="48" fill="url(#celestialGlow)"/>
+        <g fill="var(--accent2)">
+          <rect x="322" y="-10" width="16" height="12"/>
+          <rect x="322" y="88" width="16" height="12"/>
+          <rect x="264" y="34" width="12" height="16"/>
+          <rect x="378" y="34" width="12" height="16"/>
+          <rect x="306" y="8" width="16" height="16"/><rect x="322" y="8" width="16" height="16"/><rect x="338" y="8" width="16" height="16"/>
+          <rect x="290" y="24" width="16" height="16"/><rect x="306" y="24" width="16" height="16"/><rect x="322" y="24" width="16" height="16"/><rect x="338" y="24" width="16" height="16"/><rect x="354" y="24" width="16" height="16"/>
+          <rect x="290" y="40" width="16" height="16"/><rect x="306" y="40" width="16" height="16"/><rect x="322" y="40" width="16" height="16"/><rect x="338" y="40" width="16" height="16"/><rect x="354" y="40" width="16" height="16"/>
+          <rect x="290" y="56" width="16" height="16"/><rect x="306" y="56" width="16" height="16"/><rect x="322" y="56" width="16" height="16"/><rect x="338" y="56" width="16" height="16"/><rect x="354" y="56" width="16" height="16"/>
+          <rect x="306" y="72" width="16" height="16"/><rect x="322" y="72" width="16" height="16"/><rect x="338" y="72" width="16" height="16"/>
+        </g>
+        <rect x="322" y="8" width="16" height="6" fill="#fff" opacity="0.3"/>
+      </g>
+
+      <path d="M0 145 H40 V125 H80 V100 H120 V120 H160 V85 H200 V105 H240 V75 H280 V100 H320 V80 H360 V110 H400 V200 H0 Z" fill="var(--accent2)" opacity="0.32"/>
+      <path d="M0 145 H40 V133 H80 V113 H120 V127 H160 V102 H200 V116 H240 V94 H280 V113 H320 V100 H360 V121 H400 V131 H360 V145 H320 V133 H280 V145 H240 V127 H200 V139 H160 V121 H120 V139 H80 V127 H40 V145 H0 Z" fill="var(--accent2)" opacity="0.18"/>
+      <g class="scene-windows" filter="url(#pixelGlow)">
+        <rect x="204" y="108" width="8" height="8" fill="var(--star-color)" class="particle" style="animation-duration:3s"/>
+        <rect x="222" y="114" width="8" height="8" fill="var(--star-color)" class="particle" style="animation-duration:4s; animation-delay:.5s"/>
+        <rect x="240" y="102" width="8" height="8" fill="var(--star-color)" class="particle" style="animation-duration:3.5s; animation-delay:1s"/>
+        <rect x="258" y="112" width="8" height="8" fill="var(--star-color)" class="particle" style="animation-duration:4.5s; animation-delay:.3s"/>
+      </g>
+      <path d="M0 165 H60 V145 H100 V168 H140 V135 H180 V160 H220 V130 H260 V155 H300 V125 H340 V150 H400 V200 H0 Z" fill="var(--accent)" opacity="0.42"/>
+      <path d="M0 165 H60 V153 H100 V156 H140 V147 H180 V148 H220 V142 H260 V143 H300 V137 H340 V138 H400 V150 H340 V165 H300 V150 H260 V165 H220 V150 H180 V165 H140 V150 H100 V165 H60 V165 H0 Z" fill="#000" opacity="0.08"/>
+
+      <path d="M150 200 L184 140 L216 140 L260 200 Z" fill="rgba(20,10,30,0.35)"/>
+      <g fill="var(--accent2)" opacity="0.7">
+        <rect x="196" y="182" width="8" height="12"/>
+        <rect x="194" y="158" width="8" height="12"/>
+        <rect x="192" y="134" width="8" height="12"/>
+      </g>
+
+      <rect x="174" y="126" width="6" height="74" fill="var(--text)" opacity="0.6"/>
+      <rect x="162" y="112" width="30" height="14" fill="var(--text)" opacity="0.6"/>
+      <g fill="var(--accent2)" class="scene-lampglow" filter="url(#pixelGlow)">
+        <rect x="154" y="92" width="46" height="10" opacity="0.2"/>
+        <rect x="162" y="82" width="30" height="10" opacity="0.3"/>
+        <rect x="170" y="98" width="14" height="14"/>
+      </g>
+    </svg>
+  </div>
+
+  <div id="particles" class="absolute inset-0 overflow-hidden pointer-events-none"></div>
+
+  
+  <div class="fixed top-4 left-4 md:top-6 md:left-6 z-20 flex items-center gap-2">
+    <button id="music-toggle"
+      class="flex items-center gap-2 px-3 py-2 rounded-full backdrop-blur-md text-sm glass-card">
+      <span id="music-icon" class="w-4 h-4"></span>
+      <span class="hidden md:inline">موسيقى</span>
+    </button>
+  </div>
+
+  <div id="search-panel" class="hidden fixed z-20" style="top:1rem; left:50%; transform:translateX(-50%); width:min(260px,88vw);">
+    <div class="flex items-center gap-2 rounded-full backdrop-blur-md glass-card px-3 py-2">
+      <input id="song-input" type="text" placeholder="اسم الأغنية..."
+        class="flex-1 text-xs theme-text" style="background:transparent; border:none; outline:none;" />
+      <button id="song-search-btn" aria-label="بحث" class="flex items-center justify-center" style="width:20px; height:20px;">
+        <span id="search-heart-icon"></span>
+      </button>
+    </div>
+    <div id="song-results" class="flex flex-col gap-1 rounded-2xl backdrop-blur-md glass-card p-2 mt-2" style="max-height:200px; overflow-y:auto;"></div>
+  </div>
+
+  <div id="now-playing-panel" class="hidden fixed z-20" style="top:1rem; left:50%; transform:translateX(-50%); width:min(240px,80vw);">
+    <div class="rounded-2xl backdrop-blur-md glass-card" style="display:flex; align-items:center; gap:10px; padding:8px 14px;">
+      <button id="np-playpause" class="flex items-center justify-center" style="width:22px; height:22px; color:var(--text); flex-shrink:0;">
+        <span id="np-playpause-icon"></span>
+      </button>
+      <div id="now-playing-title" class="text-xs theme-text" style="flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"></div>
+      <button id="np-close" class="flex items-center justify-center" style="width:16px; height:16px; color:var(--text); opacity:0.7; flex-shrink:0;">
+        <span id="np-close-icon"></span>
+      </button>
+    </div>
+  </div>
+
+  <div id="yt-player-wrap" class="fixed" style="top:0; left:0; width:200px; height:112px; opacity:0; pointer-events:none; z-index:-1;">
+    <div id="yt-player"></div>
+  </div>
+
+  
+  <div class="relative z-10 text-center mb-8">
+    <div class="flex items-center justify-center gap-2 mb-2 text-sm md:text-base theme-accent">
+      <span id="daynight-icon-1" class="w-4 h-4"></span>
+      <span>الشهر المميز مالتنا</span>
+      <span id="daynight-icon-2" class="w-4 h-4"></span>
+    </div>
+    <h1 class="font-display text-3xl md:text-5xl mb-2 theme-text">العد التنازلي إلنا</h1>
+    <p class="text-sm md:text-lg opacity-90 theme-text">إلى 1 نوفمبر 2026 — الشهر الي رح اشوف بي رغية 😼</p>
+  </div>
+
+  
+  <div class="relative z-10 flex gap-2 md:gap-4 mb-8">
+    <div id="card-days" class="relative overflow-visible flex flex-col items-center justify-center rounded-2xl backdrop-blur-xl px-3 py-4 md:px-6 md:py-6 w-[70px] md:w-[110px] shadow-xl glass-card">
+      <span id="val-days" data-value="" class="text-2xl md:text-4xl font-black tabular-nums">00</span>
+      <span class="text-[10px] md:text-xs mt-1 opacity-80">يوم</span>
+    </div>
+    <div id="card-hours" class="relative overflow-visible flex flex-col items-center justify-center rounded-2xl backdrop-blur-xl px-3 py-4 md:px-6 md:py-6 w-[70px] md:w-[110px] shadow-xl glass-card">
+      <span id="val-hours" data-value="" class="text-2xl md:text-4xl font-black tabular-nums">00</span>
+      <span class="text-[10px] md:text-xs mt-1 opacity-80">ساعة</span>
+    </div>
+    <div id="card-mins" class="relative overflow-visible flex flex-col items-center justify-center rounded-2xl backdrop-blur-xl px-3 py-4 md:px-6 md:py-6 w-[70px] md:w-[110px] shadow-xl glass-card">
+      <span id="val-mins" data-value="" class="text-2xl md:text-4xl font-black tabular-nums">00</span>
+      <span class="text-[10px] md:text-xs mt-1 opacity-80">دقيقة</span>
+    </div>
+    <div id="card-secs" class="relative overflow-visible flex flex-col items-center justify-center rounded-2xl backdrop-blur-xl px-3 py-4 md:px-6 md:py-6 w-[70px] md:w-[110px] shadow-xl glass-card">
+      <span id="val-secs" data-value="" class="text-2xl md:text-4xl font-black tabular-nums">00</span>
+      <span class="text-[10px] md:text-xs mt-1 opacity-80">ثانية</span>
+    </div>
+  </div>
+
+  
+  <div class="relative z-10 w-full max-w-md">
+    <div class="flex justify-between text-xs mb-1 opacity-80 theme-text">
+      <span>بداية الانتظار</span>
+      <span id="progress-label">0.0٪</span>
+      <span> 1 نوفمبر</span>
+    </div>
+    <div class="w-full h-2.5 rounded-full overflow-hidden progress-track">
+      <div id="progress-fill" class="h-full rounded-full progress-fill" style="width:0%"></div>
+    </div>
+  </div>
+
+  
+  <div class="relative z-10 mt-8 flex items-center gap-1.5 text-xs md:text-sm opacity-70 theme-text">
+    <span id="tagline-heart" class="inline-flex"></span>
+    <span>كل ثانية تمر تخلينا اقرب (:</span>
+  </div>
+
+  
+  <div class="fixed bottom-4 right-4 md:bottom-8 md:right-8 flex flex-col items-end gap-2 z-20">
+    <div id="cat-bubble" class="bubble-fade max-w-[220px] md:max-w-[260px] px-4 py-3 rounded-2xl rounded-br-sm text-sm md:text-base backdrop-blur-md shadow-lg theme-bubble">
+      ...
+    </div>
+    <button id="cat-button" class="relative" aria-label="القطة">
+      <svg width="72" height="72" viewBox="0 0 100 100">
+        <g id="cat-svg-inner">
+          <path id="cat-ear-l" d="M28 30 L18 8 L42 24 Z" />
+          <path id="cat-ear-r" d="M72 30 L82 8 L58 24 Z" />
+          <circle id="cat-head" cx="50" cy="45" r="26" />
+          <ellipse cx="50" cy="52" rx="16" ry="12" fill="rgba(255,255,255,0.85)" />
+          <circle id="cat-eye-l" cx="42" cy="44" r="3" />
+          <circle id="cat-eye-r" cx="58" cy="44" r="3" />
+          <path id="cat-nose" d="M47 52 L53 52 L50 55 Z" />
+          <g id="cat-whiskers" stroke-width="1" opacity="0.5">
+            <line x1="20" y1="50" x2="36" y2="52" />
+            <line x1="20" y1="58" x2="36" y2="56" />
+            <line x1="80" y1="50" x2="64" y2="52" />
+            <line x1="80" y1="58" x2="64" y2="56" />
+          </g>
+        </g>
+      </svg>
+    </button>
+  </div>
+
+</main>
+
+<script>
+  
+  const ICONS = {
+    sun: '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>',
+    moon: '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>',
+    play: '<svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg>',
+    pause: '<svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>',
+    close: '<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>',
+  };
+
+  const YT_API_KEY = "AIzaSyANiLEWkMmV8NQyepM45fpf7AgonGajsBc";
+
+  
+  const TARGET_DATE = new Date("2026-11-01T00:00:00");
+  const START_DATE = new Date("2026-07-01T00:00:00");
+
+  
+  const DAYPART = {
+    night:   { bg:"linear-gradient(180deg, #140B29 0%, #140B29 38%, #241340 38%, #241340 72%, #0A0518 72%, #0A0518 100%)", card:"rgba(255,255,255,0.06)", cardBorder:"rgba(255,255,255,0.2)", text:"#F1E9FA", bubble:"rgba(20,10,40,0.7)", star:"#F1E9FA", isBright:false },
+    fajr:    { bg:"linear-gradient(180deg, #3A3060 0%, #3A3060 40%, #5A4570 40%, #5A4570 72%, #7A5A75 72%, #7A5A75 100%)", card:"rgba(255,255,255,0.1)", cardBorder:"rgba(255,255,255,0.28)", text:"#F5EDF7", bubble:"rgba(58,48,96,0.6)", star:"#D9B8E0", isBright:false },
+    morning: { bg:"linear-gradient(180deg, #FDF6ED 0%, #FDF6ED 42%, #FBE8E4 42%, #FBE8E4 74%, #F3DCE8 74%, #F3DCE8 100%)", card:"rgba(255,255,255,0.55)", cardBorder:"rgba(255,255,255,0.8)", text:"#5A4560", bubble:"rgba(255,255,255,0.85)", star:"#E8B896", isBright:true },
+    noon:    { bg:"linear-gradient(180deg, #EAF2FB 0%, #EAF2FB 42%, #DCEAF7 42%, #DCEAF7 74%, #E8DCF0 74%, #E8DCF0 100%)", card:"rgba(255,255,255,0.55)", cardBorder:"rgba(255,255,255,0.8)", text:"#3D3550", bubble:"rgba(255,255,255,0.85)", star:"#E0A868", isBright:true },
+    asr:     { bg:"linear-gradient(180deg, #F5D9C2 0%, #F5D9C2 40%, #EFC0AE 40%, #EFC0AE 72%, #DDA7B0 72%, #DDA7B0 100%)", card:"rgba(255,255,255,0.4)", cardBorder:"rgba(255,255,255,0.65)", text:"#5A3A3E", bubble:"rgba(255,255,255,0.75)", star:"#E8935E", isBright:true },
+  };
+
+  const MOOD_ACCENT = {
+    dawn:   { accent:"#C98BA0", accent2:"#E0C08A" },
+    sunset: { accent:"#D98BAE", accent2:"#E8B87E" },
+    night:  { accent:"#D9678F", accent2:"#E8A8C0" },
+  };
+
+  function buildTheme(mood, daypart){
+    const d = DAYPART[daypart];
+    const m = MOOD_ACCENT[mood];
+    return {
+      bg: d.bg, card: d.card, cardBorder: d.cardBorder, text: d.text,
+      bubble: d.bubble, star: d.star, isBright: d.isBright,
+      accent: m.accent, accent2: m.accent2,
+    };
+  }
+
+  
+  const MESSAGES = [
+    " انتظريني يرغاوي 3:",
+    " رغاوي بنيتي 💓",
+    "دائما أفكر بيچ قبل لا انام",
+    "باقي قليل صح 3:؟",
+    "كم يوم باقي غششيني 😳",
+    "ننتظر انا وانت =w=",
+    "لغاوي الصبر جميل لان النهاية سعيدة وتستاهل💕",
+    " كل ما اشوف الوقت يقترب اكثر ابتسم لا اراديا (:",
+    "سوف اعضچ",
+    "رح احضنچ للابد 3:",
+    "💋 هاچ بوسة",
+    "احب بنيتي",
+    "صبرنه طويل بس الفرحة أطول ^ ^",
+    "ما اريد اسرع الوقت، بس اريد احضنچ هسة 🥹",
+    "رغية الحلوة، انتظارچ متعة مو عذاب 🌼",
+    " تذكري اني دائما بجانبچ 😽",
+    "كل نجمة بالسماء تذكرني بيچ 🌟",
+  ];
+
+  
+  function getMood(daysLeft){
+    if(daysLeft > 30) return "dawn";
+    if(daysLeft > 7) return "sunset";
+    return "night";
+  }
+  function getDaypart(hour, minute){
+    const t = hour + minute/60;
+    if(t >= 18.5 || t < 3) return "night";
+    if(t >= 3 && t < 6) return "fajr";
+    if(t >= 6 && t < 11.5) return "morning";
+    if(t >= 11.5 && t < 15.5) return "noon";
+    return "asr";
+  }
+  function heartSVG(color, size){
+    return '<svg width="'+size+'" height="'+size+'" viewBox="0 0 24 24" fill="'+color+'">' +
+      '<path d="M12 21s-6.7-4.35-9.3-8.1C1 10.2 1.4 6.6 4.4 5 6.9 3.7 9.8 4.6 12 7.4c2.2-2.8 5.1-3.7 7.6-2.4 3 1.6 3.4 5.2 1.7 7.9C18.7 16.65 12 21 12 21z"/></svg>';
+  }
+
+  
+  let currentMood = null;
+  let currentDaypart = null;
+  let msgIndex = 0;
+  let catIntervalId = null;
+  let playing = false;
+
+  
+  function applyTheme(t){
+    const root = document.documentElement.style;
+    root.setProperty('--bg', t.bg);
+    root.setProperty('--card-bg', t.card);
+    root.setProperty('--card-border', t.cardBorder);
+    root.setProperty('--text', t.text);
+    root.setProperty('--accent', t.accent);
+    root.setProperty('--accent2', t.accent2);
+    root.setProperty('--bubble-bg', t.bubble);
+    root.setProperty('--star-color', t.star);
+
+    document.getElementById('tagline-heart').innerHTML = heartSVG(t.accent, 14);
+
+    ['cat-ear-l','cat-ear-r','cat-head'].forEach(id=>{
+      document.getElementById(id).setAttribute('fill', t.accent2);
+    });
+    ['cat-eye-l','cat-eye-r'].forEach(id=>{
+      document.getElementById(id).setAttribute('fill', t.text);
+    });
+    document.getElementById('cat-nose').setAttribute('fill', t.accent);
+    document.getElementById('cat-whiskers').setAttribute('stroke', t.text);
+  }
+
+  
+  function regenerateParticles(mood){
+    const container = document.getElementById('particles');
+    container.innerHTML = '';
+    const count = mood === 'night' ? 70 : (mood === 'sunset' ? 45 : 30);
+    const starColor = getComputedStyle(document.documentElement).getPropertyValue('--star-color').trim();
+    for(let i=0;i<count;i++){
+      const p = document.createElement('div');
+      const size = Math.round(Math.random()*2)+2;
+      const dur = (Math.random()*6+4).toFixed(1);
+      const delay = (Math.random()*5).toFixed(1);
+      p.style.position = 'absolute';
+      p.style.left = (Math.random()*100)+'%';
+      p.style.top = (Math.random()*100)+'%';
+      p.style.width = size+'px';
+      p.style.height = size+'px';
+      p.style.background = starColor;
+      p.style.borderRadius = '0';
+      p.style.pointerEvents = 'none';
+      p.style.boxShadow = '0 0 ' + (size*3) + 'px ' + starColor;
+      p.className = 'particle';
+      p.style.animationDuration = dur+'s';
+      p.style.animationDelay = delay+'s';
+      container.appendChild(p);
+    }
+  }
+
+  
+  function updateDayNightIcon(daypart){
+    const isBright = DAYPART[daypart].isBright;
+    const icon = isBright ? ICONS.sun : ICONS.moon;
+    document.getElementById('daynight-icon-1').innerHTML = icon;
+    document.getElementById('daynight-icon-2').innerHTML = icon;
+    const scene = document.getElementById('scene');
+    scene.classList.remove('is-day', 'is-night');
+    scene.classList.add(isBright ? 'is-day' : 'is-night');
+  }
+
+  
+  function resetCatMessages(){
+    msgIndex = 0;
+    showCatMessage();
+    if(catIntervalId) clearInterval(catIntervalId);
+    catIntervalId = setInterval(()=>{
+      msgIndex = (msgIndex + 1) % MESSAGES.length;
+      showCatMessage();
+    }, 5000);
+  }
+  function showCatMessage(){
+    const bubble = document.getElementById('cat-bubble');
+    bubble.style.opacity = 0;
+    setTimeout(()=>{
+      bubble.textContent = MESSAGES[msgIndex];
+      bubble.style.opacity = 1;
+    }, 200);
+  }
+  document.getElementById('cat-button').addEventListener('click', ()=>{
+    msgIndex = (msgIndex + 1) % MESSAGES.length;
+    showCatMessage();
+  });
+
+  
+  function updateValue(key, value){
+    const text = String(value).padStart(2,'0');
+    const el = document.getElementById('val-'+key);
+    if(el.dataset.value !== text){
+      el.dataset.value = text;
+      el.textContent = text;
+      el.classList.remove('pulse');
+      void el.offsetWidth;
+      el.classList.add('pulse');
+      spawnHeart(key);
+    }
+  }
+  function spawnHeart(key){
+    const card = document.getElementById('card-'+key);
+    const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
+    const heart = document.createElement('span');
+    heart.innerHTML = heartSVG(accent, 13);
+    heart.style.position = 'absolute';
+    heart.style.top = '4px';
+    heart.style.left = '50%';
+    heart.style.pointerEvents = 'none';
+    heart.className = 'heart-pop';
+    card.appendChild(heart);
+    heart.addEventListener('animationend', ()=> heart.remove());
+  }
+
+  
+  function tick(){
+    const now = new Date();
+    const diff = Math.max(0, TARGET_DATE - now);
+    const days = Math.floor(diff/86400000);
+    const hours = Math.floor((diff/3600000)%24);
+    const mins = Math.floor((diff/60000)%60);
+    const secs = Math.floor((diff/1000)%60);
+    const progress = Math.min(100, Math.max(0, ((now-START_DATE)/(TARGET_DATE-START_DATE))*100));
+
+    const mood = getMood(days);
+    const daypart = getDaypart(now.getHours(), now.getMinutes());
+
+    if(mood !== currentMood || daypart !== currentDaypart){
+      currentMood = mood;
+      currentDaypart = daypart;
+      applyTheme(buildTheme(mood, daypart));
+      regenerateParticles(mood);
+      updateDayNightIcon(daypart);
+      resetCatMessages();
+    }
+
+    updateValue('days', days);
+    updateValue('hours', hours);
+    updateValue('mins', mins);
+    updateValue('secs', secs);
+
+    document.getElementById('progress-fill').style.width = progress+'%';
+    document.getElementById('progress-label').textContent = progress.toFixed(1)+'٪';
+  }
+
+  
+  let ytPlayer = null;
+  let hasTrack = false;
+  let ytReady = false;
+  let pendingVideoId = null;
+  let pendingTitle = null;
+
+  function initYT(){
+    const tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    document.head.appendChild(tag);
+    window.onYouTubeIframeAPIReady = ()=>{
+      ytPlayer = new YT.Player('yt-player', {
+        height: '112',
+        width: '200',
+        playerVars: { autoplay: 0 },
+        events: {
+          onReady: ()=>{
+            ytReady = true;
+            if(pendingVideoId){
+              ytPlayer.loadVideoById(pendingVideoId);
+              document.getElementById('now-playing-title').textContent = pendingTitle || '';
+              pendingVideoId = null;
+              pendingTitle = null;
+            }
+          },
+          onStateChange: (e)=>{
+            if(e.data === YT.PlayerState.PLAYING){
+              playing = true;
+              updateMusicIcon();
+              updatePlayPauseIcon();
+            }
+            if(e.data === YT.PlayerState.PAUSED){
+              playing = false;
+              updateMusicIcon();
+              updatePlayPauseIcon();
+            }
+          }
+        }
+      });
+    };
+  }
+  initYT();
+
+  function updatePlayPauseIcon(){
+    document.getElementById('np-playpause-icon').innerHTML = playing ? ICONS.pause : ICONS.play;
+  }
+
+  function playVideo(videoId, title){
+    document.getElementById('now-playing-panel').classList.remove('hidden');
+    document.getElementById('search-panel').classList.add('hidden');
+    hasTrack = true;
+    if(ytReady && ytPlayer && ytPlayer.loadVideoById){
+      ytPlayer.loadVideoById(videoId);
+      document.getElementById('now-playing-title').textContent = title || '';
+    } else {
+      pendingVideoId = videoId;
+      pendingTitle = title;
+      document.getElementById('now-playing-title').textContent = 'جاري التحميل...';
+    }
+  }
+
+  document.getElementById('np-playpause').addEventListener('click', ()=>{
+    if(!ytPlayer) return;
+    if(playing){ ytPlayer.pauseVideo(); } else { ytPlayer.playVideo(); }
+  });
+
+  document.getElementById('np-close').addEventListener('click', ()=>{
+    if(ytPlayer && ytPlayer.stopVideo){ ytPlayer.stopVideo(); }
+    playing = false;
+    hasTrack = false;
+    updateMusicIcon();
+    document.getElementById('now-playing-panel').classList.add('hidden');
+  });
+
+  document.getElementById('np-close-icon').innerHTML = ICONS.close;
+  document.getElementById('np-playpause-icon').innerHTML = ICONS.play;
+
+  function renderResults(items){
+    const box = document.getElementById('song-results');
+    box.innerHTML = '';
+    if(!items || !items.length){
+      box.innerHTML = '<div class="text-xs" style="opacity:.7; color:var(--text);">ما لكيت نتايج</div>';
+      return;
+    }
+    items.forEach(item=>{
+      const el = document.createElement('button');
+      el.className = 'text-xs';
+      el.style.cssText = 'text-align:right; background:rgba(255,255,255,0.15); border-radius:0.5rem; padding:6px 8px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:var(--text);';
+      el.textContent = item.snippet.title;
+      el.addEventListener('click', ()=> playVideo(item.id.videoId, item.snippet.title));
+      box.appendChild(el);
+    });
+  }
+
+  document.getElementById('song-search-btn').addEventListener('click', ()=>{
+    const q = document.getElementById('song-input').value.trim();
+    if(!q) return;
+    const box = document.getElementById('song-results');
+    const heartIcon = document.getElementById('search-heart-icon');
+    heartIcon.classList.add('spin');
+    box.innerHTML = '<div class="text-xs" style="opacity:.7; color:var(--text);">جاري البحث...</div>';
+    fetch('https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&videoCategoryId=10&maxResults=6&q=' + encodeURIComponent(q) + '&key=' + YT_API_KEY)
+      .then(r=>r.json())
+      .then(data=>{
+        heartIcon.classList.remove('spin');
+        if(data.error){
+          box.innerHTML = '<div class="text-xs" style="opacity:.7; color:var(--text);">تأكد من مفتاح الـ API</div>';
+          return;
+        }
+        renderResults(data.items);
+      })
+      .catch(()=>{
+        heartIcon.classList.remove('spin');
+        box.innerHTML = '<div class="text-xs" style="opacity:.7; color:var(--text);">صار خطأ بالبحث</div>';
+      });
+  });
+
+  document.getElementById('song-input').addEventListener('keydown', (e)=>{
+    if(e.key === 'Enter'){ document.getElementById('song-search-btn').click(); }
+  });
+
+  document.getElementById('music-toggle').addEventListener('click', ()=>{
+    if(!hasTrack){
+      document.getElementById('search-panel').classList.toggle('hidden');
+      return;
+    }
+    if(playing){
+      ytPlayer.pauseVideo();
+    } else {
+      ytPlayer.playVideo();
+    }
+  });
+
+  function updateMusicIcon(){
+    const musicIcon = document.getElementById('music-icon');
+    musicIcon.innerHTML = heartSVG(playing ? 'var(--accent)' : 'var(--text)', 16);
+    musicIcon.style.opacity = playing ? '1' : '0.6';
+    musicIcon.classList.toggle('beat', playing);
+  }
+
+  
+  document.getElementById('search-heart-icon').innerHTML = heartSVG('var(--accent)', 18);
+  updateMusicIcon();
+  tick();
+  setInterval(tick, 1000);
+</script>
+</body>
+</html>
