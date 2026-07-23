@@ -56,7 +56,7 @@ export default {
         });
       }
 
-      const model = env.GEMINI_MODEL || "gemini-2.0-flash-lite";
+      const model = env.GEMINI_MODEL || "gemini-3.5-flash-lite";
       const apiUrl = "https://generativelanguage.googleapis.com/v1beta/models/" + model + ":generateContent";
 
       let lastStatus = 500;
