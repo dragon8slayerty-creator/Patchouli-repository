@@ -1,0 +1,1771 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DEATH BATTLE</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sky:#38bdf8; --pink:#ec4899; --gold:#facc15; --orange:#f97316; --red:#ef4444;
+    --bg:#06060a; --panel:#0b0d14; --ink:#e6e9f0;
+  }
+  *{ box-sizing:border-box; }
+  html,body{ background:var(--bg); }
+  body{ font-family:'Rajdhani',sans-serif; color:var(--ink); overflow-x:hidden; }
+  .font-pixel{ font-family:'Press Start 2P',monospace; }
+  .font-hud{ font-family:'Orbitron',sans-serif; }
+
+  [dir="rtl"] .font-pixel, [dir="rtl"] .font-hud{ font-family:'Rajdhani',sans-serif; }
+
+  .pixel-corners{
+    clip-path: polygon(0 8px,8px 8px,8px 0,calc(100% - 8px) 0,calc(100% - 8px) 8px,100% 8px,
+      100% calc(100% - 8px),calc(100% - 8px) calc(100% - 8px),calc(100% - 8px) 100%,
+      8px 100%,8px calc(100% - 8px),0 calc(100% - 8px));
+  }
+  .pixel-corners-sm{
+    clip-path: polygon(0 4px,4px 4px,4px 0,calc(100% - 4px) 0,calc(100% - 4px) 4px,100% 4px,
+      100% calc(100% - 4px),calc(100% - 4px) calc(100% - 4px),calc(100% - 4px) 100%,
+      4px 100%,4px calc(100% - 4px),0 calc(100% - 4px));
+  }
+
+  .scanlines{
+    background-image: repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.06) 0px,
+      rgba(255,255,255,0.06) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+    background-size: 100% 4px;
+  }
+  .crt-frame{ position:relative; overflow:hidden; }
+  .crt-frame::after{
+    content:""; position:absolute; inset:0; pointer-events:none;
+    background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.55) 100%);
+  }
+  .crt-flicker{ animation: flicker 3.4s infinite; }
+  @keyframes flicker{
+    0%,100%{ opacity:1; } 92%{ opacity:1; } 93%{ opacity:.86; } 94%{ opacity:1; }
+  }
+
+  .glow-sky{ text-shadow: 0 0 6px rgba(56,189,248,.9), 0 0 22px rgba(56,189,248,.55), 0 0 46px rgba(56,189,248,.3); }
+  .glow-pink{ text-shadow: 0 0 6px rgba(236,72,153,.9), 0 0 22px rgba(236,72,153,.55), 0 0 46px rgba(236,72,153,.3); }
+  .glow-gold{ text-shadow: 0 0 6px rgba(250,204,21,.9), 0 0 24px rgba(249,115,22,.6), 0 0 48px rgba(239,68,68,.4); }
+
+  .title-glow{ text-shadow: 0 0 4px #fff, 0 0 14px var(--sky), 0 0 28px var(--pink), 0 0 46px var(--pink); }
+
+  @keyframes vspulse{ 0%,100%{ transform:scale(1); filter:brightness(1);} 50%{ transform:scale(1.06); filter:brightness(1.25);} }
+  .vs-pulse{ animation: vspulse 1.6s ease-in-out infinite; }
+
+  @keyframes shake{
+    10%,90%{ transform:translate3d(-1px,-1px,0); }
+    20%,80%{ transform:translate3d(2px,2px,0); }
+    30%,50%,70%{ transform:translate3d(-5px,3px,0); }
+    40%,60%{ transform:translate3d(5px,-3px,0); }
+  }
+  .shake-active{ animation: shake .45s linear infinite; }
+
+  @keyframes strobe{
+    0%,100%{ background: rgba(239,68,68,.32); }
+    50%{ background: rgba(56,189,248,.32); }
+  }
+  .strobe-active{ animation: strobe .16s steps(1,end) infinite; }
+
+  @keyframes fightshift{
+    0%{ background-position: 0% 50%; }
+    100%{ background-position: 200% 50%; }
+  }
+  .fight-text{
+    font-family:'Press Start 2P',monospace;
+    background: linear-gradient(90deg, var(--red), var(--orange), var(--gold), var(--orange), var(--red));
+    background-size: 300% 100%;
+    -webkit-background-clip: text; background-clip:text; color:transparent;
+    animation: fightshift .7s linear infinite;
+    text-shadow: 3px 0 0 rgba(239,68,68,.35), -3px 0 0 rgba(56,189,248,.35);
+    letter-spacing: .08em;
+  }
+
+  @keyframes barfill{ from{ width:0%; } }
+  .bar-fill{ animation: barfill 1.1s cubic-bezier(.2,.8,.2,1) forwards; }
+
+  .stat-track{
+    background: repeating-linear-gradient(90deg, rgba(255,255,255,.06) 0 2px, transparent 2px 6px), #0e1018;
+    border: 2px solid rgba(255,255,255,.12);
+  }
+
+  .term-line{ opacity:0; transform: translateY(6px); animation: termIn .4s ease forwards; }
+  @keyframes termIn{ to{ opacity:1; transform:translateY(0); } }
+
+  ::-webkit-scrollbar{ width:8px; height:8px; }
+  ::-webkit-scrollbar-thumb{ background: rgba(56,189,248,.4); }
+  ::-webkit-scrollbar-track{ background: transparent; }
+
+  .char-card{ transition: transform .15s ease, box-shadow .15s ease; }
+  .char-card:hover{ transform: translateY(-3px); }
+
+  .btn-x{
+    box-shadow:
+      0 0 0 4px #050608 inset,
+      0 0 0 6px rgba(56,189,248,.55) inset,
+      0 0 22px rgba(56,189,248,.55),
+      0 6px 0 #0a2c3d;
+  }
+  .btn-x:active{ transform: translateY(4px); box-shadow: 0 0 0 4px #050608 inset, 0 0 0 6px rgba(56,189,248,.55) inset, 0 0 12px rgba(56,189,248,.4); }
+  .btn-x:disabled{ opacity:.45; cursor:not-allowed; }
+
+  .marker-badge{ font-family:'Press Start 2P',monospace; font-size:10px; letter-spacing:1px; }
+
+  .fade-panel{ animation: fadePanel .5s ease forwards; }
+  @keyframes fadePanel{ from{ opacity:0; transform: translateY(10px);} to{ opacity:1; transform:translateY(0);} }
+
+  .loader-dot{ animation: dotpulse 1s ease-in-out infinite; }
+  @keyframes dotpulse{ 0%,100%{ opacity:.2; } 50%{ opacity:1; } }
+
+  @keyframes selectFlash{
+    0%,100%{ box-shadow: inset 0 0 0 rgba(255,255,255,0); filter: brightness(1); }
+    50%{ box-shadow: inset 0 0 35px rgba(255,255,255,0.28); filter: brightness(1.18); }
+  }
+  .select-flash{ animation: selectFlash 1.8s ease-in-out 2; }
+
+  @keyframes reelPulse{ 0%,100%{ transform:scale(1); } 50%{ transform:scale(1.035); } }
+  .reel-active{ animation: reelPulse .35s ease-in-out infinite; }
+
+  @keyframes lockFlash{
+    0%,100%{ filter: brightness(1) saturate(1); box-shadow: inset 0 0 0 rgba(255,255,255,0); }
+    50%{ filter: brightness(2.1) saturate(0.2); box-shadow: inset 0 0 22px rgba(255,255,255,0.85); }
+  }
+  .lock-flash{ animation: lockFlash 0.34s ease-in-out 3; }
+
+  @keyframes flameShine{
+    0%,100%{ filter: brightness(1) saturate(1); }
+    50%{ filter: brightness(1.7) saturate(1.4); }
+  }
+  .flame-shine{ animation: flameShine 1s ease-in-out infinite; }
+
+  @keyframes cardGlowSky{
+    0%,100%{ box-shadow: 0 0 15px rgba(56,189,248,0.25), inset 0 0 12px rgba(56,189,248,0.08); }
+    50%{ box-shadow: 0 0 32px rgba(56,189,248,0.6), inset 0 0 18px rgba(56,189,248,0.18); }
+  }
+  @keyframes cardGlowPink{
+    0%,100%{ box-shadow: 0 0 15px rgba(236,72,153,0.25), inset 0 0 12px rgba(236,72,153,0.08); }
+    50%{ box-shadow: 0 0 32px rgba(236,72,153,0.6), inset 0 0 18px rgba(236,72,153,0.18); }
+  }
+  .card-glow-sky{ animation: cardGlowSky 2.6s ease-in-out infinite; }
+  .card-glow-pink{ animation: cardGlowPink 2.6s ease-in-out infinite; }
+
+  @keyframes shimmerSweep{
+    0%{ transform: translateX(-130%) skewX(-18deg); opacity:0; }
+    15%{ opacity:1; }
+    50%{ opacity:1; }
+    85%{ opacity:0; }
+    100%{ transform: translateX(230%) skewX(-18deg); opacity:0; }
+  }
+  .shimmer-sweep{
+    position:absolute; top:0; left:0; height:100%; width:30%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    animation: shimmerSweep 3.4s ease-in-out infinite;
+    pointer-events:none;
+  }
+</style>
+</head>
+<body class="min-h-screen w-full">
+
+  
+  <audio id="bgMusic" loop preload="auto" src="https://files.catbox.moe/sre7hn.mp3"></audio>
+  <audio id="reelSound" preload="auto" src="https://files.catbox.moe/9283pr.mp3"></audio>
+  <audio id="p1AnnouncerSound" preload="auto" src="https://files.catbox.moe/1o6uow.mp3"></audio>
+  <audio id="p2AnnouncerSound" preload="auto" src="https://files.catbox.moe/n9jdq6.mp3"></audio>
+  <audio id="fightAnnouncerSound" preload="auto" src="https://files.catbox.moe/3t5h03.mp3"></audio>
+
+  <div id="confirmOverlay" class="fixed inset-0 z-40 hidden items-center justify-center bg-black/70 backdrop-blur-sm px-6">
+    <div class="pixel-corners bg-neutral-900/95 border border-sky-400/30 shadow-[0_0_30px_rgba(56,189,248,0.25)] p-6 max-w-xs w-full text-center">
+      <div id="confirmCharName" class="font-pixel text-xs sm:text-sm text-white mb-4"></div>
+      <p id="confirmQuestionText" class="font-hud text-white/70 text-sm mb-5">هل تريد اختيار هذه الشخصية؟</p>
+      <div class="flex gap-3 justify-center">
+        <button id="confirmYesBtn" class="flex-1 px-4 py-2 bg-sky-500/20 border border-sky-400/40 hover:bg-sky-500/30 font-pixel text-[10px] text-sky-300 pixel-corners-sm">✓</button>
+        <button id="confirmNoBtn" class="flex-1 px-4 py-2 bg-white/5 border border-white/20 hover:bg-white/10 font-pixel text-[10px] text-white/70 pixel-corners-sm">✕</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="infoOverlay" class="fixed inset-0 z-40 hidden items-center justify-center bg-black/70 backdrop-blur-sm px-4">
+    <div class="pixel-corners bg-neutral-900/95 border border-emerald-400/30 shadow-[0_0_30px_rgba(16,185,129,0.2)] p-5 max-w-sm w-full max-h-[80vh] overflow-y-auto">
+      <div class="flex gap-3 mb-3">
+        <img id="infoImg" class="w-20 h-20 object-cover pixel-corners-sm border border-white/10 shrink-0" src="" alt="">
+        <div class="flex-1 min-w-0">
+          <div id="infoName" class="font-pixel text-[11px] text-white mb-1 leading-snug"></div>
+          <div id="infoNative" class="font-hud text-xs text-white/50 truncate"></div>
+          <div id="infoMedia" class="font-hud text-xs text-emerald-300 mt-1"></div>
+        </div>
+      </div>
+      <div id="infoFacts" class="hidden flex-wrap gap-2 mb-3"></div>
+      <div id="infoBio" class="font-hud text-sm text-white/80 leading-relaxed whitespace-pre-line"></div>
+      <button id="infoCloseBtn" class="mt-4 w-full px-4 py-2 bg-white/5 border border-white/20 hover:bg-white/10 font-pixel text-[10px] text-white/70 pixel-corners-sm">✕</button>
+    </div>
+  </div>
+
+  <div id="historyOverlay" class="fixed inset-0 z-40 hidden items-center justify-center bg-black/70 backdrop-blur-sm px-4">
+    <div class="pixel-corners bg-neutral-900/95 border border-emerald-400/30 shadow-[0_0_30px_rgba(16,185,129,0.2)] p-5 max-w-md w-full max-h-[80vh] overflow-y-auto">
+      <h3 id="historyTitleEl" class="font-pixel text-xs text-emerald-300 mb-4" data-i18n="historyTitle">BATTLE HISTORY</h3>
+      <div id="historyList" class="space-y-2"></div>
+      <button id="historyCloseBtn" class="mt-4 w-full px-4 py-2 bg-white/5 border border-white/20 hover:bg-white/10 font-pixel text-[10px] text-white/70 pixel-corners-sm">✕</button>
+    </div>
+  </div>
+
+  <div id="strobeOverlay" class="fixed inset-0 z-40 pointer-events-none hidden"></div>
+
+  
+  <div id="fightOverlay" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm">
+    <div class="text-center px-4">
+      <div class="fight-text text-4xl sm:text-6xl md:text-7xl">FIGHT!</div>
+      <div class="mt-6 font-hud text-xs sm:text-sm text-sky-300 tracking-[0.3em]" data-i18n="analyzing">ANALYZING COMBAT DATA</div>
+      <div class="mt-3 flex justify-center gap-2">
+        <span class="w-2 h-2 bg-sky-400 loader-dot" style="animation-delay:0s"></span>
+        <span class="w-2 h-2 bg-pink-400 loader-dot" style="animation-delay:.2s"></span>
+        <span class="w-2 h-2 bg-amber-400 loader-dot" style="animation-delay:.4s"></span>
+      </div>
+      <div id="fightErrorLine" class="hidden mt-4 font-hud text-[11px] text-red-400 max-w-xs mx-auto"></div>
+    </div>
+  </div>
+
+  <div id="app" class="w-full min-h-screen flex flex-col relative">
+
+    
+    <header class="w-full grid grid-cols-3 items-center px-4 sm:px-8 py-5 border-b border-white/5">
+      <div class="relative flex items-center justify-self-start">
+        <button id="gearBtn" class="w-10 h-10 pixel-corners-sm flex items-center justify-center bg-white/5 border-2 border-sky-400/30 hover:border-sky-400/60 hover:bg-sky-500/10 transition" aria-label="Settings">
+          <span class="relative w-4 h-4 block">
+            <span class="absolute inset-[3px] border-2 border-sky-300 pixel-corners-sm"></span>
+            <span class="absolute left-1/2 -top-1 -translate-x-1/2 w-[3px] h-[3px] bg-sky-300"></span>
+            <span class="absolute left-1/2 -bottom-1 -translate-x-1/2 w-[3px] h-[3px] bg-sky-300"></span>
+            <span class="absolute top-1/2 -left-1 -translate-y-1/2 w-[3px] h-[3px] bg-sky-300"></span>
+            <span class="absolute top-1/2 -right-1 -translate-y-1/2 w-[3px] h-[3px] bg-sky-300"></span>
+          </span>
+        </button>
+        <div id="gearMenu" class="hidden absolute left-0 top-12 w-44 bg-neutral-900/90 backdrop-blur-xl border border-white/10 shadow-[0_0_25px_rgba(0,0,0,0.6)] p-1.5 z-30 pixel-corners-sm">
+          <button data-lang="en" class="lang-opt w-full text-left px-3 py-2 text-sm hover:bg-sky-500/20 flex items-center justify-between">
+            <span>English</span>
+          </button>
+          <button data-lang="ar" class="lang-opt w-full text-left px-3 py-2 text-sm hover:bg-pink-500/20 flex items-center justify-between">
+            <span>العربية</span>
+          </button>
+        </div>
+      </div>
+
+      <h1 class="font-pixel title-glow text-white text-[9px] sm:text-lg md:text-2xl tracking-[0.3em] sm:tracking-[0.35em] uppercase justify-self-center text-center">
+        DEATH BATTLE
+      </h1>
+
+      <div class="flex items-center gap-2 justify-self-end">
+        <button id="historyBtn" class="w-10 h-10 pixel-corners-sm flex items-center justify-center bg-white/5 border-2 border-emerald-400/30 hover:border-emerald-400/60 hover:bg-emerald-500/10 transition" aria-label="Battle history">
+          <span class="relative w-4 h-4 block border-2 border-emerald-300 pixel-corners-sm">
+            <span class="absolute left-1/2 top-1/2 w-[2px] h-[5px] bg-emerald-300 origin-bottom -translate-x-1/2 -translate-y-full"></span>
+            <span class="absolute left-1/2 top-1/2 w-[4px] h-[2px] bg-emerald-300 origin-left -translate-y-1/2"></span>
+          </span>
+        </button>
+        <button id="musicToggleBtn" class="w-10 h-10 pixel-corners-sm flex items-center justify-center bg-white/5 border-2 border-amber-400/30 hover:border-amber-400/60 hover:bg-amber-500/10 transition" aria-label="Toggle music">
+          <span class="relative w-5 h-4 flex items-center">
+            <span class="w-[6px] h-[10px] bg-amber-300 shrink-0"></span>
+            <span class="w-0 h-0 border-t-[7px] border-t-transparent border-b-[7px] border-b-transparent border-l-[7px] border-l-amber-300 shrink-0"></span>
+            <span id="soundWaveIcon" class="hidden flex-col gap-[3px] ml-[3px]">
+              <span class="block w-[7px] h-[2px] bg-amber-300"></span>
+              <span class="block w-[10px] h-[2px] bg-amber-300 -translate-x-[1px]"></span>
+            </span>
+            <span id="muteXIcon" class="absolute right-0 top-1/2 -translate-y-1/2 w-[10px] h-[10px]">
+              <span class="absolute inset-0 rotate-45 top-1/2 h-[2px] bg-red-400"></span>
+              <span class="absolute inset-0 -rotate-45 top-1/2 h-[2px] bg-red-400"></span>
+            </span>
+          </span>
+        </button>
+      </div>
+    </header>
+
+    <div id="streakBadge" class="fixed top-20 right-3 sm:right-6 z-20 flex items-center gap-1.5 bg-black/60 border border-white/10 pixel-corners-sm px-2 py-1.5">
+      <div id="flameIcon" class="grid grid-cols-7 grid-rows-9 gap-[1px] w-5 h-7 sm:w-6 sm:h-8 grayscale opacity-40 transition-all duration-300"></div>
+      <span id="streakText" class="font-pixel text-[8px] sm:text-[9px] text-white/70">x0</span>
+    </div>
+
+    
+    <section id="arenaSection" class="w-full flex flex-col items-center justify-center px-4 pt-10 pb-6 gap-8">
+      <div class="flex flex-row items-center justify-center gap-4 sm:gap-10">
+
+        
+        <div class="flex flex-col items-center gap-2">
+          <div id="p2Card" class="crt-frame crt-flicker card-glow-pink scanlines pixel-corners w-28 h-28 sm:w-40 sm:h-40 bg-pink-500/10 backdrop-blur-md border border-pink-500/40 flex items-center justify-center relative overflow-hidden">
+            <div class="shimmer-sweep"></div>
+            <img id="p2Img" src="" alt="" class="hidden w-full h-full object-cover opacity-90 mix-blend-luminosity" />
+            <span id="p2Placeholder" class="font-pixel text-pink-400/50 text-[9px] sm:text-xs text-center px-2" data-i18n="p2Empty">SELECT P2</span>
+            <span id="p2Marker" class="marker-badge hidden absolute -bottom-3 bg-pink-500 text-black px-2 py-1 pixel-corners-sm">P2</span>
+          </div>
+          <span class="font-hud text-pink-400 text-xs tracking-widest">P2</span>
+          <button id="predictP2Btn" class="font-pixel text-[8px] sm:text-[9px] px-2 py-1 border border-pink-400/30 bg-pink-500/10 text-pink-300 hover:bg-pink-500/25 pixel-corners-sm transition" data-i18n="winBtnLabel">WIN</button>
+        </div>
+
+        
+        <div class="vs-pulse font-pixel glow-gold text-xl sm:text-3xl md:text-4xl text-amber-300 italic">VS</div>
+
+        
+        <div class="flex flex-col items-center gap-2">
+          <div id="p1Card" class="crt-frame crt-flicker card-glow-sky scanlines pixel-corners w-28 h-28 sm:w-40 sm:h-40 bg-sky-500/10 backdrop-blur-md border border-sky-500/40 flex items-center justify-center relative overflow-hidden">
+            <div class="shimmer-sweep"></div>
+            <img id="p1Img" src="" alt="" class="hidden w-full h-full object-cover opacity-90 mix-blend-luminosity" />
+            <span id="p1Placeholder" class="font-pixel text-sky-400/50 text-[9px] sm:text-xs text-center px-2" data-i18n="p1Empty">SELECT P1</span>
+            <span id="p1Marker" class="marker-badge hidden absolute -bottom-3 bg-sky-400 text-black px-2 py-1 pixel-corners-sm">P1</span>
+          </div>
+          <span class="font-hud text-sky-400 text-xs tracking-widest">P1</span>
+          <button id="predictP1Btn" class="font-pixel text-[8px] sm:text-[9px] px-2 py-1 border border-sky-400/30 bg-sky-500/10 text-sky-300 hover:bg-sky-500/25 pixel-corners-sm transition" data-i18n="winBtnLabel">WIN</button>
+        </div>
+      </div>
+
+      
+      <div class="flex items-center gap-4">
+        <button id="fightBtn" class="btn-x pixel-corners w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-neutral-950 border-4 border-neutral-800 flex items-center justify-center group">
+          <svg viewBox="0 0 24 24" class="w-9 h-9 sm:w-11 sm:h-11 text-sky-400 group-hover:text-sky-300 transition" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="square" d="M6 6l12 12M18 6L6 18"/>
+          </svg>
+        </button>
+        <button id="randomBtn" class="pixel-corners-sm w-11 h-11 sm:w-12 sm:h-12 bg-neutral-900 border-2 border-amber-400/40 hover:border-amber-400/70 hover:bg-amber-400/10 transition flex items-center justify-center" aria-label="Random matchup">
+          <div class="grid grid-cols-3 grid-rows-3 gap-[3px] w-5 h-5 sm:w-6 sm:h-6">
+            <span class="bg-amber-300 rounded-full"></span><span></span><span class="bg-amber-300 rounded-full"></span>
+            <span></span><span class="bg-amber-300 rounded-full"></span><span></span>
+            <span class="bg-amber-300 rounded-full"></span><span></span><span class="bg-amber-300 rounded-full"></span>
+          </div>
+        </button>
+      </div>
+      <p id="fightHint" class="font-hud text-[10px] sm:text-xs text-white/30 tracking-[0.25em] -mt-4" data-i18n="fightHint">PRESS X TO INITIATE</p>
+    </section>
+
+    
+    <section id="selectSection" class="w-full flex-1 flex flex-col items-center px-4 sm:px-8 pb-12 gap-5">
+      <div class="w-full max-w-3xl flex items-center gap-3">
+        <div class="relative flex-1">
+          <svg class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-white/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="7"/><path stroke-linecap="round" d="M21 21l-4.3-4.3"/>
+          </svg>
+          <input id="searchInput" type="text" placeholder="SEARCH FIGHTER..." data-i18n-ph="searchPh"
+            class="pixel-corners-sm w-full bg-black/50 border border-white/15 focus:border-sky-400/60 outline-none text-sm font-hud tracking-wider pl-9 pr-3 py-3 text-white placeholder-white/30" />
+        </div>
+        <button id="favBtn" title="Favorites" class="pixel-corners-sm w-12 h-12 flex items-center justify-center border border-amber-400/40 bg-amber-400/10 text-amber-300 hover:bg-amber-400/20 transition text-lg font-pixel shrink-0">★</button>
+      </div>
+
+      <div id="statusLine" class="font-hud text-xs text-white/40 tracking-widest h-4"></div>
+
+      <div id="charGrid" class="w-full max-w-4xl grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 sm:gap-4"></div>
+      <div id="paginationBar" class="hidden w-full max-w-4xl items-center justify-center gap-1.5 flex-wrap pt-2"></div>
+    </section>
+
+    
+    <section id="resultSection" class="hidden w-full flex-col items-center px-4 sm:px-8 pb-16 gap-8">
+      <h2 class="font-pixel text-sm sm:text-lg glow-gold text-amber-300 tracking-widest" data-i18n="analyticsTitle">BATTLE ANALYTICS</h2>
+
+      <div class="w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div id="p1Stats" class="fade-panel bg-sky-500/5 border border-sky-500/30 pixel-corners p-5"></div>
+        <div id="p2Stats" class="fade-panel bg-pink-500/5 border border-pink-500/30 pixel-corners p-5"></div>
+      </div>
+
+      <div class="w-full max-w-4xl">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="w-2 h-2 bg-emerald-400"></span>
+          <h3 class="font-hud text-xs tracking-[0.3em] text-emerald-300" data-i18n="loreTitle">COMBAT LOG // LIVE FEED</h3>
+        </div>
+        <div id="dialogueBox" class="bg-black/60 border border-emerald-500/20 pixel-corners p-5 max-h-96 overflow-y-auto font-hud text-sm sm:text-base leading-relaxed space-y-3"></div>
+      </div>
+
+      <div id="radarSection" class="hidden w-full max-w-4xl">
+        <h3 class="font-hud text-xs tracking-[0.3em] text-white/50 mb-3 text-center" id="radarSectionTitleEl">BATTLE PERFORMANCE (THIS FIGHT)</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="bg-sky-500/5 border border-sky-500/20 pixel-corners p-4">
+            <div id="radarP1Name" class="font-pixel text-xs text-sky-300 text-center mb-2 truncate"></div>
+            <div id="radarP1Chart" class="max-w-[280px] mx-auto"></div>
+          </div>
+          <div class="bg-pink-500/5 border border-pink-500/20 pixel-corners p-4">
+            <div id="radarP2Name" class="font-pixel text-xs text-pink-300 text-center mb-2 truncate"></div>
+            <div id="radarP2Chart" class="max-w-[280px] mx-auto"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3 mt-2">
+        <button id="resetBtn" class="pixel-corners-sm px-8 py-4 bg-neutral-900 border-2 border-white/20 hover:border-amber-400/60 hover:bg-amber-400/10 transition font-pixel text-[10px] sm:text-xs tracking-widest text-white" data-i18n="resetBtn">
+          SELECT AGAIN
+        </button>
+      </div>
+    </section>
+
+    <footer class="w-full text-center py-4 text-[10px] font-hud tracking-widest text-white/20">
+      © 2026 · Written by Haru - XIIV
+    </footer>
+  </div>
+
+<script>
+(function(){
+  "use strict";
+
+  const I18N = {
+    en: {
+      p1Empty:"SELECT P1", p2Empty:"SELECT P2", fightHint:"PRESS X TO INITIATE",
+      searchPh:"SEARCH FIGHTER...", analyzing:"ANALYZING COMBAT DATA",
+      analyticsTitle:"BATTLE ANALYTICS", loreTitle:"COMBAT LOG // LIVE FEED", tradedBlows:"⚔ TRADED BLOWS",
+      resetBtn:"SELECT AGAIN", assignP1:"P1", assignP2:"P2",
+      statPower:"Power (القوة)", statSpeed:"Speed (السرعة)", statHax:"Hax (الهاكس)",
+      statEnd:"Endurance (التحمل)", statPhys:"Physical Ability (القدرة الجسدية)",
+      statIntel:"Intelligence (الذكاء)", statBattleIq:"Battle IQ (ذكاء المعركة)",
+      statWin:"Win Probability (نسبة الفوز)",
+      loading:"LOADING FIGHTERS...", noResults:"NO FIGHTERS FOUND", pickBoth:"SELECT BOTH FIGHTERS FIRST",
+      favEmpty:"NO FAVORITES SAVED", offline:"CONNECTION LOST — SHOWING ESTIMATED DATA",
+      infoFrom:"From", noInfo:"No additional info available for this character.",
+      infoGender:"Gender", infoAge:"Age", infoBlood:"Blood Type", genderMale:"Male", genderFemale:"Female",
+      randomConfirmQuestion:"Pick two random fighters and start the battle?",
+      historyTitle:"BATTLE HISTORY", historyEmpty:"No battles recorded yet.",
+      winBtnLabel:"WIN",
+      radarSectionTitle:"BATTLE PERFORMANCE (THIS FIGHT)",
+      perfSpeed:"Speed", perfPower:"Power", perfTechnique:"Technique", perfEndurance:"Endurance", perfResilience:"Resilience",
+      serverError:"COULD NOT RESOLVE THIS MATCH. USING LOCAL ESTIMATE...",
+      confirmQuestion:"Do you want to select this character?", confirmYes:"YES", confirmNo:"NO"
+    },
+    ar: {
+      p1Empty:"اختر اللاعب 1", p2Empty:"اختر اللاعب 2", fightHint:"اضغط X للبدء",
+      searchPh:"ابحث عن مقاتل...", analyzing:"جاري تحليل بيانات القتال",
+      analyticsTitle:"تحليلات المعركة", loreTitle:"سجل القتال // بث مباشر", tradedBlows:"⚔ تبادل الضربات",
+      resetBtn:"اختر مجددا", assignP1:"1", assignP2:"2",
+      statPower:"القوة (Power)", statSpeed:"السرعة (Speed)", statHax:"الهاكس (Hax)",
+      statEnd:"التحمل (Endurance)", statPhys:"القدرة الجسدية (Physical)",
+      statIntel:"الذكاء (Intelligence)", statBattleIq:"ذكاء المعركة (Battle IQ)",
+      statWin:"نسبة الفوز (Win %)",
+      loading:"جاري تحميل المقاتلين...", noResults:"لا يوجد مقاتلون", pickBoth:"اختر المقاتلين أولاً",
+      favEmpty:"لا توجد مفضلات محفوظة", offline:"انقطع الاتصال — عرض بيانات تقديرية",
+      infoFrom:"من", noInfo:"لا تتوفر معلومات إضافية عن هذه الشخصية.",
+      infoGender:"الجنس", infoAge:"العمر", infoBlood:"فصيلة الدم", genderMale:"ذكر", genderFemale:"أنثى",
+      randomConfirmQuestion:"هل تريد اختيار مقاتلين عشوائياً وبدء المعركة؟",
+      historyTitle:"سجل المعارك", historyEmpty:"لا توجد معارك مسجّلة بعد.",
+      winBtnLabel:"فوز",
+      radarSectionTitle:"أداء المعركة (هذا القتال تحديداً)",
+      perfSpeed:"السرعة", perfPower:"القوة", perfTechnique:"التقنية", perfEndurance:"التحمل", perfResilience:"الصمود",
+      serverError:"تعذر حل هذه المباراة. جارٍ استخدام تقدير محلي...",
+      confirmQuestion:"هل تريد اختيار هذه الشخصية؟", confirmYes:"نعم", confirmNo:"لا"
+    }
+  };
+  let lang = "en";
+  const t = (k) => I18N[lang][k] || k;
+
+  function applyI18n(){
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+    document.querySelectorAll("[data-i18n]").forEach(elm=>{
+      elm.textContent = t(elm.getAttribute("data-i18n"));
+    });
+    document.querySelectorAll("[data-i18n-ph]").forEach(elm=>{
+      elm.placeholder = t(elm.getAttribute("data-i18n-ph"));
+    });
+  }
+
+  let state = { p1:null, p2:null, favorites:[], results:[], showFavOnly:false, prediction:null, streak:0, history:[] };
+  try{ state.favorites = JSON.parse(localStorage.getItem("db_favorites")||"[]"); }catch(e){ state.favorites = []; }
+  try{ state.streak = parseInt(localStorage.getItem("db_streak")||"0", 10) || 0; }catch(e){ state.streak = 0; }
+  try{ state.history = JSON.parse(localStorage.getItem("db_history")||"[]"); }catch(e){ state.history = []; }
+
+  const el = (id) => document.getElementById(id);
+
+  el("gearBtn").addEventListener("click", ()=> el("gearMenu").classList.toggle("hidden"));
+  document.addEventListener("click", (e)=>{
+    if(!el("gearMenu").contains(e.target) && e.target !== el("gearBtn") && !el("gearBtn").contains(e.target)){
+      el("gearMenu").classList.add("hidden");
+    }
+  });
+  document.querySelectorAll(".lang-opt").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      lang = btn.getAttribute("data-lang");
+      applyI18n();
+      el("gearMenu").classList.add("hidden");
+      renderGrid();
+    });
+  });
+
+  const ANILIST_URL = "https://graphql.anilist.co";
+  const CHAR_QUERY = `
+    query ($search: String, $page: Int) {
+      Page(page: $page, perPage: 18) {
+        pageInfo { currentPage lastPage hasNextPage }
+        characters(search: $search, sort: FAVOURITES_DESC) {
+          id
+          name { full native }
+          image { large }
+          description(asHtml: false)
+          gender
+          age
+          bloodType
+          media(perPage: 1) { nodes { title { romaji english } } }
+        }
+      }
+    }`;
+
+  async function fetchCharacters(search, page){
+    page = page || 1;
+    el("statusLine").textContent = t("loading");
+    try{
+      const res = await fetch(ANILIST_URL, {
+        method:"POST",
+        headers:{ "Content-Type":"application/json", "Accept":"application/json" },
+        body: JSON.stringify({ query: CHAR_QUERY, variables: search ? { search, page } : { page } })
+      });
+      const json = await res.json();
+      const chars = (json && json.data && json.data.Page && json.data.Page.characters) || [];
+      const pageInfo = (json && json.data && json.data.Page && json.data.Page.pageInfo) || { currentPage:1, lastPage:1, hasNextPage:false };
+      state.results = chars;
+      state.currentPage = pageInfo.currentPage || page;
+      state.lastPage = pageInfo.lastPage || 1;
+      state.currentSearch = search || "";
+      el("statusLine").textContent = chars.length ? "" : t("noResults");
+    }catch(err){
+      state.results = [];
+      state.currentPage = 1;
+      state.lastPage = 1;
+      el("statusLine").textContent = t("noResults");
+    }
+    renderGrid();
+    renderPagination();
+  }
+
+  function renderPagination(){
+    const bar = el("paginationBar");
+    if(!bar) return;
+    const total = state.lastPage || 1;
+    const current = state.currentPage || 1;
+    if(total <= 1 || state.showFavOnly){
+      bar.innerHTML = "";
+      bar.classList.add("hidden");
+      bar.classList.remove("flex");
+      return;
+    }
+    bar.classList.remove("hidden");
+    bar.classList.add("flex");
+    const windowSize = 5;
+    let startPage = Math.max(1, current - Math.floor(windowSize/2));
+    let endPage = Math.min(total, startPage + windowSize - 1);
+    startPage = Math.max(1, endPage - windowSize + 1);
+
+    let html = "";
+    html += `<button data-page="${Math.max(1,current-1)}" class="page-btn w-8 h-8 flex items-center justify-center font-pixel text-[10px] pixel-corners-sm border border-white/15 bg-white/5 hover:bg-white/10 text-white/60" ${current<=1?'disabled':''}>‹</button>`;
+    for(let p=startPage; p<=endPage; p++){
+      const active = p===current;
+      html += `<button data-page="${p}" class="page-btn w-8 h-8 flex items-center justify-center font-pixel text-[10px] pixel-corners-sm border ${active?'border-sky-400/60 bg-sky-500/20 text-sky-300':'border-white/15 bg-white/5 hover:bg-white/10 text-white/60'}">${p}</button>`;
+    }
+    if(endPage < total){
+      html += `<span class="text-white/30 font-hud text-xs px-1 self-center">…</span>`;
+    }
+    html += `<button data-page="${Math.min(total,current+1)}" class="page-btn w-8 h-8 flex items-center justify-center font-pixel text-[10px] pixel-corners-sm border border-white/15 bg-white/5 hover:bg-white/10 text-white/60" ${current>=total?'disabled':''}>›</button>`;
+    bar.innerHTML = html;
+    bar.querySelectorAll(".page-btn").forEach(btn=>{
+      btn.addEventListener("click", ()=>{
+        const p = parseInt(btn.getAttribute("data-page"),10);
+        if(!Number.isNaN(p)) fetchCharacters(state.currentSearch || undefined, p);
+        window.scrollTo({ top: bar.offsetTop - 100, behavior:"smooth" });
+      });
+    });
+  }
+
+  function isFav(id){ return state.favorites.some(f=>f.id===id); }
+  function toggleFav(char){
+    const idx = state.favorites.findIndex(f=>f.id===char.id);
+    if(idx>=0) state.favorites.splice(idx,1);
+    else state.favorites.push({ id:char.id, name:char.name, image:char.image, description:char.description, media:char.media });
+    localStorage.setItem("db_favorites", JSON.stringify(state.favorites));
+    renderGrid();
+  }
+
+  function shortDesc(desc){
+    if(!desc) return "";
+    return desc.replace(/<[^>]*>/g," ").replace(/\s+/g," ").trim().slice(0,400);
+  }
+
+  function longDesc(desc){
+    if(!desc) return "";
+    return desc.replace(/<[^>]*>/g," ").replace(/\s+/g," ").trim().slice(0,900);
+  }
+
+  function renderGrid(){
+    const grid = el("charGrid");
+    grid.innerHTML = "";
+    const list = state.showFavOnly ? state.favorites : state.results;
+
+    if(state.showFavOnly && list.length===0){
+      el("statusLine").textContent = t("favEmpty");
+    }
+
+    list.forEach(c=>{
+      const name = c.name && c.name.full ? c.name.full : (c.name || "?");
+      const img = c.image && c.image.large ? c.image.large : (c.image || "");
+      const card = document.createElement("div");
+      card.className = "char-card pixel-corners-sm bg-white/5 border border-white/10 hover:border-white/25 overflow-hidden flex flex-col";
+      card.innerHTML = `
+        <div class="relative w-full aspect-square bg-black/40 overflow-hidden">
+          <img src="${img}" alt="${name}" class="w-full h-full object-cover" loading="lazy" onerror="this.style.display='none'"/>
+          <button class="info-toggle absolute top-1 left-1 w-6 h-6 flex items-center justify-center font-pixel text-[10px] text-emerald-300 bg-black/55 border border-emerald-400/30 pixel-corners-sm">i</button>
+          <button class="fav-toggle absolute top-1 right-1 w-6 h-6 flex items-center justify-center text-xs ${isFav(c.id)?'text-amber-300':'text-white/40'} bg-black/50 pixel-corners-sm">★</button>
+        </div>
+        <div class="px-1.5 py-1.5 text-[10px] sm:text-xs font-hud text-center truncate" title="${name}">${name}</div>
+        <div class="flex gap-1 px-1.5 pb-1.5">
+          <button class="assign-p1 flex-1 text-[9px] sm:text-[10px] font-pixel py-1 bg-sky-500/20 hover:bg-sky-500/40 text-sky-300 pixel-corners-sm">${t("assignP1")}</button>
+          <button class="assign-p2 flex-1 text-[9px] sm:text-[10px] font-pixel py-1 bg-pink-500/20 hover:bg-pink-500/40 text-pink-300 pixel-corners-sm">${t("assignP2")}</button>
+        </div>
+      `;
+      card.querySelector(".info-toggle").addEventListener("click",(e)=>{ e.stopPropagation(); openInfoModal(c, name, img); });
+      card.querySelector(".fav-toggle").addEventListener("click",(e)=>{ e.stopPropagation(); toggleFav({id:c.id,name,image:{large:img},description:c.description,media:c.media}); });
+      card.querySelector(".assign-p1").addEventListener("click", async ()=>{
+        const ok = await askConfirmSelection(name);
+        if(ok) assign("p1", {...c, name, image:{large:img}});
+      });
+      card.querySelector(".assign-p2").addEventListener("click", async ()=>{
+        const ok = await askConfirmSelection(name);
+        if(ok) assign("p2", {...c, name, image:{large:img}});
+      });
+      grid.appendChild(card);
+    });
+  }
+
+  let pendingConfirmResolve = null;
+  function askConfirm(displayText, questionText){
+    return new Promise((resolve)=>{
+      pendingConfirmResolve = resolve;
+      el("confirmCharName").textContent = displayText;
+      el("confirmQuestionText").textContent = questionText;
+      el("confirmYesBtn").textContent = t("confirmYes");
+      el("confirmNoBtn").textContent = t("confirmNo");
+      el("confirmOverlay").classList.remove("hidden");
+      el("confirmOverlay").classList.add("flex");
+    });
+  }
+  function askConfirmSelection(charName){
+    return askConfirm(charName, t("confirmQuestion"));
+  }
+  el("confirmYesBtn").addEventListener("click", ()=>{
+    el("confirmOverlay").classList.add("hidden");
+    el("confirmOverlay").classList.remove("flex");
+    if(pendingConfirmResolve){ pendingConfirmResolve(true); pendingConfirmResolve = null; }
+  });
+  el("confirmNoBtn").addEventListener("click", ()=>{
+    el("confirmOverlay").classList.add("hidden");
+    el("confirmOverlay").classList.remove("flex");
+    if(pendingConfirmResolve){ pendingConfirmResolve(false); pendingConfirmResolve = null; }
+  });
+
+  function translateGender(g){
+    if(!g) return "";
+    const key = String(g).toLowerCase();
+    if(key === "male") return t("genderMale");
+    if(key === "female") return t("genderFemale");
+    return g;
+  }
+
+  function buildInfoFacts(c){
+    const facts = [];
+    if(c.gender) facts.push({icon:"⚥", label:t("infoGender"), value: translateGender(c.gender)});
+    if(c.age) facts.push({icon:"🎂", label:t("infoAge"), value: String(c.age)});
+    return facts;
+  }
+
+  function openInfoModal(c, name, img){
+    el("infoImg").src = img || "";
+    el("infoName").textContent = name;
+    el("infoNative").textContent = (c.name && c.name.native) ? c.name.native : "";
+    const mediaTitle = c.media && c.media.nodes && c.media.nodes[0] ? (c.media.nodes[0].title.english || c.media.nodes[0].title.romaji) : "";
+    el("infoMedia").textContent = mediaTitle ? (t("infoFrom") + ": " + mediaTitle) : "";
+    const facts = buildInfoFacts(c);
+    const factsEl = el("infoFacts");
+    if(facts.length > 0){
+      factsEl.innerHTML = facts.map(f=>
+        `<div class="flex items-center gap-1.5 bg-white/5 border border-emerald-400/20 pixel-corners-sm px-2 py-1">
+          <span class="text-sm leading-none">${f.icon}</span>
+          <span class="font-hud text-[10px] text-white/50">${f.label}:</span>
+          <span class="font-hud text-[10px] text-emerald-200">${f.value}</span>
+        </div>`
+      ).join("");
+      factsEl.classList.remove("hidden");
+      factsEl.classList.add("flex");
+    }else{
+      factsEl.innerHTML = "";
+      factsEl.classList.add("hidden");
+      factsEl.classList.remove("flex");
+    }
+    const bio = longDesc(c.description);
+    el("infoBio").textContent = bio || t("noInfo");
+    el("infoOverlay").classList.remove("hidden");
+    el("infoOverlay").classList.add("flex");
+  }
+  el("infoCloseBtn").addEventListener("click", ()=>{
+    el("infoOverlay").classList.add("hidden");
+    el("infoOverlay").classList.remove("flex");
+  });
+
+  function flashCard(slot){
+    const card = el(slot+"Card");
+    card.classList.add("select-flash");
+    setTimeout(()=> card.classList.remove("select-flash"), 3700);
+  }
+
+  function playAnnouncerSound(slot){
+    try{
+      const snd = el(slot+"AnnouncerSound");
+      snd.currentTime = 0;
+      snd.volume = 0.8;
+      snd.play().catch(()=>{});
+    }catch(e){}
+  }
+
+  function assign(slot, char){
+    state[slot] = char;
+    const img = el(slot+"Img"), ph = el(slot+"Placeholder"), marker = el(slot+"Marker");
+    img.src = char.image && char.image.large ? char.image.large : "";
+    img.classList.remove("hidden");
+    ph.classList.add("hidden");
+    marker.classList.remove("hidden");
+    el("arenaSection").scrollIntoView({ behavior:"smooth", block:"center" });
+    flashCard(slot);
+    playAnnouncerSound(slot);
+  }
+
+  let debounceT;
+  el("searchInput").addEventListener("input",(e)=>{
+    clearTimeout(debounceT);
+    state.showFavOnly = false;
+    const val = e.target.value.trim();
+    debounceT = setTimeout(()=> fetchCharacters(val || undefined), 380);
+  });
+
+  el("favBtn").addEventListener("click", ()=>{
+    state.showFavOnly = !state.showFavOnly;
+    el("favBtn").classList.toggle("bg-amber-400/30", state.showFavOnly);
+    renderGrid();
+    renderPagination();
+  });
+
+  function seededRandom(seedStr){
+    let h = 0;
+    for(let i=0;i<seedStr.length;i++){ h = (h*31 + seedStr.charCodeAt(i)) >>> 0; }
+    return function(){ h = (h*1664525 + 1013904223) >>> 0; return (h % 1000)/1000; };
+  }
+  function localStats(name){
+    const rnd = seededRandom(name);
+    return {
+      power: 40+Math.floor(rnd()*60),
+      speed: 40+Math.floor(rnd()*60),
+      hax: 20+Math.floor(rnd()*80),
+      endurance: 40+Math.floor(rnd()*60),
+      physical: 40+Math.floor(rnd()*60),
+      intelligence: 40+Math.floor(rnd()*60),
+      battleIq: 40+Math.floor(rnd()*60)
+    };
+  }
+  function localBattle(p1Name, p2Name){
+    const s1 = localStats(p1Name), s2 = localStats(p2Name);
+    const score1 = s1.power+s1.speed+s1.hax+s1.endurance+s1.physical+s1.intelligence+s1.battleIq;
+    const score2 = s2.power+s2.speed+s2.hax+s2.endurance+s2.physical+s2.intelligence+s2.battleIq;
+    const total = score1+score2;
+    const w1 = Math.round((score1/total)*100);
+    s1.winProb = w1; s2.winProb = 100-w1;
+    const winner = w1>=50 ? "p1" : "p2";
+    const winnerName = winner==="p1" ? p1Name : p2Name;
+    const loserName = winner==="p1" ? p2Name : p1Name;
+    return {
+      p1:s1, p2:s2, winner, isLethal: true,
+      exchanges: [],
+      dialogue: [
+        {speaker:p1Name, line: lang==="ar" ? "لن أتراجع." : "I won't hold back."},
+        {speaker:p2Name, line: lang==="ar" ? "أثبت ذلك إذن." : "Then prove it."},
+        {speaker:p1Name, line: lang==="ar" ? "هذه ضربتي الأخيرة!" : "This is my final strike!"}
+      ],
+      finalWords: {speaker:loserName, line: lang==="ar" ? "...لم أتوقع هذا." : "...I never saw that coming."},
+      victoryLine: {speaker:winnerName, line: lang==="ar" ? "المعركة انتهت." : "The battle is over."},
+      climax: { technique: "", description: lang==="ar" ? "تعذر الوصول للتحليل الكامل — هذه نتيجة تقديرية مبسطة." : "Full technique analysis unavailable — this is a simplified estimate." },
+      battlePerformance: {
+        p1: { speed: s1.speed, power: s1.power, technique: Math.round((s1.hax+s1.physical)/2), endurance: s1.endurance, resilience: s1.endurance },
+        p2: { speed: s2.speed, power: s2.power, technique: Math.round((s2.hax+s2.physical)/2), endurance: s2.endurance, resilience: s2.endurance }
+      }
+    };
+  }
+
+  function clampInt(value, fallback){
+    const n = Math.round(Number(value));
+    if(Number.isNaN(n)) return fallback;
+    return Math.max(0, Math.min(100, n));
+  }
+  function sanitizeStatBlock(block){
+    const safe = block && typeof block === "object" ? block : {};
+    return {
+      power: clampInt(safe.power, 50),
+      speed: clampInt(safe.speed, 50),
+      hax: clampInt(safe.hax, 50),
+      endurance: clampInt(safe.endurance, 50),
+      physical: clampInt(safe.physical, 50),
+      intelligence: clampInt(safe.intelligence, 50),
+      battleIq: clampInt(safe.battleIq, 50)
+    };
+  }
+  function sanitizeLine(entry, fallbackSpeaker, fallbackLine){
+    if(entry && typeof entry === "object" && entry.speaker && entry.line){
+      return { speaker: String(entry.speaker).slice(0,80), line: String(entry.line).slice(0,500) };
+    }
+    return { speaker: fallbackSpeaker, line: fallbackLine };
+  }
+  function sanitizeClimax(entry){
+    if(entry && typeof entry === "object" && entry.description){
+      return {
+        technique: entry.technique ? String(entry.technique).slice(0,120) : "",
+        description: String(entry.description).slice(0,600)
+      };
+    }
+    return { technique: "", description: "" };
+  }
+
+  function attemptJsonRepair(text){
+
+    let s = text;
+    let inString = false;
+    let escapeNext = false;
+    const stack = [];
+    for(let i=0;i<s.length;i++){
+      const ch = s[i];
+      if(inString){
+        if(escapeNext){ escapeNext = false; }
+        else if(ch === "\\"){ escapeNext = true; }
+        else if(ch === '"'){ inString = false; }
+        continue;
+      }
+      if(ch === '"'){ inString = true; continue; }
+      if(ch === "{" || ch === "["){ stack.push(ch); }
+      else if(ch === "}" || ch === "]"){ stack.pop(); }
+    }
+    if(inString) s += '"';
+    for(let i=stack.length-1;i>=0;i--){
+      s += stack[i] === "{" ? "}" : "]";
+    }
+    return JSON.parse(s);
+  }
+
+  function extractJsonObject(rawText){
+    if(!rawText) throw new Error("Empty model response");
+    let cleaned = rawText.replace(/```json/gi,"").replace(/```/g,"").trim();
+    const start = cleaned.indexOf("{");
+    if(start === -1) throw new Error("No JSON object found in model response");
+    const end = cleaned.lastIndexOf("}");
+    const slice = end > start ? cleaned.slice(start, end+1) : cleaned.slice(start);
+    try{
+      return JSON.parse(slice);
+    }catch(e){
+
+      return attemptJsonRepair(cleaned.slice(start));
+    }
+  }
+
+  function truncate(str, max){
+    if(!str) return "";
+    const clean = String(str).replace(/\s+/g," ").trim();
+    return clean.length > max ? clean.slice(0,max) + "…" : clean;
+  }
+
+  const API_ENDPOINT = "/api/gemini";
+
+  async function callGemini(systemPrompt, userPrompt, temperature, maxTokens){
+    const controller = new AbortController();
+    const timeoutId = setTimeout(()=> controller.abort(), 28000);
+    let response;
+    try{
+      response = await fetch(API_ENDPOINT, {
+        method: "POST",
+        signal: controller.signal,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ systemPrompt, userPrompt, temperature, maxTokens })
+      });
+    }catch(fetchErr){
+      clearTimeout(timeoutId);
+      if(fetchErr.name === "AbortError"){
+        throw new Error("Request timed out after 28s (server or network too slow).");
+      }
+      throw new Error("Network error reaching the server: " + fetchErr.message);
+    }
+    clearTimeout(timeoutId);
+
+    const rawBody = await response.text();
+    if(!response.ok){
+      let msg = "HTTP " + response.status;
+      try{
+        const errBody = JSON.parse(rawBody);
+        msg = (errBody && errBody.error && (errBody.error.message || errBody.error)) || msg;
+      }catch(e){}
+      console.error("[death-battle] Server error response:", rawBody);
+      throw new Error("Server error (" + response.status + "): " + msg);
+    }
+
+    let data;
+    try{ data = JSON.parse(rawBody); }
+    catch(e){
+      console.error("[death-battle] Server response was not valid JSON:", rawBody);
+      throw new Error("Server returned a non-JSON response.");
+    }
+
+    const candidate = data.candidates && data.candidates[0];
+    const finishReason = candidate && candidate.finishReason;
+    if(finishReason === "MAX_TOKENS"){
+      console.warn("[death-battle] Gemini hit MAX_TOKENS before finishing.");
+    }
+    let textBlock = candidate && candidate.content && candidate.content.parts
+      ? candidate.content.parts.map(p=>p.text||"").join("")
+      : "";
+
+    try{
+      return extractJsonObject(textBlock);
+    }catch(e){
+      console.error("[death-battle] Could not find/parse JSON in server output:", textBlock);
+      throw new Error("The model's reply did not contain valid JSON (finishReason: " + (finishReason||"unknown") + ").");
+    }
+  }
+
+
+  function statsCacheKey(name1, name2){
+    return [String(name1).trim().toLowerCase(), String(name2).trim().toLowerCase()].sort().join("::");
+  }
+  function loadStatsCache(){
+    try{ return JSON.parse(localStorage.getItem("db_stats_cache") || "{}"); }
+    catch(e){ return {}; }
+  }
+  function saveStatsCache(cacheObj){
+    try{ localStorage.setItem("db_stats_cache", JSON.stringify(cacheObj)); }
+    catch(e){  }
+  }
+
+  function buildAnalysisSystemPrompt(){
+    return [
+      "You are a rigorous anime/manga power-scaling analyst who follows the same disciplined tiering approach used by serious power-scaling communities (the kind of tier system used by wikis like VS Battles Wiki): every character is placed on an objective scale of destructive/combat capability, from Below Average Human up through Street level, City level, Country level, Planet level, Star level, Galaxy level, Universal, Multiversal (Low/High), Complex Multiversal, up to Outerversal / Boundless / Nigh-Omnipotent tiers.",
+      "Respond with ONE raw JSON object and nothing else: no markdown fences, no commentary.",
+      "",
+      "Before assigning any numbers, think step by step and privately work through:",
+      "1. What series is each character from, and what is their real, documented power tier within that series' own hierarchy (background character, mid-tier fighter, or top-tier / final-arc-level combatant)?",
+      "2. Base this on the character's FULL source material — the manga / light novel / original text as well as the anime adaptation — using their most powerful documented form, transformation, or technique by the end of the whole story, not just an early arc or an anime-only portrayal. If the anime adaptation stopped before the manga did, prioritize the manga's later feats for accuracy.",
+      "3. Place EACH fighter on the objective tier scale above based on their best documented feats, independent of which series they're from.",
+      "4. Compare the two tiers directly. If the two fighters are separated by more than one major tier on that scale (e.g. one is Universal and the other is Outerversal, or one is Planet level and the other is Galaxy level), this is a decisive, lopsided gap — do NOT soften it into a close, near-50/50 matchup out of caution. A being confirmed to operate above the multiverse/reality itself (author-level, meta-narrative, boundary-existing, or conceptual/abstract entities) is not brought down to a coin flip against a merely multiversal-tier fighter just because both are \"very strong\" in a general sense — the actual tier gap must show up clearly in the stats (think 90+ vs under 10, not 55/45).",
+      "5. What is each character's most notable canon feat — the strongest documented thing they have actually done?",
+      "6. How would these two specific characters' real abilities interact (type advantages, speed gaps, durability, any hard-counters)?",
+      "Only after this analysis, assign seven integer stats (0-100) per fighter: power, speed, hax (supernatural/metaphysical ability), endurance, physical, intelligence (raw cleverness/knowledge), battleIq (real-time tactical combat instinct — reading an opponent, adapting mid-fight, exploiting weaknesses). These must accurately reflect the real relative strength and tier you just reasoned through — do not default to arbitrary, lazy, or falsely-averaged round numbers. If you are genuinely uncertain about a character (very obscure, or you lack reliable knowledge of them), keep their stats moderate (around 45-55) rather than guessing confidently in either direction — but this caution does NOT apply to famous, well-documented characters with a clearly established tier; for those, commit to the real gap even if it is extreme.",
+      "",
+      "Also list 2 to 4 of each fighter's real, specific, named signature techniques/moves/abilities from their canon (their actual attack names or well-known abilities, not generic descriptions like \"a punch\") — these will be used later to write a concrete, technique-by-technique fight, so accuracy here matters a lot.",
+      "",
+      "Also decide \"isLethal\": set it to false ONLY if one fighter is clearly heroic/kind-hearted AND the other is a harmless non-combatant, civilian, child, or comedic character with no real fighting background relative to them. In every other case — including if either fighter is a true villain, or if both are real combatants — isLethal must be true.",
+      "",
+      "Respond with this exact JSON schema (values are placeholders showing shape/type, not literal answers):",
+      JSON.stringify({
+        p1:{power:0,speed:0,hax:0,endurance:0,physical:0,intelligence:0,battleIq:0},
+        p2:{power:0,speed:0,hax:0,endurance:0,physical:0,intelligence:0,battleIq:0},
+        p1Techniques:["real signature technique name", "another real technique"],
+        p2Techniques:["real signature technique name", "another real technique"],
+        isLethal:true
+      })
+    ].join("\n");
+  }
+
+  function buildAnalysisUserPrompt(p1, p2){
+    const p1Media = p1.media && p1.media.nodes && p1.media.nodes[0] ? (p1.media.nodes[0].title.english || p1.media.nodes[0].title.romaji) : "";
+    const p2Media = p2.media && p2.media.nodes && p2.media.nodes[0] ? (p2.media.nodes[0].title.english || p2.media.nodes[0].title.romaji) : "";
+    const p1Desc = truncate(shortDesc(p1.description), 400);
+    const p2Desc = truncate(shortDesc(p2.description), 400);
+    return [
+      "Analyze the real relative combat power of these two characters:",
+      "",
+      "FIGHTER 1 (p1): " + p1.name + (p1Media ? ' — from "' + p1Media + '"' : ""),
+      "Reference notes: " + (p1Desc || "no additional notes supplied"),
+      "",
+      "FIGHTER 2 (p2): " + p2.name + (p2Media ? ' — from "' + p2Media + '"' : ""),
+      "Reference notes: " + (p2Desc || "no additional notes supplied"),
+      "",
+      "Respond with ONLY the minified JSON object described in your instructions."
+    ].join("\n");
+  }
+
+  async function computeMatchupAnalysis(p1, p2){
+    const systemPrompt = buildAnalysisSystemPrompt();
+    const userPrompt = buildAnalysisUserPrompt(p1, p2);
+    const parsed = await callGemini(systemPrompt, userPrompt, 0.25, 4000);
+
+    const p1Stats = sanitizeStatBlock(parsed.p1);
+    const p2Stats = sanitizeStatBlock(parsed.p2);
+    const isLethal = parsed.isLethal !== false;
+    const p1Techniques = Array.isArray(parsed.p1Techniques) ? parsed.p1Techniques.slice(0,4).map(t=>String(t).slice(0,80)) : [];
+    const p2Techniques = Array.isArray(parsed.p2Techniques) ? parsed.p2Techniques.slice(0,4).map(t=>String(t).slice(0,80)) : [];
+
+    const score1 = p1Stats.power + p1Stats.speed + p1Stats.hax + p1Stats.endurance + p1Stats.physical + p1Stats.intelligence + p1Stats.battleIq;
+    const score2 = p2Stats.power + p2Stats.speed + p2Stats.hax + p2Stats.endurance + p2Stats.physical + p2Stats.intelligence + p2Stats.battleIq;
+    const total = score1 + score2;
+    let winProb1 = total > 0 ? Math.round((score1/total)*100) : 50;
+    winProb1 = Math.max(1, Math.min(99, winProb1));
+    let winProb2 = 100 - winProb1;
+    if(winProb1 === winProb2){ winProb1 = 51; winProb2 = 49; }
+    p1Stats.winProb = winProb1;
+    p2Stats.winProb = winProb2;
+    const winner = winProb1 >= winProb2 ? "p1" : "p2";
+
+    return { p1: p1Stats, p2: p2Stats, winner, isLethal, p1Techniques, p2Techniques };
+  }
+
+  async function getMatchupAnalysis(p1, p2){
+    const cache = loadStatsCache();
+    const key = statsCacheKey(p1.name, p2.name);
+    const cachedEntry = cache[key];
+    if(cachedEntry){
+
+      const p1IsFirstStored = cachedEntry.names[0].trim().toLowerCase() === p1.name.trim().toLowerCase();
+      return {
+        p1: p1IsFirstStored ? cachedEntry.statsA : cachedEntry.statsB,
+        p2: p1IsFirstStored ? cachedEntry.statsB : cachedEntry.statsA,
+        winner: (cachedEntry.winnerName.trim().toLowerCase() === p1.name.trim().toLowerCase()) ? "p1" : "p2",
+        isLethal: cachedEntry.isLethal,
+        p1Techniques: p1IsFirstStored ? (cachedEntry.techniquesA||[]) : (cachedEntry.techniquesB||[]),
+        p2Techniques: p1IsFirstStored ? (cachedEntry.techniquesB||[]) : (cachedEntry.techniquesA||[])
+      };
+    }
+
+    let analysis;
+    try{
+      analysis = await computeMatchupAnalysis(p1, p2);
+    }catch(firstErr){
+      if(firstErr.isRateLimit){
+
+        throw firstErr;
+      }
+      console.warn("[death-battle] Analysis attempt failed, retrying once:", firstErr.message);
+      analysis = await computeMatchupAnalysis(p1, p2);
+    }
+
+    const winnerName = analysis.winner === "p1" ? p1.name : p2.name;
+    cache[key] = {
+      names: [p1.name, p2.name],
+      statsA: analysis.p1,
+      statsB: analysis.p2,
+      winnerName: winnerName,
+      isLethal: analysis.isLethal,
+      techniquesA: analysis.p1Techniques,
+      techniquesB: analysis.p2Techniques
+    };
+    saveStatsCache(cache);
+    return analysis;
+  }
+
+  function buildNarrativeSystemPrompt(){
+    return [
+      'You are the dialogue and narrative engine behind an arcade-style "death battle" game.',
+      "Respond with ONE raw JSON object and nothing else: no markdown fences, no commentary.",
+      "",
+      "HARD RULES:",
+      "1. The outcome (winner, isLethal) is already decided and given to you as fact — never contradict it, never change who wins.",
+      "2. Dialogue must sound authentically like each character actually speaks in their real source material: their real catchphrases, values, speech rhythm, and temperament. Ground at least one line per character in a real, specific trait, ability, or catchphrase from their canon — never generic filler like \"I will win\" / \"I'll save you\" that could apply to literally any character.",
+      "3. Every simulation must be unique, even for a rematch between the same two fighters: vary the opening tactic, battlefield detail, pacing, and every line — never reuse boilerplate exchanges.",
+      "4. Write every \"line\"/\"description\" value in the requested output language exactly.",
+      "5. Never break character voice with meta commentary.",
+      "",
+      "ARABIC LANGUAGE QUALITY RULE (apply whenever the requested output language is Arabic):",
+      "- Write fluent, natural, idiomatic Modern Standard Arabic exactly like professional anime dubbing — never a stiff, literal, word-for-word translation from English.",
+      "- Use natural Arabic sentence structure, real spoken expressions, correct grammar and gender/number agreement. Avoid awkward calques or machine-translation-style sentences.",
+      "- Keep each character's tone recognizable in Arabic too — a cocky character should still sound cocky, a calm character should still sound calm.",
+      "",
+      "LETHAL FIGHT RULES (when isLethal is true):",
+      "- If the power margin note says CLOSE, this is a STRUCTURAL REQUIREMENT, not a suggestion: you must fill the \"exchanges\" array with 3 to 5 entries showing a real back-and-forth — alternating attacker between the two fighters, each entry naming one specific canon technique from the provided technique lists (or another real, specific technique of theirs if needed) and a concrete outcome (clean hit / partially connects / blocked / dodged / countered). The loser must land or nearly land at least one real hit before finally being overcome. Never leave \"exchanges\" empty or with only 1 entry for a CLOSE fight, and never describe a hit vaguely (\"a powerful attack\", \"a strike\") — always the actual named technique.",
+      "- If the power margin note says LOPSIDED, 1 to 2 \"exchanges\" entries are enough for a quick, decisive resolution — the stronger fighter can dominate immediately.",
+      "- \"climax\" must name the specific canon technique/move the winner actually finished with, and concretely describe how the loser's defense failed.",
+      "- finalWords = loser's last in-character words at defeat. victoryLine = winner's in-character closing statement.",
+      "",
+      "MERCY SCENARIO RULES (when isLethal is false):",
+      "- Leave \"exchanges\" empty — there is no real fight in a mercy scenario.",
+      "- The strong fighter must never actually attack to harm; they must explicitly refuse to fight seriously, in their own canon voice.",
+      "- The weaker fighter's arc: initial fear/confusion/defiance, then relief and acceptance once the strong fighter's peaceful intent is clear. They must NOT keep refusing forever and must NOT be harmed. If the weaker fighter is a girl/woman, her closing line should be a sincere thank-you.",
+      "- It is FORBIDDEN for the strong fighter to say something like \"very well then\" and harm the weaker fighter anyway after a refusal — any resistance from the harmless side must be met with continued gentleness, never violence.",
+      "- \"climax\" describes the protective/restrained action taken instead of a finishing blow. finalWords = the spared fighter's relieved/grateful words. victoryLine = the protector's reassuring closing statement.",
+      "",
+      "BATTLE PERFORMANCE RATING RULE:",
+      "- Do this LAST, only after you have already written \"exchanges\", \"dialogue\", and \"climax\" above. Go back and literally re-read the \"exchanges\" array you just wrote and derive these numbers mechanically from it — do not invent new impressions independent of what you wrote.",
+      "- For EACH fighter, count from your own \"exchanges\": how many of their attacks landed clean vs were blocked/dodged/countered, and how many hits they personally took/blocked/dodged. Then set: power = higher if more of their attacks landed clean and hit hard; technique = higher if their named techniques were varied/clever or successfully countered the opponent; endurance = higher if they took more hits and kept fighting; resilience = higher if they were the one still standing/fighting despite being on the back foot; speed = higher if the exchanges describe them acting first, dodging, or outpacing the opponent.",
+      "- These five numbers must vary meaningfully both across axes and between the two fighters based on that count — do NOT output the same or near-identical value on every axis, and do NOT just copy the pre-fight stats. A fighter who loses but is shown tanking hits and landing clever counters in your own exchanges must still score high on endurance/technique despite losing overall.",
+      "- If \"exchanges\" is empty (a mercy scenario or a very lopsided instant finish), base these five numbers on the \"climax\" and \"dialogue\" content instead, following the same logic.",
+      "- In a mercy scenario specifically, rate the weaker fighter's fields low/moderate (they never really fought) and the stronger fighter's fields based on the composure and restraint they showed."
+    ].join("\n");
+  }
+
+  function buildNarrativeUserPrompt(p1, p2, analysis, outLang, battleSeed){
+    const p1Media = p1.media && p1.media.nodes && p1.media.nodes[0] ? (p1.media.nodes[0].title.english || p1.media.nodes[0].title.romaji) : "";
+    const p2Media = p2.media && p2.media.nodes && p2.media.nodes[0] ? (p2.media.nodes[0].title.english || p2.media.nodes[0].title.romaji) : "";
+    const p1Desc = truncate(shortDesc(p1.description), 400);
+    const p2Desc = truncate(shortDesc(p2.description), 400);
+    const languageLabel = outLang === "ar"
+      ? "Arabic — fluent natural Modern Standard Arabic in the style of professional anime dubbing, NOT a literal translation"
+      : "English";
+    const winnerName = analysis.winner === "p1" ? p1.name : p2.name;
+    const loserName = analysis.winner === "p1" ? p2.name : p1.name;
+    const margin = Math.abs(analysis.p1.winProb - analysis.p2.winProb);
+    const marginLabel = margin <= 20 ? "CLOSE" : "LOPSIDED";
+    const p1Techniques = (analysis.p1Techniques && analysis.p1Techniques.length) ? analysis.p1Techniques.join(", ") : "(none listed — use any real known technique of theirs)";
+    const p2Techniques = (analysis.p2Techniques && analysis.p2Techniques.length) ? analysis.p2Techniques.join(", ") : "(none listed — use any real known technique of theirs)";
+
+    const schema = {
+      exchanges:[{attacker:"exact character name", technique:"specific named canon technique used in this exchange", outcome:"clean hit / partially connects / blocked / dodged / countered, described concretely"}],
+      dialogue:[{speaker:"exact character name", line:"in-character line"}],
+      climax:{technique:"specific technique/action name", description:"concrete account of how it happened"},
+      finalWords:{speaker: loserName + " (or the spared fighter if this is a mercy scenario)", line:"..."},
+      victoryLine:{speaker: winnerName, line:"..."},
+      battlePerformance:{
+        p1:{speed:0,power:0,technique:0,endurance:0,resilience:0},
+        p2:{speed:0,power:0,technique:0,endurance:0,resilience:0}
+      }
+    };
+
+    return [
+      "Write the narrative for this already-decided matchup:",
+      "",
+      "FIGHTER 1 (p1): " + p1.name + (p1Media ? ' — from "' + p1Media + '"' : ""),
+      "Reference notes: " + (p1Desc || "no additional notes supplied"),
+      "Documented signature techniques: " + p1Techniques,
+      "",
+      "FIGHTER 2 (p2): " + p2.name + (p2Media ? ' — from "' + p2Media + '"' : ""),
+      "Reference notes: " + (p2Desc || "no additional notes supplied"),
+      "Documented signature techniques: " + p2Techniques,
+      "",
+      "DECIDED OUTCOME (do not change): winner = " + winnerName + ", loser = " + loserName + ", isLethal = " + analysis.isLethal + ", power margin = " + marginLabel + ".",
+      "Randomization seed for this specific telling: " + battleSeed + " — use it only as a mental dice roll to pick a different opening, setting detail, and phrasing than any previous telling of this same matchup. Do not print this number.",
+      "",
+      "Output language for every \"line\", \"description\", and \"outcome\" field: " + languageLabel + ". Real technique/attack names in \"technique\" fields may stay in their original language (e.g. a Japanese attack name) since that is how they are actually known, but any surrounding description must still be in the requested language.",
+      "",
+      "First fill \"exchanges\" per the LETHAL/MERCY rules above using the documented techniques listed for each fighter. Then write 6 to 10 alternating dialogue lines that give voice to those same exchanges (the characters can call out their techniques, react to landing or receiving them, taunt, struggle, etc.) — dialogue and exchanges should tell the same consistent fight, not two different fights. Then climax, then finalWords, then victoryLine.",
+      "",
+      "Respond with ONLY a minified JSON object following this exact schema (values below show shape/type, not literal answers):",
+      JSON.stringify(schema)
+    ].join("\n");
+  }
+
+  function sanitizeExchange(entry, fallbackAttacker){
+    if(entry && typeof entry === "object" && entry.technique){
+      return {
+        attacker: entry.attacker ? String(entry.attacker).slice(0,80) : fallbackAttacker,
+        technique: String(entry.technique).slice(0,120),
+        outcome: entry.outcome ? String(entry.outcome).slice(0,300) : ""
+      };
+    }
+    return null;
+  }
+
+  function sanitizePerformanceBlock(block){
+    const safe = block && typeof block === "object" ? block : {};
+    return {
+      speed: clampInt(safe.speed, 50),
+      power: clampInt(safe.power, 50),
+      technique: clampInt(safe.technique, 50),
+      endurance: clampInt(safe.endurance, 50),
+      resilience: clampInt(safe.resilience, 50)
+    };
+  }
+
+  function sanitizeNarrative(parsed, winnerName, loserName){
+    let dialogue = Array.isArray(parsed.dialogue) ? parsed.dialogue : [];
+    dialogue = dialogue.slice(0,10)
+      .map((entry,i)=> sanitizeLine(entry, i%2===0 ? winnerName : loserName, ""))
+      .filter(entry=> entry.line && entry.line.trim().length>0);
+    if(dialogue.length===0){
+      dialogue = [ {speaker:winnerName, line:"..."}, {speaker:loserName, line:"..."} ];
+    }
+    let exchanges = Array.isArray(parsed.exchanges) ? parsed.exchanges : [];
+    exchanges = exchanges.slice(0,6)
+      .map((entry,i)=> sanitizeExchange(entry, i%2===0 ? winnerName : loserName))
+      .filter(Boolean);
+    const climax = sanitizeClimax(parsed.climax);
+    const finalWords = sanitizeLine(parsed.finalWords, loserName, "...");
+    const victoryLine = sanitizeLine(parsed.victoryLine, winnerName, "...");
+    const bp = parsed.battlePerformance || {};
+    const battlePerformance = {
+      p1: sanitizePerformanceBlock(bp.p1),
+      p2: sanitizePerformanceBlock(bp.p2)
+    };
+    return { dialogue, exchanges, climax, finalWords, victoryLine, battlePerformance };
+  }
+
+  async function generateNarrative(p1, p2, analysis, outLang){
+    const systemPrompt = buildNarrativeSystemPrompt();
+    const battleSeed = Math.floor(Math.random() * 1000000);
+    const userPrompt = buildNarrativeUserPrompt(p1, p2, analysis, outLang, battleSeed);
+    const parsed = await callGemini(systemPrompt, userPrompt, 1.05, 9000);
+
+    const winnerName = analysis.winner === "p1" ? p1.name : p2.name;
+    const loserName = analysis.winner === "p1" ? p2.name : p1.name;
+    return sanitizeNarrative(parsed, winnerName, loserName);
+  }
+
+  async function aiBattle(p1, p2, outLang){
+    const analysis = await getMatchupAnalysis(p1, p2);
+    let narrative;
+    try{
+      narrative = await generateNarrative(p1, p2, analysis, outLang);
+    }catch(firstErr){
+      if(firstErr.isRateLimit){
+        throw firstErr;
+      }
+      console.warn("[death-battle] Narrative attempt failed, retrying once:", firstErr.message);
+      narrative = await generateNarrative(p1, p2, analysis, outLang);
+    }
+    return {
+      p1: analysis.p1,
+      p2: analysis.p2,
+      winner: analysis.winner,
+      isLethal: analysis.isLethal,
+      exchanges: narrative.exchanges,
+      dialogue: narrative.dialogue,
+      climax: narrative.climax,
+      finalWords: narrative.finalWords,
+      battlePerformance: narrative.battlePerformance,
+      victoryLine: narrative.victoryLine
+    };
+  }
+
+  function statRow(label, value, colorClass){
+    const safe = Math.max(0, Math.min(100, Number(value) || 0));
+    return `
+      <div class="mb-3">
+        <div class="flex justify-between text-[11px] sm:text-xs font-hud mb-1 text-white/70">
+          <span>${label}</span><span>${safe}%</span>
+        </div>
+        <div class="stat-track h-3 sm:h-4 pixel-corners-sm w-full overflow-hidden">
+          <div class="bar-fill h-full ${colorClass}" style="width:${safe}%"></div>
+        </div>
+      </div>`;
+  }
+
+  function renderStats(container, name, stats, colorClass, tint){
+    container.innerHTML = `<div class="font-pixel text-[11px] sm:text-sm mb-4 ${tint} truncate">${name}</div>` +
+      statRow(t("statPower"), stats.power, colorClass) +
+      statRow(t("statSpeed"), stats.speed, colorClass) +
+      statRow(t("statHax"), stats.hax, colorClass) +
+      statRow(t("statEnd"), stats.endurance, colorClass) +
+      statRow(t("statPhys"), stats.physical, colorClass) +
+      statRow(t("statIntel"), stats.intelligence, colorClass) +
+      statRow(t("statBattleIq"), stats.battleIq, colorClass) +
+      statRow(t("statWin"), stats.winProb, colorClass);
+  }
+
+  function buildRadarSvg(axes, color){
+    const cx = 130, cy = 130, radius = 82;
+    const n = axes.length;
+    const angleStep = (Math.PI*2)/n;
+    function gridPointFor(i, scale){
+      const angle = -Math.PI/2 + i*angleStep;
+      const r = radius*scale;
+      return [cx + r*Math.cos(angle), cy + r*Math.sin(angle)];
+    }
+    function dataPointFor(i, value){
+      const angle = -Math.PI/2 + i*angleStep;
+      const r = radius * (Math.max(0,Math.min(100,value))/100);
+      return [cx + r*Math.cos(angle), cy + r*Math.sin(angle)];
+    }
+    let gridRings = "";
+    [0.25,0.5,0.75,1].forEach(scale=>{
+      const pts = axes.map((_,i)=> gridPointFor(i,scale).join(",")).join(" ");
+      gridRings += `<polygon points="${pts}" fill="none" stroke="rgba(255,255,255,0.16)" stroke-width="1"/>`;
+    });
+    let axisLines = "";
+    let labels = "";
+    const bidiDir = lang==="ar" ? "rtl" : "ltr";
+    axes.forEach((ax,i)=>{
+      const [x,y] = gridPointFor(i,1);
+      axisLines += `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="rgba(255,255,255,0.18)" stroke-width="1"/>`;
+      const [lx,ly] = gridPointFor(i,1.34);
+      labels += `<text x="${lx}" y="${ly}" font-size="13" font-weight="700" fill="#ffffff" direction="${bidiDir}" unicode-bidi="plaintext" text-anchor="middle" dominant-baseline="middle">${ax.label}</text>`;
+    });
+    const dataPts = axes.map((ax,i)=> dataPointFor(i, ax.value).join(",")).join(" ");
+    const polygon = `<polygon points="${dataPts}" fill="${color}" fill-opacity="0.32" stroke="${color}" stroke-width="2.5"/>`;
+    const dots = axes.map((ax,i)=>{ const [x,y] = dataPointFor(i, ax.value); return `<circle cx="${x}" cy="${y}" r="3" fill="${color}"/>`; }).join("");
+    return `<svg viewBox="0 0 260 260" class="w-full h-auto">${gridRings}${axisLines}${polygon}${dots}${labels}</svg>`;
+  }
+
+  function buildPerformanceAxes(perf){
+    return [
+      {label:t("perfSpeed"), value:perf.speed},
+      {label:t("perfPower"), value:perf.power},
+      {label:t("perfTechnique"), value:perf.technique},
+      {label:t("perfEndurance"), value:perf.endurance},
+      {label:t("perfResilience"), value:perf.resilience}
+    ];
+  }
+
+  function renderBattlePerformanceCharts(result, p1Name, p2Name){
+    if(!result.battlePerformance || !result.battlePerformance.p1 || !result.battlePerformance.p2){
+      el("radarSection").classList.add("hidden");
+      return;
+    }
+    el("radarSectionTitleEl").textContent = t("radarSectionTitle");
+    el("radarP1Name").textContent = p1Name;
+    el("radarP2Name").textContent = p2Name;
+    el("radarP1Chart").innerHTML = buildRadarSvg(buildPerformanceAxes(result.battlePerformance.p1), "#38bdf8");
+    el("radarP2Chart").innerHTML = buildRadarSvg(buildPerformanceAxes(result.battlePerformance.p2), "#ec4899");
+    el("radarSection").classList.remove("hidden");
+  }
+
+  function renderDialogue(result, isOffline, errorMessage){
+    const box = el("dialogueBox");
+    box.innerHTML = "";
+    let delay = 0;
+
+    if(result.exchanges && result.exchanges.length > 0){
+      const header = document.createElement("div");
+      header.className = "term-line text-[10px] tracking-[0.25em] text-sky-300/80 font-hud mb-1";
+      header.style.animationDelay = delay+"ms";
+      header.textContent = t("tradedBlows");
+      box.appendChild(header);
+      delay += 120;
+
+      result.exchanges.forEach(ex=>{
+        const row = document.createElement("div");
+        row.className = "term-line pl-2 border-l-2 border-sky-500/30";
+        row.style.animationDelay = delay+"ms";
+        row.innerHTML = `<span class="text-sky-300 font-hud">${ex.attacker}</span> <span class="text-white/60">used</span> <span class="text-amber-300 font-semibold">${ex.technique}</span>` +
+          (ex.outcome ? ` <span class="text-white/70">— ${ex.outcome}</span>` : "");
+        box.appendChild(row);
+        delay += 160;
+      });
+
+      const spacer = document.createElement("div");
+      spacer.className = "border-t border-white/10 mt-1";
+      box.appendChild(spacer);
+      delay += 100;
+    }
+
+    (result.dialogue||[]).forEach(line=>{
+      const p = document.createElement("div");
+      p.className = "term-line";
+      p.style.animationDelay = delay+"ms";
+      p.innerHTML = `<span class="text-emerald-400 font-hud">${line.speaker}:</span> <span class="text-white/85">${line.line}</span>`;
+      box.appendChild(p);
+      delay += 180;
+    });
+    if(result.climax && result.climax.description){
+      const climax = document.createElement("div");
+      climax.className = "term-line pt-2 border-t border-amber-500/20 mt-2";
+      climax.style.animationDelay = delay+"ms";
+      const techLabel = result.climax.technique
+        ? `<div class="text-amber-300 font-hud text-xs tracking-widest mb-1">⚡ ${result.climax.technique}</div>`
+        : "";
+      climax.innerHTML = techLabel + `<span class="text-white/80">${result.climax.description}</span>`;
+      box.appendChild(climax);
+      delay += 220;
+    }
+    const isLethal = result.isLethal !== false;
+    const dying = document.createElement("div");
+    dying.className = "term-line pt-2 border-t border-white/10 mt-2";
+    dying.style.animationDelay = delay+"ms";
+    const closingColor = isLethal ? "text-red-400" : "text-emerald-300";
+    const closingTextColor = isLethal ? "italic text-red-200/90" : "text-emerald-100/90";
+    dying.innerHTML = `<span class="${closingColor} font-hud">${result.finalWords.speaker}:</span> <span class="${closingTextColor}">${result.finalWords.line}</span>`;
+    box.appendChild(dying);
+    delay += 220;
+    const victory = document.createElement("div");
+    victory.className = "term-line";
+    victory.style.animationDelay = delay+"ms";
+    victory.innerHTML = `<span class="text-amber-300 font-hud">${result.victoryLine.speaker}:</span> <span class="font-semibold text-amber-200">${result.victoryLine.line}</span>`;
+    box.appendChild(victory);
+
+    if(isOffline){
+      const note = document.createElement("div");
+      note.className = "term-line text-[10px] text-amber-400/70 font-hud pt-2";
+      note.style.animationDelay = (delay+220)+"ms";
+      note.textContent = t("offline");
+      box.appendChild(note);
+
+      if(errorMessage){
+        const errNote = document.createElement("div");
+        errNote.className = "term-line text-[10px] text-red-400/80 font-hud pt-1 select-all";
+        errNote.style.animationDelay = (delay+260)+"ms";
+        errNote.textContent = "Debug: " + errorMessage;
+        box.appendChild(errNote);
+      }
+    }
+  }
+
+  async function playReelAnimation(){
+    const pool = [];
+    (state.results||[]).forEach(c=>{ const im = c.image && c.image.large; if(im) pool.push(im); });
+    (state.favorites||[]).forEach(c=>{ const im = c.image && c.image.large; if(im) pool.push(im); });
+    const finalP1 = state.p1.image && state.p1.image.large;
+    const finalP2 = state.p2.image && state.p2.image.large;
+    if(pool.length < 2){ if(finalP1) pool.push(finalP1); if(finalP2) pool.push(finalP2); }
+
+    const reelSound = el("reelSound");
+    try{ reelSound.currentTime = 0; reelSound.volume = 0.7; reelSound.play().catch(()=>{}); }catch(e){}
+
+    el("p1Card").classList.add("reel-active");
+    el("p2Card").classList.add("reel-active");
+
+    const duration = 4000;
+    const startTime = performance.now();
+
+    await new Promise((resolve)=>{
+      function tick(){
+        const elapsed = performance.now() - startTime;
+        const progress = Math.min(1, elapsed/duration);
+        if(progress >= 1){
+          el("p1Img").src = finalP1 || "";
+          el("p2Img").src = finalP2 || "";
+          resolve();
+          return;
+        }
+        el("p1Img").src = pool[Math.floor(Math.random()*pool.length)];
+        el("p2Img").src = pool[Math.floor(Math.random()*pool.length)];
+        const intervalNow = 60 + progress*260;
+        setTimeout(tick, intervalNow);
+      }
+      tick();
+    });
+
+    el("p1Card").classList.remove("reel-active");
+    el("p2Card").classList.remove("reel-active");
+    try{ reelSound.pause(); }catch(e){}
+
+    el("p1Img").classList.add("lock-flash");
+    el("p2Img").classList.add("lock-flash");
+    try{
+      const fightSnd = el("fightAnnouncerSound");
+      fightSnd.currentTime = 0;
+      fightSnd.volume = 0.85;
+      fightSnd.play().catch(()=>{});
+    }catch(e){}
+    await new Promise(r=> setTimeout(r, 1050));
+    el("p1Img").classList.remove("lock-flash");
+    el("p2Img").classList.remove("lock-flash");
+  }
+
+  const MENU_TRACK_URL = "https://files.catbox.moe/sre7hn.mp3";
+  const RESULT_TRACK_URL = "https://files.catbox.moe/udost2.mp3";
+  let currentMusicTrack = "menu";
+
+  function switchMusicTrack(trackKey){
+    if(currentMusicTrack === trackKey) return;
+    currentMusicTrack = trackKey;
+    const bgMusic = el("bgMusic");
+    const wasPlaying = !bgMusic.paused;
+    bgMusic.src = trackKey === "result" ? RESULT_TRACK_URL : MENU_TRACK_URL;
+    bgMusic.load();
+    if(wasPlaying){
+      bgMusic.play().catch((err)=>{
+        console.error("[death-battle] Track switch failed to play:", err);
+      });
+    }
+  }
+
+  el("musicToggleBtn").addEventListener("click", ()=>{
+    const bgMusic = el("bgMusic");
+    bgMusic.volume = 0.22;
+    if(bgMusic.paused){
+      bgMusic.play().then(()=>{
+        el("soundWaveIcon").classList.remove("hidden");
+        el("muteXIcon").classList.add("hidden");
+      }).catch((err)=>{
+        console.error("[death-battle] Background music failed to play:", err);
+        el("statusLine").textContent = lang==="ar" ? "تعذر تشغيل الموسيقى (الرابط منتهي الصلاحية)" : "Music failed to play (link may have expired)";
+      });
+    }else{
+      bgMusic.pause();
+      el("soundWaveIcon").classList.add("hidden");
+      el("muteXIcon").classList.remove("hidden");
+    }
+  });
+
+  async function fetchRandomPool(){
+    const totalKnown = state.lastPage || 1;
+    const maxPage = Math.max(1, Math.min(totalKnown, 40));
+    const randomPage = 1 + Math.floor(Math.random()*maxPage);
+    try{
+      const res = await fetch(ANILIST_URL, {
+        method:"POST",
+        headers:{ "Content-Type":"application/json", "Accept":"application/json" },
+        body: JSON.stringify({ query: CHAR_QUERY, variables: { page: randomPage } })
+      });
+      const json = await res.json();
+      const chars = (json && json.data && json.data.Page && json.data.Page.characters) || [];
+      return chars.length >= 2 ? chars : (state.results || []);
+    }catch(e){
+      return state.results || [];
+    }
+  }
+
+  el("randomBtn").addEventListener("click", async ()=>{
+    const ok = await askConfirm("🎲", t("randomConfirmQuestion"));
+    if(!ok) return;
+    el("statusLine").textContent = t("loading");
+    let pool = await fetchRandomPool();
+    el("statusLine").textContent = "";
+    if(pool.length < 2 && state.favorites && state.favorites.length >= 2) pool = state.favorites;
+    if(pool.length < 2){
+      el("statusLine").textContent = t("noResults");
+      return;
+    }
+    const idx1 = Math.floor(Math.random()*pool.length);
+    let idx2 = Math.floor(Math.random()*pool.length);
+    while(idx2 === idx1 && pool.length > 1){ idx2 = Math.floor(Math.random()*pool.length); }
+    const c1 = pool[idx1], c2 = pool[idx2];
+    const name1 = c1.name && c1.name.full ? c1.name.full : c1.name;
+    const img1 = c1.image && c1.image.large ? c1.image.large : c1.image;
+    const name2 = c2.name && c2.name.full ? c2.name.full : c2.name;
+    const img2 = c2.image && c2.image.large ? c2.image.large : c2.image;
+    assign("p1", {...c1, name:name1, image:{large:img1}});
+    assign("p2", {...c2, name:name2, image:{large:img2}});
+    await new Promise(r=> setTimeout(r, 500));
+    el("fightBtn").click();
+  });
+
+  el("fightBtn").addEventListener("click", async ()=>{
+    if(!state.p1 || !state.p2){
+      el("statusLine").textContent = t("pickBoth");
+      el("fightHint").classList.add("shake-active");
+      setTimeout(()=> el("fightHint").classList.remove("shake-active"), 500);
+      return;
+    }
+
+    el("fightBtn").disabled = true;
+    el("selectSection").classList.add("hidden");
+
+    await playReelAnimation();
+
+    document.getElementById("app").classList.add("shake-active");
+    el("strobeOverlay").classList.remove("hidden");
+    el("strobeOverlay").classList.add("strobe-active");
+    el("fightOverlay").classList.remove("hidden");
+    el("fightOverlay").classList.add("flex");
+    el("fightErrorLine").classList.add("hidden");
+    el("fightErrorLine").textContent = "";
+
+    const minTransition = new Promise(r=> setTimeout(r, 1600));
+    let result, isOffline = false, lastErrorMessage = "";
+    try{
+      const [aiResult] = await Promise.all([ aiBattle(state.p1, state.p2, lang), minTransition ]);
+      result = aiResult;
+    }catch(err){
+      console.error("Battle generation failed:", err);
+      lastErrorMessage = err && err.message ? err.message : String(err);
+      el("fightErrorLine").textContent = t("serverError") + " (" + lastErrorMessage + ")";
+      el("fightErrorLine").classList.remove("hidden");
+      await new Promise(r=> setTimeout(r, 1400));
+      result = localBattle(state.p1.name, state.p2.name);
+      isOffline = true;
+    }
+
+    document.getElementById("app").classList.remove("shake-active");
+    el("strobeOverlay").classList.add("hidden");
+    el("strobeOverlay").classList.remove("strobe-active");
+    el("fightOverlay").classList.add("hidden");
+    el("fightOverlay").classList.remove("flex");
+    el("fightBtn").disabled = false;
+
+    try{
+      renderStats(el("p1Stats"), state.p1.name, result.p1, "bg-sky-400", "text-sky-300");
+      renderStats(el("p2Stats"), state.p2.name, result.p2, "bg-pink-400", "text-pink-300");
+      renderDialogue(result, isOffline, lastErrorMessage);
+      renderBattlePerformanceCharts(result, state.p1.name, state.p2.name);
+    }catch(renderErr){
+      console.error("[death-battle] Rendering the result failed, falling back to a safe local result:", renderErr);
+      result = localBattle(state.p1.name, state.p2.name);
+      renderStats(el("p1Stats"), state.p1.name, result.p1, "bg-sky-400", "text-sky-300");
+      renderStats(el("p2Stats"), state.p2.name, result.p2, "bg-pink-400", "text-pink-300");
+      renderDialogue(result, true, "render error, used local fallback");
+      renderBattlePerformanceCharts(result, state.p1.name, state.p2.name);
+    }
+
+    if(state.prediction && !isOffline){
+      if(state.prediction === result.winner){
+        state.streak = (state.streak||0) + 1;
+      }else{
+        state.streak = 0;
+      }
+      try{ localStorage.setItem("db_streak", String(state.streak)); }catch(e){}
+      updateStreakUI();
+    }
+    clearPrediction();
+
+    pushHistoryEntry(result, state.p1, state.p2);
+    switchMusicTrack("result");
+
+    el("resultSection").classList.remove("hidden");
+    el("resultSection").classList.add("flex");
+    el("resultSection").scrollIntoView({ behavior:"smooth", block:"start" });
+  });
+
+  el("resetBtn").addEventListener("click", ()=>{
+    state.p1 = null; state.p2 = null;
+    ["p1","p2"].forEach(slot=>{
+      el(slot+"Img").classList.add("hidden");
+      el(slot+"Img").src = "";
+      el(slot+"Placeholder").classList.remove("hidden");
+      el(slot+"Marker").classList.add("hidden");
+    });
+    el("radarSection").classList.add("hidden");
+    el("resultSection").classList.add("hidden");
+    el("resultSection").classList.remove("flex");
+    el("selectSection").classList.remove("hidden");
+    clearPrediction();
+    switchMusicTrack("menu");
+    window.scrollTo({ top:0, behavior:"smooth" });
+  });
+
+  const FLAME_PATTERN = [
+    [0,0,0,1,0,0,0],
+    [0,0,0,1,0,0,0],
+    [0,0,1,1,1,0,0],
+    [0,1,1,1,1,1,0],
+    [1,1,1,1,1,1,1],
+    [1,1,1,1,1,1,1],
+    [1,1,1,1,1,1,1],
+    [0,1,1,1,1,1,0],
+    [0,0,1,1,1,0,0]
+  ];
+  const FLAME_ROWS = FLAME_PATTERN.length;
+
+  function getStreakPalette(streak){
+    if(streak >= 60) return { colors:["#ef4444","#f97316","#facc15","#22c55e","#38bdf8","#6366f1","#a855f7","#a855f7","#ec4899"], shine:true };
+    if(streak >= 50) return { colors:["#38bdf8","#38bdf8","#38bdf8","#818cf8","#a855f7","#a855f7","#7e22ce","#7e22ce","#7e22ce"], shine:false };
+    if(streak >= 40) return { colors:["#fbcfe8","#fbcfe8","#f9a8d4","#f472b6","#ec4899","#ec4899","#be185d","#be185d","#be185d"], shine:false };
+    if(streak >= 30) return { colors:["#bbf7d0","#bbf7d0","#86efac","#4ade80","#22c55e","#22c55e","#15803d","#15803d","#15803d"], shine:false };
+    if(streak >= 20) return { colors:["#e9d5ff","#e9d5ff","#d8b4fe","#c084fc","#a855f7","#a855f7","#7e22ce","#7e22ce","#7e22ce"], shine:false };
+    if(streak >= 10) return { colors:["#bae6fd","#bae6fd","#7dd3fc","#38bdf8","#0ea5e9","#0ea5e9","#0369a1","#0369a1","#0369a1"], shine:false };
+    if(streak >= 5) return { colors:["#fecaca","#fecaca","#fca5a5","#f87171","#ef4444","#ef4444","#b91c1c","#b91c1c","#b91c1c"], shine:false };
+    return { colors:["#fde047","#fde047","#fde047","#fb923c","#f97316","#f97316","#dc2626","#dc2626","#dc2626"], shine:false };
+  }
+
+  function renderFlameIcon(palette){
+    let html = "";
+    FLAME_PATTERN.forEach((row,ri)=>{
+      row.forEach(cell=>{
+        html += cell ? `<span style="background:${palette.colors[ri]}"></span>` : `<span></span>`;
+      });
+    });
+    el("flameIcon").innerHTML = html;
+  }
+
+  function initFlameIcon(){
+    renderFlameIcon(getStreakPalette(state.streak));
+  }
+
+  function updateStreakUI(){
+    el("streakText").textContent = "x" + state.streak;
+    const palette = getStreakPalette(state.streak);
+    renderFlameIcon(palette);
+    const flame = el("flameIcon");
+    flame.classList.toggle("flame-shine", palette.shine && state.streak > 0);
+    if(state.streak > 0){
+      flame.classList.remove("grayscale","opacity-40");
+      flame.classList.add("opacity-100");
+    }else{
+      flame.classList.add("grayscale","opacity-40");
+      flame.classList.remove("opacity-100");
+    }
+  }
+
+  function clearPrediction(){
+    state.prediction = null;
+    el("predictP1Btn").classList.remove("bg-sky-500/50","border-sky-300");
+    el("predictP2Btn").classList.remove("bg-pink-500/50","border-pink-300");
+  }
+
+  el("predictP1Btn").addEventListener("click", ()=>{
+    state.prediction = state.prediction === "p1" ? null : "p1";
+    el("predictP1Btn").classList.toggle("bg-sky-500/50", state.prediction==="p1");
+    el("predictP1Btn").classList.toggle("border-sky-300", state.prediction==="p1");
+    el("predictP2Btn").classList.remove("bg-pink-500/50","border-pink-300");
+  });
+  el("predictP2Btn").addEventListener("click", ()=>{
+    state.prediction = state.prediction === "p2" ? null : "p2";
+    el("predictP2Btn").classList.toggle("bg-pink-500/50", state.prediction==="p2");
+    el("predictP2Btn").classList.toggle("border-pink-300", state.prediction==="p2");
+    el("predictP1Btn").classList.remove("bg-sky-500/50","border-sky-300");
+  });
+
+  function saveHistory(){
+    try{ localStorage.setItem("db_history", JSON.stringify(state.history)); }catch(e){}
+  }
+
+  function pushHistoryEntry(result, p1, p2){
+    const entry = {
+      timestamp: Date.now(),
+      p1Name: p1.name, p2Name: p2.name,
+      p1Img: p1.image && p1.image.large ? p1.image.large : "",
+      p2Img: p2.image && p2.image.large ? p2.image.large : "",
+      result: result
+    };
+    state.history.unshift(entry);
+    if(state.history.length > 20) state.history = state.history.slice(0,20);
+    saveHistory();
+  }
+
+  function formatHistoryDate(ts){
+    try{
+      const d = new Date(ts);
+      return d.toLocaleDateString(lang==="ar" ? "ar" : "en", { month:"short", day:"numeric" }) + " " + d.toLocaleTimeString(lang==="ar" ? "ar" : "en", { hour:"2-digit", minute:"2-digit" });
+    }catch(e){ return ""; }
+  }
+
+  function renderHistoryList(){
+    const list = el("historyList");
+    el("historyTitleEl").textContent = t("historyTitle");
+    if(!state.history || state.history.length === 0){
+      list.innerHTML = `<div class="font-hud text-xs text-white/40 text-center py-4">${t("historyEmpty")}</div>`;
+      return;
+    }
+    list.innerHTML = state.history.map((entry, idx)=>{
+      const winnerName = entry.result.winner === "p1" ? entry.p1Name : entry.p2Name;
+      return `
+        <button class="history-entry w-full flex items-center gap-2 bg-white/5 border border-white/10 hover:border-emerald-400/40 pixel-corners-sm p-2 text-left" data-idx="${idx}">
+          <img src="${entry.p1Img}" class="w-8 h-8 object-cover pixel-corners-sm shrink-0" alt=""/>
+          <div class="flex-1 min-w-0 font-hud text-[11px] text-white/80 truncate">${entry.p1Name} <span class="text-white/30">vs</span> ${entry.p2Name}</div>
+          <img src="${entry.p2Img}" class="w-8 h-8 object-cover pixel-corners-sm shrink-0" alt=""/>
+          <div class="text-[9px] font-pixel text-amber-300 shrink-0 text-right leading-tight">${winnerName}<div class="text-white/30 text-[8px] mt-0.5">${formatHistoryDate(entry.timestamp)}</div></div>
+        </button>`;
+    }).join("");
+    list.querySelectorAll(".history-entry").forEach(btn=>{
+      btn.addEventListener("click", ()=>{
+        const idx = parseInt(btn.getAttribute("data-idx"),10);
+        loadHistoryEntry(state.history[idx]);
+      });
+    });
+  }
+
+  function loadHistoryEntry(entry){
+    el("historyOverlay").classList.add("hidden");
+    el("historyOverlay").classList.remove("flex");
+    state.p1 = { name: entry.p1Name, image: { large: entry.p1Img } };
+    state.p2 = { name: entry.p2Name, image: { large: entry.p2Img } };
+    el("p1Img").src = entry.p1Img; el("p1Img").classList.remove("hidden");
+    el("p1Placeholder").classList.add("hidden"); el("p1Marker").classList.remove("hidden");
+    el("p2Img").src = entry.p2Img; el("p2Img").classList.remove("hidden");
+    el("p2Placeholder").classList.add("hidden"); el("p2Marker").classList.remove("hidden");
+    el("selectSection").classList.add("hidden");
+    renderStats(el("p1Stats"), entry.p1Name, entry.result.p1, "bg-sky-400", "text-sky-300");
+    renderStats(el("p2Stats"), entry.p2Name, entry.result.p2, "bg-pink-400", "text-pink-300");
+    renderDialogue(entry.result, false, "");
+    renderBattlePerformanceCharts(entry.result, entry.p1Name, entry.p2Name);
+    switchMusicTrack("result");
+    el("resultSection").classList.remove("hidden");
+    el("resultSection").classList.add("flex");
+    el("resultSection").scrollIntoView({ behavior:"smooth", block:"start" });
+  }
+
+  el("historyBtn").addEventListener("click", ()=>{
+    renderHistoryList();
+    el("historyOverlay").classList.remove("hidden");
+    el("historyOverlay").classList.add("flex");
+  });
+  el("historyCloseBtn").addEventListener("click", ()=>{
+    el("historyOverlay").classList.add("hidden");
+    el("historyOverlay").classList.remove("flex");
+  });
+
+
+  initFlameIcon();
+  updateStreakUI();
+
+  applyI18n();
+  fetchCharacters();
+})();
+</script>
+</body>
+</html>
