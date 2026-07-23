@@ -11,7 +11,6 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
-    // أي طلب يبدأ بـ /api/ يُعالج هنا
     if (url.pathname.startsWith("/api/")) {
 
       if (request.method === "OPTIONS") {
@@ -78,18 +77,11 @@ export default {
             body: JSON.stringify({
               systemInstruction: { parts: [{ text: systemPrompt }] },
               contents: [{ role: "user", parts: [{ text: userPrompt }] }],
-              generationConfig: {
+              generation_config: {
                 temperature: temperature,
-                topP: 0.95,
-                maxOutputTokens: maxTokens,
-                responseMimeType: "application/json",
-                          generationConfig: {
-            temperature: temperature,
-            topP: 0.95,
-            maxOutputTokens: maxTokens,
-            responseMimeType: "application/json"
-          }
-
+                top_p: 0.95,
+                max_output_tokens: maxTokens,
+                response_mime_type: "application/json"
               }
             })
           });
@@ -114,7 +106,6 @@ export default {
       return new Response(lastBody, { status: lastStatus, headers: corsHeaders() });
     }
 
-    // كل الطلبات الأخرى: خدم الملفات الثابتة
     return env.ASSETS.fetch(request);
   }
 };
