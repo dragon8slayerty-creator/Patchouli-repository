@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "patchou-lirepository",
+  "name": "patchouli8repository",
   "compatibility_date": "2026-07-23",
   "observability": {
     "enabled": true
