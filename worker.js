@@ -83,7 +83,13 @@ export default {
                 topP: 0.95,
                 maxOutputTokens: maxTokens,
                 responseMimeType: "application/json",
-                thinkingConfig: { thinkingLevel: "low" }
+                          generationConfig: {
+            temperature: temperature,
+            topP: 0.95,
+            maxOutputTokens: maxTokens,
+            responseMimeType: "application/json"
+          }
+
               }
             })
           });
