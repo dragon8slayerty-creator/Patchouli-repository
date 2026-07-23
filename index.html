@@ -1,783 +1,1770 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<!doctype html>
+<html lang="en" dir="ltr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>العد التنازلي — الشهر المميز مالتنا</title>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DEATH BATTLE</title>
+<script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rakkas&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  
-  *{ box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-  html, body{ margin:0; padding:0; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
-  body{ font-family:'Tajawal', 'Segoe UI', sans-serif; }
-  h1,p{ margin:0; }
-  button{ background:none; border:none; cursor:pointer; font:inherit; color:inherit; padding:0; transition: transform .12s ease, opacity .12s ease; touch-action: manipulation; }
-  button:active{ transform: scale(0.9); opacity: 0.75; }
-  svg{ display:block; }
-  .font-display{ font-family:'Rakkas', serif; }
-
-  
-  .relative{ position:relative; }
-  .absolute{ position:absolute; }
-  .fixed{ position:fixed; }
-  .inset-0{ top:0; left:0; right:0; bottom:0; }
-  .min-h-screen{ min-height:100vh; }
-  .w-full{ width:100%; }
-  .flex{ display:flex; }
-  .inline-flex{ display:inline-flex; }
-  .flex-col{ flex-direction:column; }
-  .items-center{ align-items:center; }
-  .items-end{ align-items:flex-end; }
-  .justify-center{ justify-content:center; }
-  .justify-between{ justify-content:space-between; }
-  .overflow-hidden{ overflow:hidden; }
-  .overflow-visible{ overflow:visible; }
-  .pointer-events-none{ pointer-events:none; }
-  .text-center{ text-align:center; }
-  .hidden{ display:none; }
-  .rounded-2xl{ border-radius:1rem; }
-  .rounded-full{ border-radius:9999px; }
-  .rounded-br-sm{ border-bottom-right-radius:0.2rem; }
-  .shadow-xl{ box-shadow:0 18px 30px -8px rgba(0,0,0,.18); }
-  .shadow-lg{ box-shadow:0 10px 20px -5px rgba(0,0,0,.15); }
-  .backdrop-blur-xl{ backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); }
-  .backdrop-blur-md{ backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); }
-  .font-black{ font-weight:900; }
-  .tabular-nums{ font-variant-numeric:tabular-nums; }
-  .opacity-70{ opacity:.7; }
-  .opacity-80{ opacity:.8; }
-  .opacity-90{ opacity:.9; }
-  .z-10{ z-index:10; }
-  .z-20{ z-index:20; }
-  .mb-1{ margin-bottom:.25rem; }
-  .mb-2{ margin-bottom:.5rem; }
-  .mb-8{ margin-bottom:2rem; }
-  .mt-1{ margin-top:.25rem; }
-  .mt-8{ margin-top:2rem; }
-  .top-1{ top:.25rem; }
-  .top-4{ top:1rem; }
-  .top-20{ top:5rem; }
-  .bottom-4{ bottom:1rem; }
-  .right-4{ right:1rem; }
-  .left-4{ left:1rem; }
-  .gap-1\.5{ gap:.375rem; }
-  .gap-2{ gap:.5rem; }
-  .px-3{ padding-left:.75rem; padding-right:.75rem; }
-  .px-4{ padding-left:1rem; padding-right:1rem; }
-  .py-2{ padding-top:.5rem; padding-bottom:.5rem; }
-  .py-3{ padding-top:.75rem; padding-bottom:.75rem; }
-  .py-4{ padding-top:1rem; padding-bottom:1rem; }
-  .py-10{ padding-top:2.5rem; padding-bottom:2.5rem; }
-  .p-3{ padding:.75rem; }
-  .text-xs{ font-size:.75rem; }
-  .text-sm{ font-size:.875rem; }
-  .text-2xl{ font-size:1.5rem; }
-  .text-3xl{ font-size:1.875rem; }
-  .w-4{ width:1rem; }
-  .h-4{ height:1rem; }
-  .h-full{ height:100%; }
-  .h-2\.5{ height:.625rem; }
-  .w-\[70px\]{ width:70px; }
-  .max-w-\[220px\]{ max-width:220px; }
-  .max-w-md{ max-width:28rem; }
-  .text-\[10px\]{ font-size:10px; }
-
-  @media (min-width:768px){
-    .md\:top-6{ top:1.5rem; }
-    .md\:top-24{ top:6rem; }
-    .md\:left-6{ left:1.5rem; }
-    .md\:bottom-8{ bottom:2rem; }
-    .md\:right-8{ right:2rem; }
-    .md\:inline{ display:inline; }
-    .md\:text-base{ font-size:1rem; }
-    .md\:text-5xl{ font-size:3rem; }
-    .md\:text-4xl{ font-size:2.25rem; }
-    .md\:text-xs{ font-size:.75rem; }
-    .md\:text-lg{ font-size:1.125rem; }
-    .md\:text-sm{ font-size:.875rem; }
-    .md\:px-6{ padding-left:1.5rem; padding-right:1.5rem; }
-    .md\:py-6{ padding-top:1.5rem; padding-bottom:1.5rem; }
-    .md\:gap-4{ gap:1rem; }
-    .md\:w-\[110px\]{ width:110px; }
-    .md\:max-w-\[260px\]{ max-width:260px; }
-  }
-
-  
   :root{
-    --bg: linear-gradient(160deg, #FFF6E9 0%, #FDE2EC 50%, #F3D6F5 100%);
-    --card-bg: rgba(255,255,255,0.5);
-    --card-border: rgba(255,255,255,0.75);
-    --text: #4A2E4A;
-    --accent: #E0648B;
-    --accent2: #F2C48A;
-    --bubble-bg: rgba(255,255,255,0.8);
-    --star-color: #E8956E;
+    --sky:#38bdf8; --pink:#ec4899; --gold:#facc15; --orange:#f97316; --red:#ef4444;
+    --bg:#06060a; --panel:#0b0d14; --ink:#e6e9f0;
+  }
+  *{ box-sizing:border-box; }
+  html,body{ background:var(--bg); }
+  body{ font-family:'Rajdhani',sans-serif; color:var(--ink); overflow-x:hidden; }
+  .font-pixel{ font-family:'Press Start 2P',monospace; }
+  .font-hud{ font-family:'Orbitron',sans-serif; }
+
+  [dir="rtl"] .font-pixel, [dir="rtl"] .font-hud{ font-family:'Rajdhani',sans-serif; }
+
+  .pixel-corners{
+    clip-path: polygon(0 8px,8px 8px,8px 0,calc(100% - 8px) 0,calc(100% - 8px) 8px,100% 8px,
+      100% calc(100% - 8px),calc(100% - 8px) calc(100% - 8px),calc(100% - 8px) 100%,
+      8px 100%,8px calc(100% - 8px),0 calc(100% - 8px));
+  }
+  .pixel-corners-sm{
+    clip-path: polygon(0 4px,4px 4px,4px 0,calc(100% - 4px) 0,calc(100% - 4px) 4px,100% 4px,
+      100% calc(100% - 4px),calc(100% - 4px) calc(100% - 4px),calc(100% - 4px) 100%,
+      4px 100%,4px calc(100% - 4px),0 calc(100% - 4px));
   }
 
-  #app{ background: var(--bg); transition: background 1.2s ease; }
-  .glass-card{
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    color: var(--text);
-    transition: background 1.2s ease, border-color 1.2s ease, color 1.2s ease;
+  .scanlines{
+    background-image: repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.06) 0px,
+      rgba(255,255,255,0.06) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+    background-size: 100% 4px;
   }
-  .theme-text{ color: var(--text); transition: color 1.2s ease; }
-  .theme-accent{ color: var(--accent); transition: color 1.2s ease; }
-  .theme-bubble{
-    background: var(--bubble-bg);
-    border: 1px solid var(--card-border);
-    color: var(--text);
-    transition: background 1.2s ease, color 1.2s ease;
+  .crt-frame{ position:relative; overflow:hidden; }
+  .crt-frame::after{
+    content:""; position:absolute; inset:0; pointer-events:none;
+    background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.55) 100%);
   }
-  .progress-track{
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    transition: background 1.2s ease, border-color 1.2s ease;
-  }
-  .progress-fill{
-    background: linear-gradient(90deg, var(--accent2), var(--accent));
-    transition: width 1s ease, background 1.2s ease;
+  .crt-flicker{ animation: flicker 3.4s infinite; }
+  @keyframes flicker{
+    0%,100%{ opacity:1; } 92%{ opacity:1; } 93%{ opacity:.86; } 94%{ opacity:1; }
   }
 
-  
-  @keyframes pulseIn{
-    0%{ opacity:0.5; transform:translateY(-4px) scale(0.92); }
-    100%{ opacity:1; transform:translateY(0) scale(1); }
+  .glow-sky{ text-shadow: 0 0 6px rgba(56,189,248,.9), 0 0 22px rgba(56,189,248,.55), 0 0 46px rgba(56,189,248,.3); }
+  .glow-pink{ text-shadow: 0 0 6px rgba(236,72,153,.9), 0 0 22px rgba(236,72,153,.55), 0 0 46px rgba(236,72,153,.3); }
+  .glow-gold{ text-shadow: 0 0 6px rgba(250,204,21,.9), 0 0 24px rgba(249,115,22,.6), 0 0 48px rgba(239,68,68,.4); }
+
+  .title-glow{ text-shadow: 0 0 4px #fff, 0 0 14px var(--sky), 0 0 28px var(--pink), 0 0 46px var(--pink); }
+
+  @keyframes vspulse{ 0%,100%{ transform:scale(1); filter:brightness(1);} 50%{ transform:scale(1.06); filter:brightness(1.25);} }
+  .vs-pulse{ animation: vspulse 1.6s ease-in-out infinite; }
+
+  @keyframes shake{
+    10%,90%{ transform:translate3d(-1px,-1px,0); }
+    20%,80%{ transform:translate3d(2px,2px,0); }
+    30%,50%,70%{ transform:translate3d(-5px,3px,0); }
+    40%,60%{ transform:translate3d(5px,-3px,0); }
   }
-  .pulse{ animation: pulseIn 0.25s ease-out; }
+  .shake-active{ animation: shake .45s linear infinite; }
 
-  @keyframes heartPop{
-    0%{ opacity:0.9; transform:translate(-50%,0) scale(0.5); }
-    100%{ opacity:0; transform:translate(-50%,-34px) scale(1.15); }
+  @keyframes strobe{
+    0%,100%{ background: rgba(239,68,68,.32); }
+    50%{ background: rgba(56,189,248,.32); }
   }
-  .heart-pop{ animation: heartPop 0.9s ease-out forwards; }
+  .strobe-active{ animation: strobe .16s steps(1,end) infinite; }
 
-  @keyframes twinkle{
-    0%,100%{ opacity:0.1; transform:scale(1); }
-    50%{ opacity:0.9; transform:scale(1.5); }
+  @keyframes fightshift{
+    0%{ background-position: 0% 50%; }
+    100%{ background-position: 200% 50%; }
   }
-  .particle{ animation-name: twinkle; animation-timing-function: ease-in-out; animation-iteration-count: infinite; }
-
-  @keyframes catSway{
-    0%,100%{ transform: rotate(0deg); }
-    25%{ transform: rotate(-3deg); }
-    75%{ transform: rotate(3deg); }
+  .fight-text{
+    font-family:'Press Start 2P',monospace;
+    background: linear-gradient(90deg, var(--red), var(--orange), var(--gold), var(--orange), var(--red));
+    background-size: 300% 100%;
+    -webkit-background-clip: text; background-clip:text; color:transparent;
+    animation: fightshift .7s linear infinite;
+    text-shadow: 3px 0 0 rgba(239,68,68,.35), -3px 0 0 rgba(56,189,248,.35);
+    letter-spacing: .08em;
   }
-  #cat-svg-inner{ animation: catSway 3s infinite; transform-origin: 50px 60px; }
 
-  @keyframes heartBeat{
-    0%,100%{ transform: scale(1); }
-    50%{ transform: scale(1.2); }
+  @keyframes barfill{ from{ width:0%; } }
+  .bar-fill{ animation: barfill 1.1s cubic-bezier(.2,.8,.2,1) forwards; }
+
+  .stat-track{
+    background: repeating-linear-gradient(90deg, rgba(255,255,255,.06) 0 2px, transparent 2px 6px), #0e1018;
+    border: 2px solid rgba(255,255,255,.12);
   }
-  #music-icon.beat svg{ animation: heartBeat 0.8s ease-in-out infinite; }
 
-  @keyframes heartSpin{
-    to{ transform: rotate(360deg); }
+  .term-line{ opacity:0; transform: translateY(6px); animation: termIn .4s ease forwards; }
+  @keyframes termIn{ to{ opacity:1; transform:translateY(0); } }
+
+  ::-webkit-scrollbar{ width:8px; height:8px; }
+  ::-webkit-scrollbar-thumb{ background: rgba(56,189,248,.4); }
+  ::-webkit-scrollbar-track{ background: transparent; }
+
+  .char-card{ transition: transform .15s ease, box-shadow .15s ease; }
+  .char-card:hover{ transform: translateY(-3px); }
+
+  .btn-x{
+    box-shadow:
+      0 0 0 4px #050608 inset,
+      0 0 0 6px rgba(56,189,248,.55) inset,
+      0 0 22px rgba(56,189,248,.55),
+      0 6px 0 #0a2c3d;
   }
-  #search-heart-icon svg{ transform-origin:50% 50%; }
-  #search-heart-icon.spin svg{ animation: heartSpin 0.9s linear infinite; }
+  .btn-x:active{ transform: translateY(4px); box-shadow: 0 0 0 4px #050608 inset, 0 0 0 6px rgba(56,189,248,.55) inset, 0 0 12px rgba(56,189,248,.4); }
+  .btn-x:disabled{ opacity:.45; cursor:not-allowed; }
 
-  @keyframes catBob{
-    0%,100%{ transform: translateY(0); }
-    50%{ transform: translateY(-6px); }
+  .marker-badge{ font-family:'Press Start 2P',monospace; font-size:10px; letter-spacing:1px; }
+
+  .fade-panel{ animation: fadePanel .5s ease forwards; }
+  @keyframes fadePanel{ from{ opacity:0; transform: translateY(10px);} to{ opacity:1; transform:translateY(0);} }
+
+  .loader-dot{ animation: dotpulse 1s ease-in-out infinite; }
+  @keyframes dotpulse{ 0%,100%{ opacity:.2; } 50%{ opacity:1; } }
+
+  @keyframes selectFlash{
+    0%,100%{ box-shadow: inset 0 0 0 rgba(255,255,255,0); filter: brightness(1); }
+    50%{ box-shadow: inset 0 0 35px rgba(255,255,255,0.28); filter: brightness(1.18); }
   }
-  #cat-button{ animation: catBob 2.2s ease-in-out infinite; }
+  .select-flash{ animation: selectFlash 1.8s ease-in-out 2; }
 
-  .bubble-fade{ transition: opacity 0.25s ease; }
+  @keyframes reelPulse{ 0%,100%{ transform:scale(1); } 50%{ transform:scale(1.035); } }
+  .reel-active{ animation: reelPulse .35s ease-in-out infinite; }
 
-  .scene-sun{ display:none; }
-  #scene.is-day .scene-sun{ display:block; }
-  #scene.is-day .scene-moon{ display:none; }
-  .scene-lampglow{ opacity:0.9; transition: opacity 1.2s ease; }
-  #scene.is-day .scene-lampglow{ opacity:0; }
-  .scene-windows rect{ transition: opacity 1.2s ease; }
-  #scene.is-day .scene-windows rect{ opacity:0.1; }
+  @keyframes lockFlash{
+    0%,100%{ filter: brightness(1) saturate(1); box-shadow: inset 0 0 0 rgba(255,255,255,0); }
+    50%{ filter: brightness(2.1) saturate(0.2); box-shadow: inset 0 0 22px rgba(255,255,255,0.85); }
+  }
+  .lock-flash{ animation: lockFlash 0.34s ease-in-out 3; }
 
-  @media (prefers-reduced-motion: reduce){
-    *, *::before, *::after{
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-    }
+  @keyframes flameShine{
+    0%,100%{ filter: brightness(1) saturate(1); }
+    50%{ filter: brightness(1.7) saturate(1.4); }
+  }
+  .flame-shine{ animation: flameShine 1s ease-in-out infinite; }
+
+  @keyframes cardGlowSky{
+    0%,100%{ box-shadow: 0 0 15px rgba(56,189,248,0.25), inset 0 0 12px rgba(56,189,248,0.08); }
+    50%{ box-shadow: 0 0 32px rgba(56,189,248,0.6), inset 0 0 18px rgba(56,189,248,0.18); }
+  }
+  @keyframes cardGlowPink{
+    0%,100%{ box-shadow: 0 0 15px rgba(236,72,153,0.25), inset 0 0 12px rgba(236,72,153,0.08); }
+    50%{ box-shadow: 0 0 32px rgba(236,72,153,0.6), inset 0 0 18px rgba(236,72,153,0.18); }
+  }
+  .card-glow-sky{ animation: cardGlowSky 2.6s ease-in-out infinite; }
+  .card-glow-pink{ animation: cardGlowPink 2.6s ease-in-out infinite; }
+
+  @keyframes shimmerSweep{
+    0%{ transform: translateX(-130%) skewX(-18deg); opacity:0; }
+    15%{ opacity:1; }
+    50%{ opacity:1; }
+    85%{ opacity:0; }
+    100%{ transform: translateX(230%) skewX(-18deg); opacity:0; }
+  }
+  .shimmer-sweep{
+    position:absolute; top:0; left:0; height:100%; width:30%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    animation: shimmerSweep 3.4s ease-in-out infinite;
+    pointer-events:none;
   }
 </style>
 </head>
-
-<body>
-<main id="app" class="relative min-h-screen w-full flex flex-col items-center justify-center px-4 py-10 overflow-hidden">
+<body class="min-h-screen w-full">
 
   
-  <div id="scene" class="absolute inset-0 overflow-hidden pointer-events-none is-night">
-    <svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMax slice" shape-rendering="crispEdges" style="position:absolute; bottom:0; left:0; width:100%; height:40vh;">
-      <defs>
-        <radialGradient id="celestialGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stop-color="var(--star-color)" stop-opacity="0.45"/>
-          <stop offset="100%" stop-color="var(--star-color)" stop-opacity="0"/>
-        </radialGradient>
-        <filter id="pixelGlow" x="-100%" y="-100%" width="300%" height="300%">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"/>
-          <feMerge>
-            <feMergeNode in="blur"/>
-            <feMergeNode in="blur"/>
-            <feMergeNode in="SourceGraphic"/>
-          </feMerge>
-        </filter>
-      </defs>
+  <audio id="bgMusic" loop preload="auto" src="https://files.catbox.moe/sre7hn.mp3"></audio>
+  <audio id="reelSound" preload="auto" src="https://cdn.discordapp.com/attachments/1394422445540380813/1528407077758701588/Lucky_wheel_spin_sound_effect_-_VaLeTecK.mp3?ex=6a5e2f83&is=6a5cde03&hm=5cec2eebeb0e4d0e35618a18d2552c9d05c9cfda77a27b2bffbe2a0d4494c439&"></audio>
+  <audio id="p1AnnouncerSound" preload="auto" src="https://cdn.discordapp.com/attachments/1394422445540380813/1528460085674774548/Super-Smash-Bros.-4Ultimate-Announcer-2026-07-19-20-53-Number-one.mp3?ex=6a5e60e1&is=6a5d0f61&hm=2ec94276b0b1ab279da17f9356909509f74d780dbcea608c0766ecb34e0ba0c9&"></audio>
+  <audio id="p2AnnouncerSound" preload="auto" src="https://cdn.discordapp.com/attachments/1394422445540380813/1528460116842643547/Super-Smash-Bros.-4Ultimate-Announcer-2026-07-19-20-53-Number-two.mp3?ex=6a5e60e9&is=6a5d0f69&hm=ca746a6deac4efcfacb376a8b3a8ce9471f7304cccc5c5240268219b58dc101e&"></audio>
+  <audio id="fightAnnouncerSound" preload="auto" src="https://cdn.discordapp.com/attachments/1394422445540380813/1528460144143241358/Super-Smash-Bros.-4Ultimate-Announcer-2026-07-19-20-53-Fight.mp3?ex=6a5e60ef&is=6a5d0f6f&hm=a6b43a4581a75576b83048477f81cd4863a056d50c5dfa5e87048ac7b403017d&"></audio>
 
-      <g class="scene-moon" filter="url(#pixelGlow)">
-        <circle cx="330" cy="40" r="52" fill="url(#celestialGlow)"/>
-        <g fill="var(--star-color)">
-          <rect x="306" y="8" width="16" height="16"/><rect x="322" y="8" width="16" height="16"/><rect x="338" y="8" width="16" height="16"/>
-          <rect x="290" y="24" width="16" height="16"/><rect x="306" y="24" width="16" height="16"/><rect x="322" y="24" width="16" height="16"/><rect x="338" y="24" width="16" height="16"/><rect x="354" y="24" width="16" height="16"/>
-          <rect x="290" y="40" width="16" height="16"/><rect x="306" y="40" width="16" height="16"/><rect x="322" y="40" width="16" height="16"/><rect x="338" y="40" width="16" height="16"/><rect x="354" y="40" width="16" height="16"/>
-          <rect x="290" y="56" width="16" height="16"/><rect x="306" y="56" width="16" height="16"/><rect x="322" y="56" width="16" height="16"/><rect x="338" y="56" width="16" height="16"/><rect x="354" y="56" width="16" height="16"/>
-          <rect x="306" y="72" width="16" height="16"/><rect x="322" y="72" width="16" height="16"/><rect x="338" y="72" width="16" height="16"/>
-        </g>
-        <rect x="306" y="24" width="16" height="16" fill="var(--text)" opacity="0.18"/>
-        <rect x="346" y="56" width="12" height="12" fill="var(--text)" opacity="0.18"/>
-        <rect x="322" y="8" width="16" height="6" fill="#fff" opacity="0.25"/>
-      </g>
-
-      <g class="scene-sun" filter="url(#pixelGlow)">
-        <circle cx="330" cy="40" r="48" fill="url(#celestialGlow)"/>
-        <g fill="var(--accent2)">
-          <rect x="322" y="-10" width="16" height="12"/>
-          <rect x="322" y="88" width="16" height="12"/>
-          <rect x="264" y="34" width="12" height="16"/>
-          <rect x="378" y="34" width="12" height="16"/>
-          <rect x="306" y="8" width="16" height="16"/><rect x="322" y="8" width="16" height="16"/><rect x="338" y="8" width="16" height="16"/>
-          <rect x="290" y="24" width="16" height="16"/><rect x="306" y="24" width="16" height="16"/><rect x="322" y="24" width="16" height="16"/><rect x="338" y="24" width="16" height="16"/><rect x="354" y="24" width="16" height="16"/>
-          <rect x="290" y="40" width="16" height="16"/><rect x="306" y="40" width="16" height="16"/><rect x="322" y="40" width="16" height="16"/><rect x="338" y="40" width="16" height="16"/><rect x="354" y="40" width="16" height="16"/>
-          <rect x="290" y="56" width="16" height="16"/><rect x="306" y="56" width="16" height="16"/><rect x="322" y="56" width="16" height="16"/><rect x="338" y="56" width="16" height="16"/><rect x="354" y="56" width="16" height="16"/>
-          <rect x="306" y="72" width="16" height="16"/><rect x="322" y="72" width="16" height="16"/><rect x="338" y="72" width="16" height="16"/>
-        </g>
-        <rect x="322" y="8" width="16" height="6" fill="#fff" opacity="0.3"/>
-      </g>
-
-      <path d="M0 145 H40 V125 H80 V100 H120 V120 H160 V85 H200 V105 H240 V75 H280 V100 H320 V80 H360 V110 H400 V200 H0 Z" fill="var(--accent2)" opacity="0.32"/>
-      <path d="M0 145 H40 V133 H80 V113 H120 V127 H160 V102 H200 V116 H240 V94 H280 V113 H320 V100 H360 V121 H400 V131 H360 V145 H320 V133 H280 V145 H240 V127 H200 V139 H160 V121 H120 V139 H80 V127 H40 V145 H0 Z" fill="var(--accent2)" opacity="0.18"/>
-      <g class="scene-windows" filter="url(#pixelGlow)">
-        <rect x="204" y="108" width="8" height="8" fill="var(--star-color)" class="particle" style="animation-duration:3s"/>
-        <rect x="222" y="114" width="8" height="8" fill="var(--star-color)" class="particle" style="animation-duration:4s; animation-delay:.5s"/>
-        <rect x="240" y="102" width="8" height="8" fill="var(--star-color)" class="particle" style="animation-duration:3.5s; animation-delay:1s"/>
-        <rect x="258" y="112" width="8" height="8" fill="var(--star-color)" class="particle" style="animation-duration:4.5s; animation-delay:.3s"/>
-      </g>
-      <path d="M0 165 H60 V145 H100 V168 H140 V135 H180 V160 H220 V130 H260 V155 H300 V125 H340 V150 H400 V200 H0 Z" fill="var(--accent)" opacity="0.42"/>
-      <path d="M0 165 H60 V153 H100 V156 H140 V147 H180 V148 H220 V142 H260 V143 H300 V137 H340 V138 H400 V150 H340 V165 H300 V150 H260 V165 H220 V150 H180 V165 H140 V150 H100 V165 H60 V165 H0 Z" fill="#000" opacity="0.08"/>
-
-      <path d="M150 200 L184 140 L216 140 L260 200 Z" fill="rgba(20,10,30,0.35)"/>
-      <g fill="var(--accent2)" opacity="0.7">
-        <rect x="196" y="182" width="8" height="12"/>
-        <rect x="194" y="158" width="8" height="12"/>
-        <rect x="192" y="134" width="8" height="12"/>
-      </g>
-
-      <rect x="174" y="126" width="6" height="74" fill="var(--text)" opacity="0.6"/>
-      <rect x="162" y="112" width="30" height="14" fill="var(--text)" opacity="0.6"/>
-      <g fill="var(--accent2)" class="scene-lampglow" filter="url(#pixelGlow)">
-        <rect x="154" y="92" width="46" height="10" opacity="0.2"/>
-        <rect x="162" y="82" width="30" height="10" opacity="0.3"/>
-        <rect x="170" y="98" width="14" height="14"/>
-      </g>
-    </svg>
+  <div id="confirmOverlay" class="fixed inset-0 z-40 hidden items-center justify-center bg-black/70 backdrop-blur-sm px-6">
+    <div class="pixel-corners bg-neutral-900/95 border border-sky-400/30 shadow-[0_0_30px_rgba(56,189,248,0.25)] p-6 max-w-xs w-full text-center">
+      <div id="confirmCharName" class="font-pixel text-xs sm:text-sm text-white mb-4"></div>
+      <p id="confirmQuestionText" class="font-hud text-white/70 text-sm mb-5">هل تريد اختيار هذه الشخصية؟</p>
+      <div class="flex gap-3 justify-center">
+        <button id="confirmYesBtn" class="flex-1 px-4 py-2 bg-sky-500/20 border border-sky-400/40 hover:bg-sky-500/30 font-pixel text-[10px] text-sky-300 pixel-corners-sm">✓</button>
+        <button id="confirmNoBtn" class="flex-1 px-4 py-2 bg-white/5 border border-white/20 hover:bg-white/10 font-pixel text-[10px] text-white/70 pixel-corners-sm">✕</button>
+      </div>
+    </div>
   </div>
 
-  <div id="particles" class="absolute inset-0 overflow-hidden pointer-events-none"></div>
+  <div id="infoOverlay" class="fixed inset-0 z-40 hidden items-center justify-center bg-black/70 backdrop-blur-sm px-4">
+    <div class="pixel-corners bg-neutral-900/95 border border-emerald-400/30 shadow-[0_0_30px_rgba(16,185,129,0.2)] p-5 max-w-sm w-full max-h-[80vh] overflow-y-auto">
+      <div class="flex gap-3 mb-3">
+        <img id="infoImg" class="w-20 h-20 object-cover pixel-corners-sm border border-white/10 shrink-0" src="" alt="">
+        <div class="flex-1 min-w-0">
+          <div id="infoName" class="font-pixel text-[11px] text-white mb-1 leading-snug"></div>
+          <div id="infoNative" class="font-hud text-xs text-white/50 truncate"></div>
+          <div id="infoMedia" class="font-hud text-xs text-emerald-300 mt-1"></div>
+        </div>
+      </div>
+      <div id="infoFacts" class="hidden flex-wrap gap-2 mb-3"></div>
+      <div id="infoBio" class="font-hud text-sm text-white/80 leading-relaxed whitespace-pre-line"></div>
+      <button id="infoCloseBtn" class="mt-4 w-full px-4 py-2 bg-white/5 border border-white/20 hover:bg-white/10 font-pixel text-[10px] text-white/70 pixel-corners-sm">✕</button>
+    </div>
+  </div>
+
+  <div id="historyOverlay" class="fixed inset-0 z-40 hidden items-center justify-center bg-black/70 backdrop-blur-sm px-4">
+    <div class="pixel-corners bg-neutral-900/95 border border-emerald-400/30 shadow-[0_0_30px_rgba(16,185,129,0.2)] p-5 max-w-md w-full max-h-[80vh] overflow-y-auto">
+      <h3 id="historyTitleEl" class="font-pixel text-xs text-emerald-300 mb-4" data-i18n="historyTitle">BATTLE HISTORY</h3>
+      <div id="historyList" class="space-y-2"></div>
+      <button id="historyCloseBtn" class="mt-4 w-full px-4 py-2 bg-white/5 border border-white/20 hover:bg-white/10 font-pixel text-[10px] text-white/70 pixel-corners-sm">✕</button>
+    </div>
+  </div>
+
+  <div id="strobeOverlay" class="fixed inset-0 z-40 pointer-events-none hidden"></div>
 
   
-  <div class="fixed top-4 left-4 md:top-6 md:left-6 z-20 flex items-center gap-2">
-    <button id="music-toggle"
-      class="flex items-center gap-2 px-3 py-2 rounded-full backdrop-blur-md text-sm glass-card">
-      <span id="music-icon" class="w-4 h-4"></span>
-      <span class="hidden md:inline">موسيقى</span>
-    </button>
-  </div>
-
-  <div id="search-panel" class="hidden fixed z-20" style="top:1rem; left:50%; transform:translateX(-50%); width:min(260px,88vw);">
-    <div class="flex items-center gap-2 rounded-full backdrop-blur-md glass-card px-3 py-2">
-      <input id="song-input" type="text" placeholder="اسم الأغنية..."
-        class="flex-1 text-xs theme-text" style="background:transparent; border:none; outline:none;" />
-      <button id="song-search-btn" aria-label="بحث" class="flex items-center justify-center" style="width:20px; height:20px;">
-        <span id="search-heart-icon"></span>
-      </button>
-    </div>
-    <div id="song-results" class="flex flex-col gap-1 rounded-2xl backdrop-blur-md glass-card p-2 mt-2" style="max-height:200px; overflow-y:auto;"></div>
-  </div>
-
-  <div id="now-playing-panel" class="hidden fixed z-20" style="top:1rem; left:50%; transform:translateX(-50%); width:min(240px,80vw);">
-    <div class="rounded-2xl backdrop-blur-md glass-card" style="display:flex; align-items:center; gap:10px; padding:8px 14px;">
-      <button id="np-playpause" class="flex items-center justify-center" style="width:22px; height:22px; color:var(--text); flex-shrink:0;">
-        <span id="np-playpause-icon"></span>
-      </button>
-      <div id="now-playing-title" class="text-xs theme-text" style="flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"></div>
-      <button id="np-close" class="flex items-center justify-center" style="width:16px; height:16px; color:var(--text); opacity:0.7; flex-shrink:0;">
-        <span id="np-close-icon"></span>
-      </button>
+  <div id="fightOverlay" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm">
+    <div class="text-center px-4">
+      <div class="fight-text text-4xl sm:text-6xl md:text-7xl">FIGHT!</div>
+      <div class="mt-6 font-hud text-xs sm:text-sm text-sky-300 tracking-[0.3em]" data-i18n="analyzing">ANALYZING COMBAT DATA</div>
+      <div class="mt-3 flex justify-center gap-2">
+        <span class="w-2 h-2 bg-sky-400 loader-dot" style="animation-delay:0s"></span>
+        <span class="w-2 h-2 bg-pink-400 loader-dot" style="animation-delay:.2s"></span>
+        <span class="w-2 h-2 bg-amber-400 loader-dot" style="animation-delay:.4s"></span>
+      </div>
+      <div id="fightErrorLine" class="hidden mt-4 font-hud text-[11px] text-red-400 max-w-xs mx-auto"></div>
     </div>
   </div>
 
-  <div id="yt-player-wrap" class="fixed" style="top:0; left:0; width:200px; height:112px; opacity:0; pointer-events:none; z-index:-1;">
-    <div id="yt-player"></div>
-  </div>
+  <div id="app" class="w-full min-h-screen flex flex-col relative">
 
-  
-  <div class="relative z-10 text-center mb-8">
-    <div class="flex items-center justify-center gap-2 mb-2 text-sm md:text-base theme-accent">
-      <span id="daynight-icon-1" class="w-4 h-4"></span>
-      <span>الشهر المميز مالتنا</span>
-      <span id="daynight-icon-2" class="w-4 h-4"></span>
-    </div>
-    <h1 class="font-display text-3xl md:text-5xl mb-2 theme-text">العد التنازلي إلنا</h1>
-    <p class="text-sm md:text-lg opacity-90 theme-text">إلى 1 نوفمبر 2026 — الشهر الي رح اشوف بي رغية 😼</p>
-  </div>
+    
+    <header class="w-full grid grid-cols-3 items-center px-4 sm:px-8 py-5 border-b border-white/5">
+      <div class="relative flex items-center justify-self-start">
+        <button id="gearBtn" class="w-10 h-10 pixel-corners-sm flex items-center justify-center bg-white/5 border-2 border-sky-400/30 hover:border-sky-400/60 hover:bg-sky-500/10 transition" aria-label="Settings">
+          <span class="relative w-4 h-4 block">
+            <span class="absolute inset-[3px] border-2 border-sky-300 pixel-corners-sm"></span>
+            <span class="absolute left-1/2 -top-1 -translate-x-1/2 w-[3px] h-[3px] bg-sky-300"></span>
+            <span class="absolute left-1/2 -bottom-1 -translate-x-1/2 w-[3px] h-[3px] bg-sky-300"></span>
+            <span class="absolute top-1/2 -left-1 -translate-y-1/2 w-[3px] h-[3px] bg-sky-300"></span>
+            <span class="absolute top-1/2 -right-1 -translate-y-1/2 w-[3px] h-[3px] bg-sky-300"></span>
+          </span>
+        </button>
+        <div id="gearMenu" class="hidden absolute left-0 top-12 w-44 bg-neutral-900/90 backdrop-blur-xl border border-white/10 shadow-[0_0_25px_rgba(0,0,0,0.6)] p-1.5 z-30 pixel-corners-sm">
+          <button data-lang="en" class="lang-opt w-full text-left px-3 py-2 text-sm hover:bg-sky-500/20 flex items-center justify-between">
+            <span>English</span>
+          </button>
+          <button data-lang="ar" class="lang-opt w-full text-left px-3 py-2 text-sm hover:bg-pink-500/20 flex items-center justify-between">
+            <span>العربية</span>
+          </button>
+        </div>
+      </div>
 
-  
-  <div class="relative z-10 flex gap-2 md:gap-4 mb-8">
-    <div id="card-days" class="relative overflow-visible flex flex-col items-center justify-center rounded-2xl backdrop-blur-xl px-3 py-4 md:px-6 md:py-6 w-[70px] md:w-[110px] shadow-xl glass-card">
-      <span id="val-days" data-value="" class="text-2xl md:text-4xl font-black tabular-nums">00</span>
-      <span class="text-[10px] md:text-xs mt-1 opacity-80">يوم</span>
-    </div>
-    <div id="card-hours" class="relative overflow-visible flex flex-col items-center justify-center rounded-2xl backdrop-blur-xl px-3 py-4 md:px-6 md:py-6 w-[70px] md:w-[110px] shadow-xl glass-card">
-      <span id="val-hours" data-value="" class="text-2xl md:text-4xl font-black tabular-nums">00</span>
-      <span class="text-[10px] md:text-xs mt-1 opacity-80">ساعة</span>
-    </div>
-    <div id="card-mins" class="relative overflow-visible flex flex-col items-center justify-center rounded-2xl backdrop-blur-xl px-3 py-4 md:px-6 md:py-6 w-[70px] md:w-[110px] shadow-xl glass-card">
-      <span id="val-mins" data-value="" class="text-2xl md:text-4xl font-black tabular-nums">00</span>
-      <span class="text-[10px] md:text-xs mt-1 opacity-80">دقيقة</span>
-    </div>
-    <div id="card-secs" class="relative overflow-visible flex flex-col items-center justify-center rounded-2xl backdrop-blur-xl px-3 py-4 md:px-6 md:py-6 w-[70px] md:w-[110px] shadow-xl glass-card">
-      <span id="val-secs" data-value="" class="text-2xl md:text-4xl font-black tabular-nums">00</span>
-      <span class="text-[10px] md:text-xs mt-1 opacity-80">ثانية</span>
-    </div>
-  </div>
+      <h1 class="font-pixel title-glow text-white text-[9px] sm:text-lg md:text-2xl tracking-[0.3em] sm:tracking-[0.35em] uppercase justify-self-center text-center">
+        DEATH BATTLE
+      </h1>
 
-  
-  <div class="relative z-10 w-full max-w-md">
-    <div class="flex justify-between text-xs mb-1 opacity-80 theme-text">
-      <span>بداية الانتظار</span>
-      <span id="progress-label">0.0٪</span>
-      <span> 1 نوفمبر</span>
-    </div>
-    <div class="w-full h-2.5 rounded-full overflow-hidden progress-track">
-      <div id="progress-fill" class="h-full rounded-full progress-fill" style="width:0%"></div>
-    </div>
-  </div>
+      <div class="flex items-center gap-2 justify-self-end">
+        <button id="historyBtn" class="w-10 h-10 pixel-corners-sm flex items-center justify-center bg-white/5 border-2 border-emerald-400/30 hover:border-emerald-400/60 hover:bg-emerald-500/10 transition" aria-label="Battle history">
+          <span class="relative w-4 h-4 block border-2 border-emerald-300 pixel-corners-sm">
+            <span class="absolute left-1/2 top-1/2 w-[2px] h-[5px] bg-emerald-300 origin-bottom -translate-x-1/2 -translate-y-full"></span>
+            <span class="absolute left-1/2 top-1/2 w-[4px] h-[2px] bg-emerald-300 origin-left -translate-y-1/2"></span>
+          </span>
+        </button>
+        <button id="musicToggleBtn" class="w-10 h-10 pixel-corners-sm flex items-center justify-center bg-white/5 border-2 border-amber-400/30 hover:border-amber-400/60 hover:bg-amber-500/10 transition" aria-label="Toggle music">
+          <span class="relative w-5 h-4 flex items-center">
+            <span class="w-[6px] h-[10px] bg-amber-300 shrink-0"></span>
+            <span class="w-0 h-0 border-t-[7px] border-t-transparent border-b-[7px] border-b-transparent border-l-[7px] border-l-amber-300 shrink-0"></span>
+            <span id="soundWaveIcon" class="hidden flex-col gap-[3px] ml-[3px]">
+              <span class="block w-[7px] h-[2px] bg-amber-300"></span>
+              <span class="block w-[10px] h-[2px] bg-amber-300 -translate-x-[1px]"></span>
+            </span>
+            <span id="muteXIcon" class="absolute right-0 top-1/2 -translate-y-1/2 w-[10px] h-[10px]">
+              <span class="absolute inset-0 rotate-45 top-1/2 h-[2px] bg-red-400"></span>
+              <span class="absolute inset-0 -rotate-45 top-1/2 h-[2px] bg-red-400"></span>
+            </span>
+          </span>
+        </button>
+      </div>
+    </header>
 
-  
-  <div class="relative z-10 mt-8 flex items-center gap-1.5 text-xs md:text-sm opacity-70 theme-text">
-    <span id="tagline-heart" class="inline-flex"></span>
-    <span>كل ثانية تمر تخلينا اقرب (:</span>
-  </div>
-
-  
-  <div class="fixed bottom-4 right-4 md:bottom-8 md:right-8 flex flex-col items-end gap-2 z-20">
-    <div id="cat-bubble" class="bubble-fade max-w-[220px] md:max-w-[260px] px-4 py-3 rounded-2xl rounded-br-sm text-sm md:text-base backdrop-blur-md shadow-lg theme-bubble">
-      ...
+    <div id="streakBadge" class="fixed top-20 right-3 sm:right-6 z-20 flex items-center gap-1.5 bg-black/60 border border-white/10 pixel-corners-sm px-2 py-1.5">
+      <div id="flameIcon" class="grid grid-cols-7 grid-rows-9 gap-[1px] w-5 h-7 sm:w-6 sm:h-8 grayscale opacity-40 transition-all duration-300"></div>
+      <span id="streakText" class="font-pixel text-[8px] sm:text-[9px] text-white/70">x0</span>
     </div>
-    <button id="cat-button" class="relative" aria-label="القطة">
-      <svg width="72" height="72" viewBox="0 0 100 100">
-        <g id="cat-svg-inner">
-          <path id="cat-ear-l" d="M28 30 L18 8 L42 24 Z" />
-          <path id="cat-ear-r" d="M72 30 L82 8 L58 24 Z" />
-          <circle id="cat-head" cx="50" cy="45" r="26" />
-          <ellipse cx="50" cy="52" rx="16" ry="12" fill="rgba(255,255,255,0.85)" />
-          <circle id="cat-eye-l" cx="42" cy="44" r="3" />
-          <circle id="cat-eye-r" cx="58" cy="44" r="3" />
-          <path id="cat-nose" d="M47 52 L53 52 L50 55 Z" />
-          <g id="cat-whiskers" stroke-width="1" opacity="0.5">
-            <line x1="20" y1="50" x2="36" y2="52" />
-            <line x1="20" y1="58" x2="36" y2="56" />
-            <line x1="80" y1="50" x2="64" y2="52" />
-            <line x1="80" y1="58" x2="64" y2="56" />
-          </g>
-        </g>
-      </svg>
-    </button>
-  </div>
 
-</main>
+    
+    <section id="arenaSection" class="w-full flex flex-col items-center justify-center px-4 pt-10 pb-6 gap-8">
+      <div class="flex flex-row items-center justify-center gap-4 sm:gap-10">
+
+        
+        <div class="flex flex-col items-center gap-2">
+          <div id="p2Card" class="crt-frame crt-flicker card-glow-pink scanlines pixel-corners w-28 h-28 sm:w-40 sm:h-40 bg-pink-500/10 backdrop-blur-md border border-pink-500/40 flex items-center justify-center relative overflow-hidden">
+            <div class="shimmer-sweep"></div>
+            <img id="p2Img" src="" alt="" class="hidden w-full h-full object-cover opacity-90 mix-blend-luminosity" />
+            <span id="p2Placeholder" class="font-pixel text-pink-400/50 text-[9px] sm:text-xs text-center px-2" data-i18n="p2Empty">SELECT P2</span>
+            <span id="p2Marker" class="marker-badge hidden absolute -bottom-3 bg-pink-500 text-black px-2 py-1 pixel-corners-sm">P2</span>
+          </div>
+          <span class="font-hud text-pink-400 text-xs tracking-widest">P2</span>
+          <button id="predictP2Btn" class="font-pixel text-[8px] sm:text-[9px] px-2 py-1 border border-pink-400/30 bg-pink-500/10 text-pink-300 hover:bg-pink-500/25 pixel-corners-sm transition" data-i18n="winBtnLabel">WIN</button>
+        </div>
+
+        
+        <div class="vs-pulse font-pixel glow-gold text-xl sm:text-3xl md:text-4xl text-amber-300 italic">VS</div>
+
+        
+        <div class="flex flex-col items-center gap-2">
+          <div id="p1Card" class="crt-frame crt-flicker card-glow-sky scanlines pixel-corners w-28 h-28 sm:w-40 sm:h-40 bg-sky-500/10 backdrop-blur-md border border-sky-500/40 flex items-center justify-center relative overflow-hidden">
+            <div class="shimmer-sweep"></div>
+            <img id="p1Img" src="" alt="" class="hidden w-full h-full object-cover opacity-90 mix-blend-luminosity" />
+            <span id="p1Placeholder" class="font-pixel text-sky-400/50 text-[9px] sm:text-xs text-center px-2" data-i18n="p1Empty">SELECT P1</span>
+            <span id="p1Marker" class="marker-badge hidden absolute -bottom-3 bg-sky-400 text-black px-2 py-1 pixel-corners-sm">P1</span>
+          </div>
+          <span class="font-hud text-sky-400 text-xs tracking-widest">P1</span>
+          <button id="predictP1Btn" class="font-pixel text-[8px] sm:text-[9px] px-2 py-1 border border-sky-400/30 bg-sky-500/10 text-sky-300 hover:bg-sky-500/25 pixel-corners-sm transition" data-i18n="winBtnLabel">WIN</button>
+        </div>
+      </div>
+
+      
+      <div class="flex items-center gap-4">
+        <button id="fightBtn" class="btn-x pixel-corners w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-neutral-950 border-4 border-neutral-800 flex items-center justify-center group">
+          <svg viewBox="0 0 24 24" class="w-9 h-9 sm:w-11 sm:h-11 text-sky-400 group-hover:text-sky-300 transition" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="square" d="M6 6l12 12M18 6L6 18"/>
+          </svg>
+        </button>
+        <button id="randomBtn" class="pixel-corners-sm w-11 h-11 sm:w-12 sm:h-12 bg-neutral-900 border-2 border-amber-400/40 hover:border-amber-400/70 hover:bg-amber-400/10 transition flex items-center justify-center" aria-label="Random matchup">
+          <div class="grid grid-cols-3 grid-rows-3 gap-[3px] w-5 h-5 sm:w-6 sm:h-6">
+            <span class="bg-amber-300 rounded-full"></span><span></span><span class="bg-amber-300 rounded-full"></span>
+            <span></span><span class="bg-amber-300 rounded-full"></span><span></span>
+            <span class="bg-amber-300 rounded-full"></span><span></span><span class="bg-amber-300 rounded-full"></span>
+          </div>
+        </button>
+      </div>
+      <p id="fightHint" class="font-hud text-[10px] sm:text-xs text-white/30 tracking-[0.25em] -mt-4" data-i18n="fightHint">PRESS X TO INITIATE</p>
+    </section>
+
+    
+    <section id="selectSection" class="w-full flex-1 flex flex-col items-center px-4 sm:px-8 pb-12 gap-5">
+      <div class="w-full max-w-3xl flex items-center gap-3">
+        <div class="relative flex-1">
+          <svg class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-white/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="7"/><path stroke-linecap="round" d="M21 21l-4.3-4.3"/>
+          </svg>
+          <input id="searchInput" type="text" placeholder="SEARCH FIGHTER..." data-i18n-ph="searchPh"
+            class="pixel-corners-sm w-full bg-black/50 border border-white/15 focus:border-sky-400/60 outline-none text-sm font-hud tracking-wider pl-9 pr-3 py-3 text-white placeholder-white/30" />
+        </div>
+        <button id="favBtn" title="Favorites" class="pixel-corners-sm w-12 h-12 flex items-center justify-center border border-amber-400/40 bg-amber-400/10 text-amber-300 hover:bg-amber-400/20 transition text-lg font-pixel shrink-0">★</button>
+      </div>
+
+      <div id="statusLine" class="font-hud text-xs text-white/40 tracking-widest h-4"></div>
+
+      <div id="charGrid" class="w-full max-w-4xl grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 sm:gap-4"></div>
+      <div id="paginationBar" class="hidden w-full max-w-4xl items-center justify-center gap-1.5 flex-wrap pt-2"></div>
+    </section>
+
+    
+    <section id="resultSection" class="hidden w-full flex-col items-center px-4 sm:px-8 pb-16 gap-8">
+      <h2 class="font-pixel text-sm sm:text-lg glow-gold text-amber-300 tracking-widest" data-i18n="analyticsTitle">BATTLE ANALYTICS</h2>
+
+      <div class="w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div id="p1Stats" class="fade-panel bg-sky-500/5 border border-sky-500/30 pixel-corners p-5"></div>
+        <div id="p2Stats" class="fade-panel bg-pink-500/5 border border-pink-500/30 pixel-corners p-5"></div>
+      </div>
+
+      <div class="w-full max-w-4xl">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="w-2 h-2 bg-emerald-400"></span>
+          <h3 class="font-hud text-xs tracking-[0.3em] text-emerald-300" data-i18n="loreTitle">COMBAT LOG // LIVE FEED</h3>
+        </div>
+        <div id="dialogueBox" class="bg-black/60 border border-emerald-500/20 pixel-corners p-5 max-h-96 overflow-y-auto font-hud text-sm sm:text-base leading-relaxed space-y-3"></div>
+      </div>
+
+      <div id="radarSection" class="hidden w-full max-w-4xl">
+        <h3 class="font-hud text-xs tracking-[0.3em] text-white/50 mb-3 text-center" id="radarSectionTitleEl">BATTLE PERFORMANCE (THIS FIGHT)</h3>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="bg-sky-500/5 border border-sky-500/20 pixel-corners p-3">
+            <div id="radarP1Name" class="font-pixel text-[10px] text-sky-300 text-center mb-1 truncate"></div>
+            <div id="radarP1Chart"></div>
+          </div>
+          <div class="bg-pink-500/5 border border-pink-500/20 pixel-corners p-3">
+            <div id="radarP2Name" class="font-pixel text-[10px] text-pink-300 text-center mb-1 truncate"></div>
+            <div id="radarP2Chart"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3 mt-2">
+        <button id="resetBtn" class="pixel-corners-sm px-8 py-4 bg-neutral-900 border-2 border-white/20 hover:border-amber-400/60 hover:bg-amber-400/10 transition font-pixel text-[10px] sm:text-xs tracking-widest text-white" data-i18n="resetBtn">
+          SELECT AGAIN
+        </button>
+      </div>
+    </section>
+
+    <footer class="w-full text-center py-4 text-[10px] font-hud tracking-widest text-white/20">
+      © 2026 · Written by Haru - XIIV
+    </footer>
+  </div>
 
 <script>
-  
-  const ICONS = {
-    sun: '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>',
-    moon: '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>',
-    play: '<svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg>',
-    pause: '<svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>',
-    close: '<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>',
-  };
+(function(){
+  "use strict";
 
-  const YT_API_KEY = "AIzaSyANiLEWkMmV8NQyepM45fpf7AgonGajsBc";
-
-  
-  const TARGET_DATE = new Date("2026-11-01T00:00:00");
-  const START_DATE = new Date("2026-07-01T00:00:00");
-
-  
-  const DAYPART = {
-    night:   { bg:"linear-gradient(180deg, #140B29 0%, #140B29 38%, #241340 38%, #241340 72%, #0A0518 72%, #0A0518 100%)", card:"rgba(255,255,255,0.06)", cardBorder:"rgba(255,255,255,0.2)", text:"#F1E9FA", bubble:"rgba(20,10,40,0.7)", star:"#F1E9FA", isBright:false },
-    fajr:    { bg:"linear-gradient(180deg, #3A3060 0%, #3A3060 40%, #5A4570 40%, #5A4570 72%, #7A5A75 72%, #7A5A75 100%)", card:"rgba(255,255,255,0.1)", cardBorder:"rgba(255,255,255,0.28)", text:"#F5EDF7", bubble:"rgba(58,48,96,0.6)", star:"#D9B8E0", isBright:false },
-    morning: { bg:"linear-gradient(180deg, #FDF6ED 0%, #FDF6ED 42%, #FBE8E4 42%, #FBE8E4 74%, #F3DCE8 74%, #F3DCE8 100%)", card:"rgba(255,255,255,0.55)", cardBorder:"rgba(255,255,255,0.8)", text:"#5A4560", bubble:"rgba(255,255,255,0.85)", star:"#E8B896", isBright:true },
-    noon:    { bg:"linear-gradient(180deg, #EAF2FB 0%, #EAF2FB 42%, #DCEAF7 42%, #DCEAF7 74%, #E8DCF0 74%, #E8DCF0 100%)", card:"rgba(255,255,255,0.55)", cardBorder:"rgba(255,255,255,0.8)", text:"#3D3550", bubble:"rgba(255,255,255,0.85)", star:"#E0A868", isBright:true },
-    asr:     { bg:"linear-gradient(180deg, #F5D9C2 0%, #F5D9C2 40%, #EFC0AE 40%, #EFC0AE 72%, #DDA7B0 72%, #DDA7B0 100%)", card:"rgba(255,255,255,0.4)", cardBorder:"rgba(255,255,255,0.65)", text:"#5A3A3E", bubble:"rgba(255,255,255,0.75)", star:"#E8935E", isBright:true },
-  };
-
-  const MOOD_ACCENT = {
-    dawn:   { accent:"#C98BA0", accent2:"#E0C08A" },
-    sunset: { accent:"#D98BAE", accent2:"#E8B87E" },
-    night:  { accent:"#D9678F", accent2:"#E8A8C0" },
-  };
-
-  function buildTheme(mood, daypart){
-    const d = DAYPART[daypart];
-    const m = MOOD_ACCENT[mood];
-    return {
-      bg: d.bg, card: d.card, cardBorder: d.cardBorder, text: d.text,
-      bubble: d.bubble, star: d.star, isBright: d.isBright,
-      accent: m.accent, accent2: m.accent2,
-    };
-  }
-
-  
-  const MESSAGES = [
-    " انتظريني يرغاوي 3:",
-    " رغاوي بنيتي 💓",
-    "دائما أفكر بيچ قبل لا انام",
-    "باقي قليل صح 3:؟",
-    "كم يوم باقي غششيني 😳",
-    "ننتظر انا وانت =w=",
-    "لغاوي الصبر جميل لان النهاية سعيدة وتستاهل💕",
-    " كل ما اشوف الوقت يقترب اكثر ابتسم لا اراديا (:",
-    "سوف اعضچ",
-    "رح احضنچ للابد 3:",
-    "💋 هاچ بوسة",
-    "احب بنيتي",
-    "صبرنه طويل بس الفرحة أطول ^ ^",
-    "ما اريد اسرع الوقت، بس اريد احضنچ هسة 🥹",
-    "رغية الحلوة، انتظارچ متعة مو عذاب 🌼",
-    " تذكري اني دائما بجانبچ 😽",
-    "كل نجمة بالسماء تذكرني بيچ 🌟",
-  ];
-
-  
-  function getMood(daysLeft){
-    if(daysLeft > 30) return "dawn";
-    if(daysLeft > 7) return "sunset";
-    return "night";
-  }
-  function getDaypart(hour, minute){
-    const t = hour + minute/60;
-    if(t >= 18.5 || t < 3) return "night";
-    if(t >= 3 && t < 6) return "fajr";
-    if(t >= 6 && t < 11.5) return "morning";
-    if(t >= 11.5 && t < 15.5) return "noon";
-    return "asr";
-  }
-  function heartSVG(color, size){
-    return '<svg width="'+size+'" height="'+size+'" viewBox="0 0 24 24" fill="'+color+'">' +
-      '<path d="M12 21s-6.7-4.35-9.3-8.1C1 10.2 1.4 6.6 4.4 5 6.9 3.7 9.8 4.6 12 7.4c2.2-2.8 5.1-3.7 7.6-2.4 3 1.6 3.4 5.2 1.7 7.9C18.7 16.65 12 21 12 21z"/></svg>';
-  }
-
-  
-  let currentMood = null;
-  let currentDaypart = null;
-  let msgIndex = 0;
-  let catIntervalId = null;
-  let playing = false;
-
-  
-  function applyTheme(t){
-    const root = document.documentElement.style;
-    root.setProperty('--bg', t.bg);
-    root.setProperty('--card-bg', t.card);
-    root.setProperty('--card-border', t.cardBorder);
-    root.setProperty('--text', t.text);
-    root.setProperty('--accent', t.accent);
-    root.setProperty('--accent2', t.accent2);
-    root.setProperty('--bubble-bg', t.bubble);
-    root.setProperty('--star-color', t.star);
-
-    document.getElementById('tagline-heart').innerHTML = heartSVG(t.accent, 14);
-
-    ['cat-ear-l','cat-ear-r','cat-head'].forEach(id=>{
-      document.getElementById(id).setAttribute('fill', t.accent2);
-    });
-    ['cat-eye-l','cat-eye-r'].forEach(id=>{
-      document.getElementById(id).setAttribute('fill', t.text);
-    });
-    document.getElementById('cat-nose').setAttribute('fill', t.accent);
-    document.getElementById('cat-whiskers').setAttribute('stroke', t.text);
-  }
-
-  
-  function regenerateParticles(mood){
-    const container = document.getElementById('particles');
-    container.innerHTML = '';
-    const count = mood === 'night' ? 70 : (mood === 'sunset' ? 45 : 30);
-    const starColor = getComputedStyle(document.documentElement).getPropertyValue('--star-color').trim();
-    for(let i=0;i<count;i++){
-      const p = document.createElement('div');
-      const size = Math.round(Math.random()*2)+2;
-      const dur = (Math.random()*6+4).toFixed(1);
-      const delay = (Math.random()*5).toFixed(1);
-      p.style.position = 'absolute';
-      p.style.left = (Math.random()*100)+'%';
-      p.style.top = (Math.random()*100)+'%';
-      p.style.width = size+'px';
-      p.style.height = size+'px';
-      p.style.background = starColor;
-      p.style.borderRadius = '0';
-      p.style.pointerEvents = 'none';
-      p.style.boxShadow = '0 0 ' + (size*3) + 'px ' + starColor;
-      p.className = 'particle';
-      p.style.animationDuration = dur+'s';
-      p.style.animationDelay = delay+'s';
-      container.appendChild(p);
+  const I18N = {
+    en: {
+      p1Empty:"SELECT P1", p2Empty:"SELECT P2", fightHint:"PRESS X TO INITIATE",
+      searchPh:"SEARCH FIGHTER...", analyzing:"ANALYZING COMBAT DATA",
+      analyticsTitle:"BATTLE ANALYTICS", loreTitle:"COMBAT LOG // LIVE FEED", tradedBlows:"⚔ TRADED BLOWS",
+      resetBtn:"SELECT AGAIN", assignP1:"P1", assignP2:"P2",
+      statPower:"Power (القوة)", statSpeed:"Speed (السرعة)", statHax:"Hax (الهاكس)",
+      statEnd:"Endurance (التحمل)", statPhys:"Physical Ability (القدرة الجسدية)",
+      statIntel:"Intelligence (الذكاء)", statBattleIq:"Battle IQ (ذكاء المعركة)",
+      statWin:"Win Probability (نسبة الفوز)",
+      loading:"LOADING FIGHTERS...", noResults:"NO FIGHTERS FOUND", pickBoth:"SELECT BOTH FIGHTERS FIRST",
+      favEmpty:"NO FAVORITES SAVED", offline:"CONNECTION LOST — SHOWING ESTIMATED DATA",
+      infoFrom:"From", noInfo:"No additional info available for this character.",
+      infoGender:"Gender", infoAge:"Age", infoBlood:"Blood Type", genderMale:"Male", genderFemale:"Female",
+      randomConfirmQuestion:"Pick two random fighters and start the battle?",
+      historyTitle:"BATTLE HISTORY", historyEmpty:"No battles recorded yet.",
+      winBtnLabel:"WIN",
+      radarSectionTitle:"BATTLE PERFORMANCE (THIS FIGHT)",
+      perfSpeed:"Speed", perfPower:"Power", perfTechnique:"Technique", perfEndurance:"Endurance", perfResilience:"Resilience",
+      serverError:"COULD NOT RESOLVE THIS MATCH. USING LOCAL ESTIMATE...",
+      confirmQuestion:"Do you want to select this character?", confirmYes:"YES", confirmNo:"NO"
+    },
+    ar: {
+      p1Empty:"اختر اللاعب 1", p2Empty:"اختر اللاعب 2", fightHint:"اضغط X للبدء",
+      searchPh:"ابحث عن مقاتل...", analyzing:"جاري تحليل بيانات القتال",
+      analyticsTitle:"تحليلات المعركة", loreTitle:"سجل القتال // بث مباشر", tradedBlows:"⚔ تبادل الضربات",
+      resetBtn:"اختر مجددا", assignP1:"1", assignP2:"2",
+      statPower:"القوة (Power)", statSpeed:"السرعة (Speed)", statHax:"الهاكس (Hax)",
+      statEnd:"التحمل (Endurance)", statPhys:"القدرة الجسدية (Physical)",
+      statIntel:"الذكاء (Intelligence)", statBattleIq:"ذكاء المعركة (Battle IQ)",
+      statWin:"نسبة الفوز (Win %)",
+      loading:"جاري تحميل المقاتلين...", noResults:"لا يوجد مقاتلون", pickBoth:"اختر المقاتلين أولاً",
+      favEmpty:"لا توجد مفضلات محفوظة", offline:"انقطع الاتصال — عرض بيانات تقديرية",
+      infoFrom:"من", noInfo:"لا تتوفر معلومات إضافية عن هذه الشخصية.",
+      infoGender:"الجنس", infoAge:"العمر", infoBlood:"فصيلة الدم", genderMale:"ذكر", genderFemale:"أنثى",
+      randomConfirmQuestion:"هل تريد اختيار مقاتلين عشوائياً وبدء المعركة؟",
+      historyTitle:"سجل المعارك", historyEmpty:"لا توجد معارك مسجّلة بعد.",
+      winBtnLabel:"فوز",
+      radarSectionTitle:"أداء المعركة (هذا القتال تحديداً)",
+      perfSpeed:"السرعة", perfPower:"القوة", perfTechnique:"التقنية", perfEndurance:"التحمل", perfResilience:"الصمود",
+      serverError:"تعذر حل هذه المباراة. جارٍ استخدام تقدير محلي...",
+      confirmQuestion:"هل تريد اختيار هذه الشخصية؟", confirmYes:"نعم", confirmNo:"لا"
     }
+  };
+  let lang = "en";
+  const t = (k) => I18N[lang][k] || k;
+
+  function applyI18n(){
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+    document.querySelectorAll("[data-i18n]").forEach(elm=>{
+      elm.textContent = t(elm.getAttribute("data-i18n"));
+    });
+    document.querySelectorAll("[data-i18n-ph]").forEach(elm=>{
+      elm.placeholder = t(elm.getAttribute("data-i18n-ph"));
+    });
   }
 
-  
-  function updateDayNightIcon(daypart){
-    const isBright = DAYPART[daypart].isBright;
-    const icon = isBright ? ICONS.sun : ICONS.moon;
-    document.getElementById('daynight-icon-1').innerHTML = icon;
-    document.getElementById('daynight-icon-2').innerHTML = icon;
-    const scene = document.getElementById('scene');
-    scene.classList.remove('is-day', 'is-night');
-    scene.classList.add(isBright ? 'is-day' : 'is-night');
-  }
+  let state = { p1:null, p2:null, favorites:[], results:[], showFavOnly:false, prediction:null, streak:0, history:[] };
+  try{ state.favorites = JSON.parse(localStorage.getItem("db_favorites")||"[]"); }catch(e){ state.favorites = []; }
+  try{ state.streak = parseInt(localStorage.getItem("db_streak")||"0", 10) || 0; }catch(e){ state.streak = 0; }
+  try{ state.history = JSON.parse(localStorage.getItem("db_history")||"[]"); }catch(e){ state.history = []; }
 
-  
-  function resetCatMessages(){
-    msgIndex = 0;
-    showCatMessage();
-    if(catIntervalId) clearInterval(catIntervalId);
-    catIntervalId = setInterval(()=>{
-      msgIndex = (msgIndex + 1) % MESSAGES.length;
-      showCatMessage();
-    }, 5000);
-  }
-  function showCatMessage(){
-    const bubble = document.getElementById('cat-bubble');
-    bubble.style.opacity = 0;
-    setTimeout(()=>{
-      bubble.textContent = MESSAGES[msgIndex];
-      bubble.style.opacity = 1;
-    }, 200);
-  }
-  document.getElementById('cat-button').addEventListener('click', ()=>{
-    msgIndex = (msgIndex + 1) % MESSAGES.length;
-    showCatMessage();
+  const el = (id) => document.getElementById(id);
+
+  el("gearBtn").addEventListener("click", ()=> el("gearMenu").classList.toggle("hidden"));
+  document.addEventListener("click", (e)=>{
+    if(!el("gearMenu").contains(e.target) && e.target !== el("gearBtn") && !el("gearBtn").contains(e.target)){
+      el("gearMenu").classList.add("hidden");
+    }
+  });
+  document.querySelectorAll(".lang-opt").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      lang = btn.getAttribute("data-lang");
+      applyI18n();
+      el("gearMenu").classList.add("hidden");
+      renderGrid();
+    });
   });
 
-  
-  function updateValue(key, value){
-    const text = String(value).padStart(2,'0');
-    const el = document.getElementById('val-'+key);
-    if(el.dataset.value !== text){
-      el.dataset.value = text;
-      el.textContent = text;
-      el.classList.remove('pulse');
-      void el.offsetWidth;
-      el.classList.add('pulse');
-      spawnHeart(key);
-    }
-  }
-  function spawnHeart(key){
-    const card = document.getElementById('card-'+key);
-    const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
-    const heart = document.createElement('span');
-    heart.innerHTML = heartSVG(accent, 13);
-    heart.style.position = 'absolute';
-    heart.style.top = '4px';
-    heart.style.left = '50%';
-    heart.style.pointerEvents = 'none';
-    heart.className = 'heart-pop';
-    card.appendChild(heart);
-    heart.addEventListener('animationend', ()=> heart.remove());
-  }
-
-  
-  function tick(){
-    const now = new Date();
-    const diff = Math.max(0, TARGET_DATE - now);
-    const days = Math.floor(diff/86400000);
-    const hours = Math.floor((diff/3600000)%24);
-    const mins = Math.floor((diff/60000)%60);
-    const secs = Math.floor((diff/1000)%60);
-    const progress = Math.min(100, Math.max(0, ((now-START_DATE)/(TARGET_DATE-START_DATE))*100));
-
-    const mood = getMood(days);
-    const daypart = getDaypart(now.getHours(), now.getMinutes());
-
-    if(mood !== currentMood || daypart !== currentDaypart){
-      currentMood = mood;
-      currentDaypart = daypart;
-      applyTheme(buildTheme(mood, daypart));
-      regenerateParticles(mood);
-      updateDayNightIcon(daypart);
-      resetCatMessages();
-    }
-
-    updateValue('days', days);
-    updateValue('hours', hours);
-    updateValue('mins', mins);
-    updateValue('secs', secs);
-
-    document.getElementById('progress-fill').style.width = progress+'%';
-    document.getElementById('progress-label').textContent = progress.toFixed(1)+'٪';
-  }
-
-  
-  let ytPlayer = null;
-  let hasTrack = false;
-  let ytReady = false;
-  let pendingVideoId = null;
-  let pendingTitle = null;
-
-  function initYT(){
-    const tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api";
-    document.head.appendChild(tag);
-    window.onYouTubeIframeAPIReady = ()=>{
-      ytPlayer = new YT.Player('yt-player', {
-        height: '112',
-        width: '200',
-        playerVars: { autoplay: 0 },
-        events: {
-          onReady: ()=>{
-            ytReady = true;
-            if(pendingVideoId){
-              ytPlayer.loadVideoById(pendingVideoId);
-              document.getElementById('now-playing-title').textContent = pendingTitle || '';
-              pendingVideoId = null;
-              pendingTitle = null;
-            }
-          },
-          onStateChange: (e)=>{
-            if(e.data === YT.PlayerState.PLAYING){
-              playing = true;
-              updateMusicIcon();
-              updatePlayPauseIcon();
-            }
-            if(e.data === YT.PlayerState.PAUSED){
-              playing = false;
-              updateMusicIcon();
-              updatePlayPauseIcon();
-            }
-          }
+  const ANILIST_URL = "https://graphql.anilist.co";
+  const CHAR_QUERY = `
+    query ($search: String, $page: Int) {
+      Page(page: $page, perPage: 18) {
+        pageInfo { currentPage lastPage hasNextPage }
+        characters(search: $search, sort: FAVOURITES_DESC) {
+          id
+          name { full native }
+          image { large }
+          description(asHtml: false)
+          gender
+          age
+          bloodType
+          media(perPage: 1) { nodes { title { romaji english } } }
         }
+      }
+    }`;
+
+  async function fetchCharacters(search, page){
+    page = page || 1;
+    el("statusLine").textContent = t("loading");
+    try{
+      const res = await fetch(ANILIST_URL, {
+        method:"POST",
+        headers:{ "Content-Type":"application/json", "Accept":"application/json" },
+        body: JSON.stringify({ query: CHAR_QUERY, variables: search ? { search, page } : { page } })
       });
-    };
-  }
-  initYT();
-
-  function updatePlayPauseIcon(){
-    document.getElementById('np-playpause-icon').innerHTML = playing ? ICONS.pause : ICONS.play;
-  }
-
-  function playVideo(videoId, title){
-    document.getElementById('now-playing-panel').classList.remove('hidden');
-    document.getElementById('search-panel').classList.add('hidden');
-    hasTrack = true;
-    if(ytReady && ytPlayer && ytPlayer.loadVideoById){
-      ytPlayer.loadVideoById(videoId);
-      document.getElementById('now-playing-title').textContent = title || '';
-    } else {
-      pendingVideoId = videoId;
-      pendingTitle = title;
-      document.getElementById('now-playing-title').textContent = 'جاري التحميل...';
+      const json = await res.json();
+      const chars = (json && json.data && json.data.Page && json.data.Page.characters) || [];
+      const pageInfo = (json && json.data && json.data.Page && json.data.Page.pageInfo) || { currentPage:1, lastPage:1, hasNextPage:false };
+      state.results = chars;
+      state.currentPage = pageInfo.currentPage || page;
+      state.lastPage = pageInfo.lastPage || 1;
+      state.currentSearch = search || "";
+      el("statusLine").textContent = chars.length ? "" : t("noResults");
+    }catch(err){
+      state.results = [];
+      state.currentPage = 1;
+      state.lastPage = 1;
+      el("statusLine").textContent = t("noResults");
     }
+    renderGrid();
+    renderPagination();
   }
 
-  document.getElementById('np-playpause').addEventListener('click', ()=>{
-    if(!ytPlayer) return;
-    if(playing){ ytPlayer.pauseVideo(); } else { ytPlayer.playVideo(); }
-  });
-
-  document.getElementById('np-close').addEventListener('click', ()=>{
-    if(ytPlayer && ytPlayer.stopVideo){ ytPlayer.stopVideo(); }
-    playing = false;
-    hasTrack = false;
-    updateMusicIcon();
-    document.getElementById('now-playing-panel').classList.add('hidden');
-  });
-
-  document.getElementById('np-close-icon').innerHTML = ICONS.close;
-  document.getElementById('np-playpause-icon').innerHTML = ICONS.play;
-
-  function renderResults(items){
-    const box = document.getElementById('song-results');
-    box.innerHTML = '';
-    if(!items || !items.length){
-      box.innerHTML = '<div class="text-xs" style="opacity:.7; color:var(--text);">ما لكيت نتايج</div>';
+  function renderPagination(){
+    const bar = el("paginationBar");
+    if(!bar) return;
+    const total = state.lastPage || 1;
+    const current = state.currentPage || 1;
+    if(total <= 1 || state.showFavOnly){
+      bar.innerHTML = "";
+      bar.classList.add("hidden");
+      bar.classList.remove("flex");
       return;
     }
-    items.forEach(item=>{
-      const el = document.createElement('button');
-      el.className = 'text-xs';
-      el.style.cssText = 'text-align:right; background:rgba(255,255,255,0.15); border-radius:0.5rem; padding:6px 8px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:var(--text);';
-      el.textContent = item.snippet.title;
-      el.addEventListener('click', ()=> playVideo(item.id.videoId, item.snippet.title));
-      box.appendChild(el);
+    bar.classList.remove("hidden");
+    bar.classList.add("flex");
+    const windowSize = 5;
+    let startPage = Math.max(1, current - Math.floor(windowSize/2));
+    let endPage = Math.min(total, startPage + windowSize - 1);
+    startPage = Math.max(1, endPage - windowSize + 1);
+
+    let html = "";
+    html += `<button data-page="${Math.max(1,current-1)}" class="page-btn w-8 h-8 flex items-center justify-center font-pixel text-[10px] pixel-corners-sm border border-white/15 bg-white/5 hover:bg-white/10 text-white/60" ${current<=1?'disabled':''}>‹</button>`;
+    for(let p=startPage; p<=endPage; p++){
+      const active = p===current;
+      html += `<button data-page="${p}" class="page-btn w-8 h-8 flex items-center justify-center font-pixel text-[10px] pixel-corners-sm border ${active?'border-sky-400/60 bg-sky-500/20 text-sky-300':'border-white/15 bg-white/5 hover:bg-white/10 text-white/60'}">${p}</button>`;
+    }
+    if(endPage < total){
+      html += `<span class="text-white/30 font-hud text-xs px-1 self-center">…</span>`;
+    }
+    html += `<button data-page="${Math.min(total,current+1)}" class="page-btn w-8 h-8 flex items-center justify-center font-pixel text-[10px] pixel-corners-sm border border-white/15 bg-white/5 hover:bg-white/10 text-white/60" ${current>=total?'disabled':''}>›</button>`;
+    bar.innerHTML = html;
+    bar.querySelectorAll(".page-btn").forEach(btn=>{
+      btn.addEventListener("click", ()=>{
+        const p = parseInt(btn.getAttribute("data-page"),10);
+        if(!Number.isNaN(p)) fetchCharacters(state.currentSearch || undefined, p);
+        window.scrollTo({ top: bar.offsetTop - 100, behavior:"smooth" });
+      });
     });
   }
 
-  document.getElementById('song-search-btn').addEventListener('click', ()=>{
-    const q = document.getElementById('song-input').value.trim();
-    if(!q) return;
-    const box = document.getElementById('song-results');
-    const heartIcon = document.getElementById('search-heart-icon');
-    heartIcon.classList.add('spin');
-    box.innerHTML = '<div class="text-xs" style="opacity:.7; color:var(--text);">جاري البحث...</div>';
-    fetch('https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&videoCategoryId=10&maxResults=6&q=' + encodeURIComponent(q) + '&key=' + YT_API_KEY)
-      .then(r=>r.json())
-      .then(data=>{
-        heartIcon.classList.remove('spin');
-        if(data.error){
-          box.innerHTML = '<div class="text-xs" style="opacity:.7; color:var(--text);">تأكد من مفتاح الـ API</div>';
+  function isFav(id){ return state.favorites.some(f=>f.id===id); }
+  function toggleFav(char){
+    const idx = state.favorites.findIndex(f=>f.id===char.id);
+    if(idx>=0) state.favorites.splice(idx,1);
+    else state.favorites.push({ id:char.id, name:char.name, image:char.image, description:char.description, media:char.media });
+    localStorage.setItem("db_favorites", JSON.stringify(state.favorites));
+    renderGrid();
+  }
+
+  function shortDesc(desc){
+    if(!desc) return "";
+    return desc.replace(/<[^>]*>/g," ").replace(/\s+/g," ").trim().slice(0,400);
+  }
+
+  function longDesc(desc){
+    if(!desc) return "";
+    return desc.replace(/<[^>]*>/g," ").replace(/\s+/g," ").trim().slice(0,900);
+  }
+
+  function renderGrid(){
+    const grid = el("charGrid");
+    grid.innerHTML = "";
+    const list = state.showFavOnly ? state.favorites : state.results;
+
+    if(state.showFavOnly && list.length===0){
+      el("statusLine").textContent = t("favEmpty");
+    }
+
+    list.forEach(c=>{
+      const name = c.name && c.name.full ? c.name.full : (c.name || "?");
+      const img = c.image && c.image.large ? c.image.large : (c.image || "");
+      const card = document.createElement("div");
+      card.className = "char-card pixel-corners-sm bg-white/5 border border-white/10 hover:border-white/25 overflow-hidden flex flex-col";
+      card.innerHTML = `
+        <div class="relative w-full aspect-square bg-black/40 overflow-hidden">
+          <img src="${img}" alt="${name}" class="w-full h-full object-cover" loading="lazy" onerror="this.style.display='none'"/>
+          <button class="info-toggle absolute top-1 left-1 w-6 h-6 flex items-center justify-center font-pixel text-[10px] text-emerald-300 bg-black/55 border border-emerald-400/30 pixel-corners-sm">i</button>
+          <button class="fav-toggle absolute top-1 right-1 w-6 h-6 flex items-center justify-center text-xs ${isFav(c.id)?'text-amber-300':'text-white/40'} bg-black/50 pixel-corners-sm">★</button>
+        </div>
+        <div class="px-1.5 py-1.5 text-[10px] sm:text-xs font-hud text-center truncate" title="${name}">${name}</div>
+        <div class="flex gap-1 px-1.5 pb-1.5">
+          <button class="assign-p1 flex-1 text-[9px] sm:text-[10px] font-pixel py-1 bg-sky-500/20 hover:bg-sky-500/40 text-sky-300 pixel-corners-sm">${t("assignP1")}</button>
+          <button class="assign-p2 flex-1 text-[9px] sm:text-[10px] font-pixel py-1 bg-pink-500/20 hover:bg-pink-500/40 text-pink-300 pixel-corners-sm">${t("assignP2")}</button>
+        </div>
+      `;
+      card.querySelector(".info-toggle").addEventListener("click",(e)=>{ e.stopPropagation(); openInfoModal(c, name, img); });
+      card.querySelector(".fav-toggle").addEventListener("click",(e)=>{ e.stopPropagation(); toggleFav({id:c.id,name,image:{large:img},description:c.description,media:c.media}); });
+      card.querySelector(".assign-p1").addEventListener("click", async ()=>{
+        const ok = await askConfirmSelection(name);
+        if(ok) assign("p1", {...c, name, image:{large:img}});
+      });
+      card.querySelector(".assign-p2").addEventListener("click", async ()=>{
+        const ok = await askConfirmSelection(name);
+        if(ok) assign("p2", {...c, name, image:{large:img}});
+      });
+      grid.appendChild(card);
+    });
+  }
+
+  let pendingConfirmResolve = null;
+  function askConfirm(displayText, questionText){
+    return new Promise((resolve)=>{
+      pendingConfirmResolve = resolve;
+      el("confirmCharName").textContent = displayText;
+      el("confirmQuestionText").textContent = questionText;
+      el("confirmYesBtn").textContent = t("confirmYes");
+      el("confirmNoBtn").textContent = t("confirmNo");
+      el("confirmOverlay").classList.remove("hidden");
+      el("confirmOverlay").classList.add("flex");
+    });
+  }
+  function askConfirmSelection(charName){
+    return askConfirm(charName, t("confirmQuestion"));
+  }
+  el("confirmYesBtn").addEventListener("click", ()=>{
+    el("confirmOverlay").classList.add("hidden");
+    el("confirmOverlay").classList.remove("flex");
+    if(pendingConfirmResolve){ pendingConfirmResolve(true); pendingConfirmResolve = null; }
+  });
+  el("confirmNoBtn").addEventListener("click", ()=>{
+    el("confirmOverlay").classList.add("hidden");
+    el("confirmOverlay").classList.remove("flex");
+    if(pendingConfirmResolve){ pendingConfirmResolve(false); pendingConfirmResolve = null; }
+  });
+
+  function translateGender(g){
+    if(!g) return "";
+    const key = String(g).toLowerCase();
+    if(key === "male") return t("genderMale");
+    if(key === "female") return t("genderFemale");
+    return g;
+  }
+
+  function buildInfoFacts(c){
+    const facts = [];
+    if(c.gender) facts.push({icon:"⚥", label:t("infoGender"), value: translateGender(c.gender)});
+    if(c.age) facts.push({icon:"🎂", label:t("infoAge"), value: String(c.age)});
+    return facts;
+  }
+
+  function openInfoModal(c, name, img){
+    el("infoImg").src = img || "";
+    el("infoName").textContent = name;
+    el("infoNative").textContent = (c.name && c.name.native) ? c.name.native : "";
+    const mediaTitle = c.media && c.media.nodes && c.media.nodes[0] ? (c.media.nodes[0].title.english || c.media.nodes[0].title.romaji) : "";
+    el("infoMedia").textContent = mediaTitle ? (t("infoFrom") + ": " + mediaTitle) : "";
+    const facts = buildInfoFacts(c);
+    const factsEl = el("infoFacts");
+    if(facts.length > 0){
+      factsEl.innerHTML = facts.map(f=>
+        `<div class="flex items-center gap-1.5 bg-white/5 border border-emerald-400/20 pixel-corners-sm px-2 py-1">
+          <span class="text-sm leading-none">${f.icon}</span>
+          <span class="font-hud text-[10px] text-white/50">${f.label}:</span>
+          <span class="font-hud text-[10px] text-emerald-200">${f.value}</span>
+        </div>`
+      ).join("");
+      factsEl.classList.remove("hidden");
+      factsEl.classList.add("flex");
+    }else{
+      factsEl.innerHTML = "";
+      factsEl.classList.add("hidden");
+      factsEl.classList.remove("flex");
+    }
+    const bio = longDesc(c.description);
+    el("infoBio").textContent = bio || t("noInfo");
+    el("infoOverlay").classList.remove("hidden");
+    el("infoOverlay").classList.add("flex");
+  }
+  el("infoCloseBtn").addEventListener("click", ()=>{
+    el("infoOverlay").classList.add("hidden");
+    el("infoOverlay").classList.remove("flex");
+  });
+
+  function flashCard(slot){
+    const card = el(slot+"Card");
+    card.classList.add("select-flash");
+    setTimeout(()=> card.classList.remove("select-flash"), 3700);
+  }
+
+  function playAnnouncerSound(slot){
+    try{
+      const snd = el(slot+"AnnouncerSound");
+      snd.currentTime = 0;
+      snd.volume = 0.8;
+      snd.play().catch(()=>{});
+    }catch(e){}
+  }
+
+  function assign(slot, char){
+    state[slot] = char;
+    const img = el(slot+"Img"), ph = el(slot+"Placeholder"), marker = el(slot+"Marker");
+    img.src = char.image && char.image.large ? char.image.large : "";
+    img.classList.remove("hidden");
+    ph.classList.add("hidden");
+    marker.classList.remove("hidden");
+    el("arenaSection").scrollIntoView({ behavior:"smooth", block:"center" });
+    flashCard(slot);
+    playAnnouncerSound(slot);
+  }
+
+  let debounceT;
+  el("searchInput").addEventListener("input",(e)=>{
+    clearTimeout(debounceT);
+    state.showFavOnly = false;
+    const val = e.target.value.trim();
+    debounceT = setTimeout(()=> fetchCharacters(val || undefined), 380);
+  });
+
+  el("favBtn").addEventListener("click", ()=>{
+    state.showFavOnly = !state.showFavOnly;
+    el("favBtn").classList.toggle("bg-amber-400/30", state.showFavOnly);
+    renderGrid();
+    renderPagination();
+  });
+
+  function seededRandom(seedStr){
+    let h = 0;
+    for(let i=0;i<seedStr.length;i++){ h = (h*31 + seedStr.charCodeAt(i)) >>> 0; }
+    return function(){ h = (h*1664525 + 1013904223) >>> 0; return (h % 1000)/1000; };
+  }
+  function localStats(name){
+    const rnd = seededRandom(name);
+    return {
+      power: 40+Math.floor(rnd()*60),
+      speed: 40+Math.floor(rnd()*60),
+      hax: 20+Math.floor(rnd()*80),
+      endurance: 40+Math.floor(rnd()*60),
+      physical: 40+Math.floor(rnd()*60),
+      intelligence: 40+Math.floor(rnd()*60),
+      battleIq: 40+Math.floor(rnd()*60)
+    };
+  }
+  function localBattle(p1Name, p2Name){
+    const s1 = localStats(p1Name), s2 = localStats(p2Name);
+    const score1 = s1.power+s1.speed+s1.hax+s1.endurance+s1.physical+s1.intelligence+s1.battleIq;
+    const score2 = s2.power+s2.speed+s2.hax+s2.endurance+s2.physical+s2.intelligence+s2.battleIq;
+    const total = score1+score2;
+    const w1 = Math.round((score1/total)*100);
+    s1.winProb = w1; s2.winProb = 100-w1;
+    const winner = w1>=50 ? "p1" : "p2";
+    const winnerName = winner==="p1" ? p1Name : p2Name;
+    const loserName = winner==="p1" ? p2Name : p1Name;
+    return {
+      p1:s1, p2:s2, winner, isLethal: true,
+      exchanges: [],
+      dialogue: [
+        {speaker:p1Name, line: lang==="ar" ? "لن أتراجع." : "I won't hold back."},
+        {speaker:p2Name, line: lang==="ar" ? "أثبت ذلك إذن." : "Then prove it."},
+        {speaker:p1Name, line: lang==="ar" ? "هذه ضربتي الأخيرة!" : "This is my final strike!"}
+      ],
+      finalWords: {speaker:loserName, line: lang==="ar" ? "...لم أتوقع هذا." : "...I never saw that coming."},
+      victoryLine: {speaker:winnerName, line: lang==="ar" ? "المعركة انتهت." : "The battle is over."},
+      climax: { technique: "", description: lang==="ar" ? "تعذر الوصول للتحليل الكامل — هذه نتيجة تقديرية مبسطة." : "Full technique analysis unavailable — this is a simplified estimate." },
+      battlePerformance: {
+        p1: { speed: s1.speed, power: s1.power, technique: Math.round((s1.hax+s1.physical)/2), endurance: s1.endurance, resilience: s1.endurance },
+        p2: { speed: s2.speed, power: s2.power, technique: Math.round((s2.hax+s2.physical)/2), endurance: s2.endurance, resilience: s2.endurance }
+      }
+    };
+  }
+
+  function clampInt(value, fallback){
+    const n = Math.round(Number(value));
+    if(Number.isNaN(n)) return fallback;
+    return Math.max(0, Math.min(100, n));
+  }
+  function sanitizeStatBlock(block){
+    const safe = block && typeof block === "object" ? block : {};
+    return {
+      power: clampInt(safe.power, 50),
+      speed: clampInt(safe.speed, 50),
+      hax: clampInt(safe.hax, 50),
+      endurance: clampInt(safe.endurance, 50),
+      physical: clampInt(safe.physical, 50),
+      intelligence: clampInt(safe.intelligence, 50),
+      battleIq: clampInt(safe.battleIq, 50)
+    };
+  }
+  function sanitizeLine(entry, fallbackSpeaker, fallbackLine){
+    if(entry && typeof entry === "object" && entry.speaker && entry.line){
+      return { speaker: String(entry.speaker).slice(0,80), line: String(entry.line).slice(0,500) };
+    }
+    return { speaker: fallbackSpeaker, line: fallbackLine };
+  }
+  function sanitizeClimax(entry){
+    if(entry && typeof entry === "object" && entry.description){
+      return {
+        technique: entry.technique ? String(entry.technique).slice(0,120) : "",
+        description: String(entry.description).slice(0,600)
+      };
+    }
+    return { technique: "", description: "" };
+  }
+
+  function attemptJsonRepair(text){
+
+    let s = text;
+    let inString = false;
+    let escapeNext = false;
+    const stack = [];
+    for(let i=0;i<s.length;i++){
+      const ch = s[i];
+      if(inString){
+        if(escapeNext){ escapeNext = false; }
+        else if(ch === "\\"){ escapeNext = true; }
+        else if(ch === '"'){ inString = false; }
+        continue;
+      }
+      if(ch === '"'){ inString = true; continue; }
+      if(ch === "{" || ch === "["){ stack.push(ch); }
+      else if(ch === "}" || ch === "]"){ stack.pop(); }
+    }
+    if(inString) s += '"';
+    for(let i=stack.length-1;i>=0;i--){
+      s += stack[i] === "{" ? "}" : "]";
+    }
+    return JSON.parse(s);
+  }
+
+  function extractJsonObject(rawText){
+    if(!rawText) throw new Error("Empty model response");
+    let cleaned = rawText.replace(/```json/gi,"").replace(/```/g,"").trim();
+    const start = cleaned.indexOf("{");
+    if(start === -1) throw new Error("No JSON object found in model response");
+    const end = cleaned.lastIndexOf("}");
+    const slice = end > start ? cleaned.slice(start, end+1) : cleaned.slice(start);
+    try{
+      return JSON.parse(slice);
+    }catch(e){
+
+      return attemptJsonRepair(cleaned.slice(start));
+    }
+  }
+
+  function truncate(str, max){
+    if(!str) return "";
+    const clean = String(str).replace(/\s+/g," ").trim();
+    return clean.length > max ? clean.slice(0,max) + "…" : clean;
+  }
+
+  const API_ENDPOINT = "/api/gemini";
+
+  async function callGemini(systemPrompt, userPrompt, temperature, maxTokens){
+    const controller = new AbortController();
+    const timeoutId = setTimeout(()=> controller.abort(), 28000);
+    let response;
+    try{
+      response = await fetch(API_ENDPOINT, {
+        method: "POST",
+        signal: controller.signal,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ systemPrompt, userPrompt, temperature, maxTokens })
+      });
+    }catch(fetchErr){
+      clearTimeout(timeoutId);
+      if(fetchErr.name === "AbortError"){
+        throw new Error("Request timed out after 28s (server or network too slow).");
+      }
+      throw new Error("Network error reaching the server: " + fetchErr.message);
+    }
+    clearTimeout(timeoutId);
+
+    const rawBody = await response.text();
+    if(!response.ok){
+      let msg = "HTTP " + response.status;
+      try{
+        const errBody = JSON.parse(rawBody);
+        msg = (errBody && errBody.error && (errBody.error.message || errBody.error)) || msg;
+      }catch(e){}
+      console.error("[death-battle] Server error response:", rawBody);
+      throw new Error("Server error (" + response.status + "): " + msg);
+    }
+
+    let data;
+    try{ data = JSON.parse(rawBody); }
+    catch(e){
+      console.error("[death-battle] Server response was not valid JSON:", rawBody);
+      throw new Error("Server returned a non-JSON response.");
+    }
+
+    const candidate = data.candidates && data.candidates[0];
+    const finishReason = candidate && candidate.finishReason;
+    if(finishReason === "MAX_TOKENS"){
+      console.warn("[death-battle] Gemini hit MAX_TOKENS before finishing.");
+    }
+    let textBlock = candidate && candidate.content && candidate.content.parts
+      ? candidate.content.parts.map(p=>p.text||"").join("")
+      : "";
+
+    try{
+      return extractJsonObject(textBlock);
+    }catch(e){
+      console.error("[death-battle] Could not find/parse JSON in server output:", textBlock);
+      throw new Error("The model's reply did not contain valid JSON (finishReason: " + (finishReason||"unknown") + ").");
+    }
+  }
+
+
+  function statsCacheKey(name1, name2){
+    return [String(name1).trim().toLowerCase(), String(name2).trim().toLowerCase()].sort().join("::");
+  }
+  function loadStatsCache(){
+    try{ return JSON.parse(localStorage.getItem("db_stats_cache") || "{}"); }
+    catch(e){ return {}; }
+  }
+  function saveStatsCache(cacheObj){
+    try{ localStorage.setItem("db_stats_cache", JSON.stringify(cacheObj)); }
+    catch(e){  }
+  }
+
+  function buildAnalysisSystemPrompt(){
+    return [
+      "You are a rigorous anime/manga power-scaling analyst who follows the same disciplined tiering approach used by serious power-scaling communities (the kind of tier system used by wikis like VS Battles Wiki): every character is placed on an objective scale of destructive/combat capability, from Below Average Human up through Street level, City level, Country level, Planet level, Star level, Galaxy level, Universal, Multiversal (Low/High), Complex Multiversal, up to Outerversal / Boundless / Nigh-Omnipotent tiers.",
+      "Respond with ONE raw JSON object and nothing else: no markdown fences, no commentary.",
+      "",
+      "Before assigning any numbers, think step by step and privately work through:",
+      "1. What series is each character from, and what is their real, documented power tier within that series' own hierarchy (background character, mid-tier fighter, or top-tier / final-arc-level combatant)?",
+      "2. Base this on the character's FULL source material — the manga / light novel / original text as well as the anime adaptation — using their most powerful documented form, transformation, or technique by the end of the whole story, not just an early arc or an anime-only portrayal. If the anime adaptation stopped before the manga did, prioritize the manga's later feats for accuracy.",
+      "3. Place EACH fighter on the objective tier scale above based on their best documented feats, independent of which series they're from.",
+      "4. Compare the two tiers directly. If the two fighters are separated by more than one major tier on that scale (e.g. one is Universal and the other is Outerversal, or one is Planet level and the other is Galaxy level), this is a decisive, lopsided gap — do NOT soften it into a close, near-50/50 matchup out of caution. A being confirmed to operate above the multiverse/reality itself (author-level, meta-narrative, boundary-existing, or conceptual/abstract entities) is not brought down to a coin flip against a merely multiversal-tier fighter just because both are \"very strong\" in a general sense — the actual tier gap must show up clearly in the stats (think 90+ vs under 10, not 55/45).",
+      "5. What is each character's most notable canon feat — the strongest documented thing they have actually done?",
+      "6. How would these two specific characters' real abilities interact (type advantages, speed gaps, durability, any hard-counters)?",
+      "Only after this analysis, assign seven integer stats (0-100) per fighter: power, speed, hax (supernatural/metaphysical ability), endurance, physical, intelligence (raw cleverness/knowledge), battleIq (real-time tactical combat instinct — reading an opponent, adapting mid-fight, exploiting weaknesses). These must accurately reflect the real relative strength and tier you just reasoned through — do not default to arbitrary, lazy, or falsely-averaged round numbers. If you are genuinely uncertain about a character (very obscure, or you lack reliable knowledge of them), keep their stats moderate (around 45-55) rather than guessing confidently in either direction — but this caution does NOT apply to famous, well-documented characters with a clearly established tier; for those, commit to the real gap even if it is extreme.",
+      "",
+      "Also list 2 to 4 of each fighter's real, specific, named signature techniques/moves/abilities from their canon (their actual attack names or well-known abilities, not generic descriptions like \"a punch\") — these will be used later to write a concrete, technique-by-technique fight, so accuracy here matters a lot.",
+      "",
+      "Also decide \"isLethal\": set it to false ONLY if one fighter is clearly heroic/kind-hearted AND the other is a harmless non-combatant, civilian, child, or comedic character with no real fighting background relative to them. In every other case — including if either fighter is a true villain, or if both are real combatants — isLethal must be true.",
+      "",
+      "Respond with this exact JSON schema (values are placeholders showing shape/type, not literal answers):",
+      JSON.stringify({
+        p1:{power:0,speed:0,hax:0,endurance:0,physical:0,intelligence:0,battleIq:0},
+        p2:{power:0,speed:0,hax:0,endurance:0,physical:0,intelligence:0,battleIq:0},
+        p1Techniques:["real signature technique name", "another real technique"],
+        p2Techniques:["real signature technique name", "another real technique"],
+        isLethal:true
+      })
+    ].join("\n");
+  }
+
+  function buildAnalysisUserPrompt(p1, p2){
+    const p1Media = p1.media && p1.media.nodes && p1.media.nodes[0] ? (p1.media.nodes[0].title.english || p1.media.nodes[0].title.romaji) : "";
+    const p2Media = p2.media && p2.media.nodes && p2.media.nodes[0] ? (p2.media.nodes[0].title.english || p2.media.nodes[0].title.romaji) : "";
+    const p1Desc = truncate(shortDesc(p1.description), 400);
+    const p2Desc = truncate(shortDesc(p2.description), 400);
+    return [
+      "Analyze the real relative combat power of these two characters:",
+      "",
+      "FIGHTER 1 (p1): " + p1.name + (p1Media ? ' — from "' + p1Media + '"' : ""),
+      "Reference notes: " + (p1Desc || "no additional notes supplied"),
+      "",
+      "FIGHTER 2 (p2): " + p2.name + (p2Media ? ' — from "' + p2Media + '"' : ""),
+      "Reference notes: " + (p2Desc || "no additional notes supplied"),
+      "",
+      "Respond with ONLY the minified JSON object described in your instructions."
+    ].join("\n");
+  }
+
+  async function computeMatchupAnalysis(p1, p2){
+    const systemPrompt = buildAnalysisSystemPrompt();
+    const userPrompt = buildAnalysisUserPrompt(p1, p2);
+    const parsed = await callGemini(systemPrompt, userPrompt, 0.25, 4000);
+
+    const p1Stats = sanitizeStatBlock(parsed.p1);
+    const p2Stats = sanitizeStatBlock(parsed.p2);
+    const isLethal = parsed.isLethal !== false;
+    const p1Techniques = Array.isArray(parsed.p1Techniques) ? parsed.p1Techniques.slice(0,4).map(t=>String(t).slice(0,80)) : [];
+    const p2Techniques = Array.isArray(parsed.p2Techniques) ? parsed.p2Techniques.slice(0,4).map(t=>String(t).slice(0,80)) : [];
+
+    const score1 = p1Stats.power + p1Stats.speed + p1Stats.hax + p1Stats.endurance + p1Stats.physical + p1Stats.intelligence + p1Stats.battleIq;
+    const score2 = p2Stats.power + p2Stats.speed + p2Stats.hax + p2Stats.endurance + p2Stats.physical + p2Stats.intelligence + p2Stats.battleIq;
+    const total = score1 + score2;
+    let winProb1 = total > 0 ? Math.round((score1/total)*100) : 50;
+    winProb1 = Math.max(1, Math.min(99, winProb1));
+    let winProb2 = 100 - winProb1;
+    if(winProb1 === winProb2){ winProb1 = 51; winProb2 = 49; }
+    p1Stats.winProb = winProb1;
+    p2Stats.winProb = winProb2;
+    const winner = winProb1 >= winProb2 ? "p1" : "p2";
+
+    return { p1: p1Stats, p2: p2Stats, winner, isLethal, p1Techniques, p2Techniques };
+  }
+
+  async function getMatchupAnalysis(p1, p2){
+    const cache = loadStatsCache();
+    const key = statsCacheKey(p1.name, p2.name);
+    const cachedEntry = cache[key];
+    if(cachedEntry){
+
+      const p1IsFirstStored = cachedEntry.names[0].trim().toLowerCase() === p1.name.trim().toLowerCase();
+      return {
+        p1: p1IsFirstStored ? cachedEntry.statsA : cachedEntry.statsB,
+        p2: p1IsFirstStored ? cachedEntry.statsB : cachedEntry.statsA,
+        winner: (cachedEntry.winnerName.trim().toLowerCase() === p1.name.trim().toLowerCase()) ? "p1" : "p2",
+        isLethal: cachedEntry.isLethal,
+        p1Techniques: p1IsFirstStored ? (cachedEntry.techniquesA||[]) : (cachedEntry.techniquesB||[]),
+        p2Techniques: p1IsFirstStored ? (cachedEntry.techniquesB||[]) : (cachedEntry.techniquesA||[])
+      };
+    }
+
+    let analysis;
+    try{
+      analysis = await computeMatchupAnalysis(p1, p2);
+    }catch(firstErr){
+      if(firstErr.isRateLimit){
+
+        throw firstErr;
+      }
+      console.warn("[death-battle] Analysis attempt failed, retrying once:", firstErr.message);
+      analysis = await computeMatchupAnalysis(p1, p2);
+    }
+
+    const winnerName = analysis.winner === "p1" ? p1.name : p2.name;
+    cache[key] = {
+      names: [p1.name, p2.name],
+      statsA: analysis.p1,
+      statsB: analysis.p2,
+      winnerName: winnerName,
+      isLethal: analysis.isLethal,
+      techniquesA: analysis.p1Techniques,
+      techniquesB: analysis.p2Techniques
+    };
+    saveStatsCache(cache);
+    return analysis;
+  }
+
+  function buildNarrativeSystemPrompt(){
+    return [
+      'You are the dialogue and narrative engine behind an arcade-style "death battle" game.',
+      "Respond with ONE raw JSON object and nothing else: no markdown fences, no commentary.",
+      "",
+      "HARD RULES:",
+      "1. The outcome (winner, isLethal) is already decided and given to you as fact — never contradict it, never change who wins.",
+      "2. Dialogue must sound authentically like each character actually speaks in their real source material: their real catchphrases, values, speech rhythm, and temperament. Ground at least one line per character in a real, specific trait, ability, or catchphrase from their canon — never generic filler like \"I will win\" / \"I'll save you\" that could apply to literally any character.",
+      "3. Every simulation must be unique, even for a rematch between the same two fighters: vary the opening tactic, battlefield detail, pacing, and every line — never reuse boilerplate exchanges.",
+      "4. Write every \"line\"/\"description\" value in the requested output language exactly.",
+      "5. Never break character voice with meta commentary.",
+      "",
+      "ARABIC LANGUAGE QUALITY RULE (apply whenever the requested output language is Arabic):",
+      "- Write fluent, natural, idiomatic Modern Standard Arabic exactly like professional anime dubbing — never a stiff, literal, word-for-word translation from English.",
+      "- Use natural Arabic sentence structure, real spoken expressions, correct grammar and gender/number agreement. Avoid awkward calques or machine-translation-style sentences.",
+      "- Keep each character's tone recognizable in Arabic too — a cocky character should still sound cocky, a calm character should still sound calm.",
+      "",
+      "LETHAL FIGHT RULES (when isLethal is true):",
+      "- If the power margin note says CLOSE, this is a STRUCTURAL REQUIREMENT, not a suggestion: you must fill the \"exchanges\" array with 3 to 5 entries showing a real back-and-forth — alternating attacker between the two fighters, each entry naming one specific canon technique from the provided technique lists (or another real, specific technique of theirs if needed) and a concrete outcome (clean hit / partially connects / blocked / dodged / countered). The loser must land or nearly land at least one real hit before finally being overcome. Never leave \"exchanges\" empty or with only 1 entry for a CLOSE fight, and never describe a hit vaguely (\"a powerful attack\", \"a strike\") — always the actual named technique.",
+      "- If the power margin note says LOPSIDED, 1 to 2 \"exchanges\" entries are enough for a quick, decisive resolution — the stronger fighter can dominate immediately.",
+      "- \"climax\" must name the specific canon technique/move the winner actually finished with, and concretely describe how the loser's defense failed.",
+      "- finalWords = loser's last in-character words at defeat. victoryLine = winner's in-character closing statement.",
+      "",
+      "MERCY SCENARIO RULES (when isLethal is false):",
+      "- Leave \"exchanges\" empty — there is no real fight in a mercy scenario.",
+      "- The strong fighter must never actually attack to harm; they must explicitly refuse to fight seriously, in their own canon voice.",
+      "- The weaker fighter's arc: initial fear/confusion/defiance, then relief and acceptance once the strong fighter's peaceful intent is clear. They must NOT keep refusing forever and must NOT be harmed. If the weaker fighter is a girl/woman, her closing line should be a sincere thank-you.",
+      "- It is FORBIDDEN for the strong fighter to say something like \"very well then\" and harm the weaker fighter anyway after a refusal — any resistance from the harmless side must be met with continued gentleness, never violence.",
+      "- \"climax\" describes the protective/restrained action taken instead of a finishing blow. finalWords = the spared fighter's relieved/grateful words. victoryLine = the protector's reassuring closing statement.",
+      "",
+      "BATTLE PERFORMANCE RATING RULE:",
+      "- Do this LAST, only after you have already written \"exchanges\", \"dialogue\", and \"climax\" above. Go back and literally re-read the \"exchanges\" array you just wrote and derive these numbers mechanically from it — do not invent new impressions independent of what you wrote.",
+      "- For EACH fighter, count from your own \"exchanges\": how many of their attacks landed clean vs were blocked/dodged/countered, and how many hits they personally took/blocked/dodged. Then set: power = higher if more of their attacks landed clean and hit hard; technique = higher if their named techniques were varied/clever or successfully countered the opponent; endurance = higher if they took more hits and kept fighting; resilience = higher if they were the one still standing/fighting despite being on the back foot; speed = higher if the exchanges describe them acting first, dodging, or outpacing the opponent.",
+      "- These five numbers must vary meaningfully both across axes and between the two fighters based on that count — do NOT output the same or near-identical value on every axis, and do NOT just copy the pre-fight stats. A fighter who loses but is shown tanking hits and landing clever counters in your own exchanges must still score high on endurance/technique despite losing overall.",
+      "- If \"exchanges\" is empty (a mercy scenario or a very lopsided instant finish), base these five numbers on the \"climax\" and \"dialogue\" content instead, following the same logic.",
+      "- In a mercy scenario specifically, rate the weaker fighter's fields low/moderate (they never really fought) and the stronger fighter's fields based on the composure and restraint they showed."
+    ].join("\n");
+  }
+
+  function buildNarrativeUserPrompt(p1, p2, analysis, outLang, battleSeed){
+    const p1Media = p1.media && p1.media.nodes && p1.media.nodes[0] ? (p1.media.nodes[0].title.english || p1.media.nodes[0].title.romaji) : "";
+    const p2Media = p2.media && p2.media.nodes && p2.media.nodes[0] ? (p2.media.nodes[0].title.english || p2.media.nodes[0].title.romaji) : "";
+    const p1Desc = truncate(shortDesc(p1.description), 400);
+    const p2Desc = truncate(shortDesc(p2.description), 400);
+    const languageLabel = outLang === "ar"
+      ? "Arabic — fluent natural Modern Standard Arabic in the style of professional anime dubbing, NOT a literal translation"
+      : "English";
+    const winnerName = analysis.winner === "p1" ? p1.name : p2.name;
+    const loserName = analysis.winner === "p1" ? p2.name : p1.name;
+    const margin = Math.abs(analysis.p1.winProb - analysis.p2.winProb);
+    const marginLabel = margin <= 20 ? "CLOSE" : "LOPSIDED";
+    const p1Techniques = (analysis.p1Techniques && analysis.p1Techniques.length) ? analysis.p1Techniques.join(", ") : "(none listed — use any real known technique of theirs)";
+    const p2Techniques = (analysis.p2Techniques && analysis.p2Techniques.length) ? analysis.p2Techniques.join(", ") : "(none listed — use any real known technique of theirs)";
+
+    const schema = {
+      exchanges:[{attacker:"exact character name", technique:"specific named canon technique used in this exchange", outcome:"clean hit / partially connects / blocked / dodged / countered, described concretely"}],
+      dialogue:[{speaker:"exact character name", line:"in-character line"}],
+      climax:{technique:"specific technique/action name", description:"concrete account of how it happened"},
+      finalWords:{speaker: loserName + " (or the spared fighter if this is a mercy scenario)", line:"..."},
+      victoryLine:{speaker: winnerName, line:"..."},
+      battlePerformance:{
+        p1:{speed:0,power:0,technique:0,endurance:0,resilience:0},
+        p2:{speed:0,power:0,technique:0,endurance:0,resilience:0}
+      }
+    };
+
+    return [
+      "Write the narrative for this already-decided matchup:",
+      "",
+      "FIGHTER 1 (p1): " + p1.name + (p1Media ? ' — from "' + p1Media + '"' : ""),
+      "Reference notes: " + (p1Desc || "no additional notes supplied"),
+      "Documented signature techniques: " + p1Techniques,
+      "",
+      "FIGHTER 2 (p2): " + p2.name + (p2Media ? ' — from "' + p2Media + '"' : ""),
+      "Reference notes: " + (p2Desc || "no additional notes supplied"),
+      "Documented signature techniques: " + p2Techniques,
+      "",
+      "DECIDED OUTCOME (do not change): winner = " + winnerName + ", loser = " + loserName + ", isLethal = " + analysis.isLethal + ", power margin = " + marginLabel + ".",
+      "Randomization seed for this specific telling: " + battleSeed + " — use it only as a mental dice roll to pick a different opening, setting detail, and phrasing than any previous telling of this same matchup. Do not print this number.",
+      "",
+      "Output language for every \"line\", \"description\", and \"outcome\" field: " + languageLabel + ". Real technique/attack names in \"technique\" fields may stay in their original language (e.g. a Japanese attack name) since that is how they are actually known, but any surrounding description must still be in the requested language.",
+      "",
+      "First fill \"exchanges\" per the LETHAL/MERCY rules above using the documented techniques listed for each fighter. Then write 6 to 10 alternating dialogue lines that give voice to those same exchanges (the characters can call out their techniques, react to landing or receiving them, taunt, struggle, etc.) — dialogue and exchanges should tell the same consistent fight, not two different fights. Then climax, then finalWords, then victoryLine.",
+      "",
+      "Respond with ONLY a minified JSON object following this exact schema (values below show shape/type, not literal answers):",
+      JSON.stringify(schema)
+    ].join("\n");
+  }
+
+  function sanitizeExchange(entry, fallbackAttacker){
+    if(entry && typeof entry === "object" && entry.technique){
+      return {
+        attacker: entry.attacker ? String(entry.attacker).slice(0,80) : fallbackAttacker,
+        technique: String(entry.technique).slice(0,120),
+        outcome: entry.outcome ? String(entry.outcome).slice(0,300) : ""
+      };
+    }
+    return null;
+  }
+
+  function sanitizePerformanceBlock(block){
+    const safe = block && typeof block === "object" ? block : {};
+    return {
+      speed: clampInt(safe.speed, 50),
+      power: clampInt(safe.power, 50),
+      technique: clampInt(safe.technique, 50),
+      endurance: clampInt(safe.endurance, 50),
+      resilience: clampInt(safe.resilience, 50)
+    };
+  }
+
+  function sanitizeNarrative(parsed, winnerName, loserName){
+    let dialogue = Array.isArray(parsed.dialogue) ? parsed.dialogue : [];
+    dialogue = dialogue.slice(0,10)
+      .map((entry,i)=> sanitizeLine(entry, i%2===0 ? winnerName : loserName, ""))
+      .filter(entry=> entry.line && entry.line.trim().length>0);
+    if(dialogue.length===0){
+      dialogue = [ {speaker:winnerName, line:"..."}, {speaker:loserName, line:"..."} ];
+    }
+    let exchanges = Array.isArray(parsed.exchanges) ? parsed.exchanges : [];
+    exchanges = exchanges.slice(0,6)
+      .map((entry,i)=> sanitizeExchange(entry, i%2===0 ? winnerName : loserName))
+      .filter(Boolean);
+    const climax = sanitizeClimax(parsed.climax);
+    const finalWords = sanitizeLine(parsed.finalWords, loserName, "...");
+    const victoryLine = sanitizeLine(parsed.victoryLine, winnerName, "...");
+    const bp = parsed.battlePerformance || {};
+    const battlePerformance = {
+      p1: sanitizePerformanceBlock(bp.p1),
+      p2: sanitizePerformanceBlock(bp.p2)
+    };
+    return { dialogue, exchanges, climax, finalWords, victoryLine, battlePerformance };
+  }
+
+  async function generateNarrative(p1, p2, analysis, outLang){
+    const systemPrompt = buildNarrativeSystemPrompt();
+    const battleSeed = Math.floor(Math.random() * 1000000);
+    const userPrompt = buildNarrativeUserPrompt(p1, p2, analysis, outLang, battleSeed);
+    const parsed = await callGemini(systemPrompt, userPrompt, 1.05, 9000);
+
+    const winnerName = analysis.winner === "p1" ? p1.name : p2.name;
+    const loserName = analysis.winner === "p1" ? p2.name : p1.name;
+    return sanitizeNarrative(parsed, winnerName, loserName);
+  }
+
+  async function aiBattle(p1, p2, outLang){
+    const analysis = await getMatchupAnalysis(p1, p2);
+    let narrative;
+    try{
+      narrative = await generateNarrative(p1, p2, analysis, outLang);
+    }catch(firstErr){
+      if(firstErr.isRateLimit){
+        throw firstErr;
+      }
+      console.warn("[death-battle] Narrative attempt failed, retrying once:", firstErr.message);
+      narrative = await generateNarrative(p1, p2, analysis, outLang);
+    }
+    return {
+      p1: analysis.p1,
+      p2: analysis.p2,
+      winner: analysis.winner,
+      isLethal: analysis.isLethal,
+      exchanges: narrative.exchanges,
+      dialogue: narrative.dialogue,
+      climax: narrative.climax,
+      finalWords: narrative.finalWords,
+      battlePerformance: narrative.battlePerformance,
+      victoryLine: narrative.victoryLine
+    };
+  }
+
+  function statRow(label, value, colorClass){
+    const safe = Math.max(0, Math.min(100, Number(value) || 0));
+    return `
+      <div class="mb-3">
+        <div class="flex justify-between text-[11px] sm:text-xs font-hud mb-1 text-white/70">
+          <span>${label}</span><span>${safe}%</span>
+        </div>
+        <div class="stat-track h-3 sm:h-4 pixel-corners-sm w-full overflow-hidden">
+          <div class="bar-fill h-full ${colorClass}" style="width:${safe}%"></div>
+        </div>
+      </div>`;
+  }
+
+  function renderStats(container, name, stats, colorClass, tint){
+    container.innerHTML = `<div class="font-pixel text-[11px] sm:text-sm mb-4 ${tint} truncate">${name}</div>` +
+      statRow(t("statPower"), stats.power, colorClass) +
+      statRow(t("statSpeed"), stats.speed, colorClass) +
+      statRow(t("statHax"), stats.hax, colorClass) +
+      statRow(t("statEnd"), stats.endurance, colorClass) +
+      statRow(t("statPhys"), stats.physical, colorClass) +
+      statRow(t("statIntel"), stats.intelligence, colorClass) +
+      statRow(t("statBattleIq"), stats.battleIq, colorClass) +
+      statRow(t("statWin"), stats.winProb, colorClass);
+  }
+
+  function buildRadarSvg(axes, color){
+    const cx = 110, cy = 110, radius = 68;
+    const n = axes.length;
+    const angleStep = (Math.PI*2)/n;
+    function gridPointFor(i, scale){
+      const angle = -Math.PI/2 + i*angleStep;
+      const r = radius*scale;
+      return [cx + r*Math.cos(angle), cy + r*Math.sin(angle)];
+    }
+    function dataPointFor(i, value){
+      const angle = -Math.PI/2 + i*angleStep;
+      const r = radius * (Math.max(0,Math.min(100,value))/100);
+      return [cx + r*Math.cos(angle), cy + r*Math.sin(angle)];
+    }
+    let gridRings = "";
+    [0.25,0.5,0.75,1].forEach(scale=>{
+      const pts = axes.map((_,i)=> gridPointFor(i,scale).join(",")).join(" ");
+      gridRings += `<polygon points="${pts}" fill="none" stroke="rgba(255,255,255,0.16)" stroke-width="1"/>`;
+    });
+    let axisLines = "";
+    let labels = "";
+    axes.forEach((ax,i)=>{
+      const [x,y] = gridPointFor(i,1);
+      axisLines += `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="rgba(255,255,255,0.18)" stroke-width="1"/>`;
+      const [lx,ly] = gridPointFor(i,1.32);
+      labels += `<text x="${lx}" y="${ly}" font-size="9" font-weight="600" fill="rgba(255,255,255,0.75)" text-anchor="middle" dominant-baseline="middle">${ax.label}</text>`;
+    });
+    const dataPts = axes.map((ax,i)=> dataPointFor(i, ax.value).join(",")).join(" ");
+    const polygon = `<polygon points="${dataPts}" fill="${color}" fill-opacity="0.32" stroke="${color}" stroke-width="2.2"/>`;
+    const dots = axes.map((ax,i)=>{ const [x,y] = dataPointFor(i, ax.value); return `<circle cx="${x}" cy="${y}" r="2.4" fill="${color}"/>`; }).join("");
+    return `<svg viewBox="0 0 220 220" class="w-full h-auto">${gridRings}${axisLines}${polygon}${dots}${labels}</svg>`;
+  }
+
+  function buildPerformanceAxes(perf){
+    return [
+      {label:t("perfSpeed"), value:perf.speed},
+      {label:t("perfPower"), value:perf.power},
+      {label:t("perfTechnique"), value:perf.technique},
+      {label:t("perfEndurance"), value:perf.endurance},
+      {label:t("perfResilience"), value:perf.resilience}
+    ];
+  }
+
+  function renderBattlePerformanceCharts(result, p1Name, p2Name){
+    if(!result.battlePerformance || !result.battlePerformance.p1 || !result.battlePerformance.p2){
+      el("radarSection").classList.add("hidden");
+      return;
+    }
+    el("radarSectionTitleEl").textContent = t("radarSectionTitle");
+    el("radarP1Name").textContent = p1Name;
+    el("radarP2Name").textContent = p2Name;
+    el("radarP1Chart").innerHTML = buildRadarSvg(buildPerformanceAxes(result.battlePerformance.p1), "#38bdf8");
+    el("radarP2Chart").innerHTML = buildRadarSvg(buildPerformanceAxes(result.battlePerformance.p2), "#ec4899");
+    el("radarSection").classList.remove("hidden");
+  }
+
+  function renderDialogue(result, isOffline, errorMessage){
+    const box = el("dialogueBox");
+    box.innerHTML = "";
+    let delay = 0;
+
+    if(result.exchanges && result.exchanges.length > 0){
+      const header = document.createElement("div");
+      header.className = "term-line text-[10px] tracking-[0.25em] text-sky-300/80 font-hud mb-1";
+      header.style.animationDelay = delay+"ms";
+      header.textContent = t("tradedBlows");
+      box.appendChild(header);
+      delay += 120;
+
+      result.exchanges.forEach(ex=>{
+        const row = document.createElement("div");
+        row.className = "term-line pl-2 border-l-2 border-sky-500/30";
+        row.style.animationDelay = delay+"ms";
+        row.innerHTML = `<span class="text-sky-300 font-hud">${ex.attacker}</span> <span class="text-white/60">used</span> <span class="text-amber-300 font-semibold">${ex.technique}</span>` +
+          (ex.outcome ? ` <span class="text-white/70">— ${ex.outcome}</span>` : "");
+        box.appendChild(row);
+        delay += 160;
+      });
+
+      const spacer = document.createElement("div");
+      spacer.className = "border-t border-white/10 mt-1";
+      box.appendChild(spacer);
+      delay += 100;
+    }
+
+    (result.dialogue||[]).forEach(line=>{
+      const p = document.createElement("div");
+      p.className = "term-line";
+      p.style.animationDelay = delay+"ms";
+      p.innerHTML = `<span class="text-emerald-400 font-hud">${line.speaker}:</span> <span class="text-white/85">${line.line}</span>`;
+      box.appendChild(p);
+      delay += 180;
+    });
+    if(result.climax && result.climax.description){
+      const climax = document.createElement("div");
+      climax.className = "term-line pt-2 border-t border-amber-500/20 mt-2";
+      climax.style.animationDelay = delay+"ms";
+      const techLabel = result.climax.technique
+        ? `<div class="text-amber-300 font-hud text-xs tracking-widest mb-1">⚡ ${result.climax.technique}</div>`
+        : "";
+      climax.innerHTML = techLabel + `<span class="text-white/80">${result.climax.description}</span>`;
+      box.appendChild(climax);
+      delay += 220;
+    }
+    const isLethal = result.isLethal !== false;
+    const dying = document.createElement("div");
+    dying.className = "term-line pt-2 border-t border-white/10 mt-2";
+    dying.style.animationDelay = delay+"ms";
+    const closingColor = isLethal ? "text-red-400" : "text-emerald-300";
+    const closingTextColor = isLethal ? "italic text-red-200/90" : "text-emerald-100/90";
+    dying.innerHTML = `<span class="${closingColor} font-hud">${result.finalWords.speaker}:</span> <span class="${closingTextColor}">${result.finalWords.line}</span>`;
+    box.appendChild(dying);
+    delay += 220;
+    const victory = document.createElement("div");
+    victory.className = "term-line";
+    victory.style.animationDelay = delay+"ms";
+    victory.innerHTML = `<span class="text-amber-300 font-hud">${result.victoryLine.speaker}:</span> <span class="font-semibold text-amber-200">${result.victoryLine.line}</span>`;
+    box.appendChild(victory);
+
+    if(isOffline){
+      const note = document.createElement("div");
+      note.className = "term-line text-[10px] text-amber-400/70 font-hud pt-2";
+      note.style.animationDelay = (delay+220)+"ms";
+      note.textContent = t("offline");
+      box.appendChild(note);
+
+      if(errorMessage){
+        const errNote = document.createElement("div");
+        errNote.className = "term-line text-[10px] text-red-400/80 font-hud pt-1 select-all";
+        errNote.style.animationDelay = (delay+260)+"ms";
+        errNote.textContent = "Debug: " + errorMessage;
+        box.appendChild(errNote);
+      }
+    }
+  }
+
+  async function playReelAnimation(){
+    const pool = [];
+    (state.results||[]).forEach(c=>{ const im = c.image && c.image.large; if(im) pool.push(im); });
+    (state.favorites||[]).forEach(c=>{ const im = c.image && c.image.large; if(im) pool.push(im); });
+    const finalP1 = state.p1.image && state.p1.image.large;
+    const finalP2 = state.p2.image && state.p2.image.large;
+    if(pool.length < 2){ if(finalP1) pool.push(finalP1); if(finalP2) pool.push(finalP2); }
+
+    const reelSound = el("reelSound");
+    try{ reelSound.currentTime = 0; reelSound.volume = 0.7; reelSound.play().catch(()=>{}); }catch(e){}
+
+    el("p1Card").classList.add("reel-active");
+    el("p2Card").classList.add("reel-active");
+
+    const duration = 4000;
+    const startTime = performance.now();
+
+    await new Promise((resolve)=>{
+      function tick(){
+        const elapsed = performance.now() - startTime;
+        const progress = Math.min(1, elapsed/duration);
+        if(progress >= 1){
+          el("p1Img").src = finalP1 || "";
+          el("p2Img").src = finalP2 || "";
+          resolve();
           return;
         }
-        renderResults(data.items);
-      })
-      .catch(()=>{
-        heartIcon.classList.remove('spin');
-        box.innerHTML = '<div class="text-xs" style="opacity:.7; color:var(--text);">صار خطأ بالبحث</div>';
-      });
-  });
+        el("p1Img").src = pool[Math.floor(Math.random()*pool.length)];
+        el("p2Img").src = pool[Math.floor(Math.random()*pool.length)];
+        const intervalNow = 60 + progress*260;
+        setTimeout(tick, intervalNow);
+      }
+      tick();
+    });
 
-  document.getElementById('song-input').addEventListener('keydown', (e)=>{
-    if(e.key === 'Enter'){ document.getElementById('song-search-btn').click(); }
-  });
+    el("p1Card").classList.remove("reel-active");
+    el("p2Card").classList.remove("reel-active");
+    try{ reelSound.pause(); }catch(e){}
 
-  document.getElementById('music-toggle').addEventListener('click', ()=>{
-    if(!hasTrack){
-      document.getElementById('search-panel').classList.toggle('hidden');
-      return;
-    }
-    if(playing){
-      ytPlayer.pauseVideo();
-    } else {
-      ytPlayer.playVideo();
-    }
-  });
-
-  function updateMusicIcon(){
-    const musicIcon = document.getElementById('music-icon');
-    musicIcon.innerHTML = heartSVG(playing ? 'var(--accent)' : 'var(--text)', 16);
-    musicIcon.style.opacity = playing ? '1' : '0.6';
-    musicIcon.classList.toggle('beat', playing);
+    el("p1Img").classList.add("lock-flash");
+    el("p2Img").classList.add("lock-flash");
+    try{
+      const fightSnd = el("fightAnnouncerSound");
+      fightSnd.currentTime = 0;
+      fightSnd.volume = 0.85;
+      fightSnd.play().catch(()=>{});
+    }catch(e){}
+    await new Promise(r=> setTimeout(r, 1050));
+    el("p1Img").classList.remove("lock-flash");
+    el("p2Img").classList.remove("lock-flash");
   }
 
-  
-  document.getElementById('search-heart-icon').innerHTML = heartSVG('var(--accent)', 18);
-  updateMusicIcon();
-  tick();
-  setInterval(tick, 1000);
+  const MENU_TRACK_URL = "https://files.catbox.moe/sre7hn.mp3";
+  const RESULT_TRACK_URL = "https://files.catbox.moe/udost2.mp3";
+  let currentMusicTrack = "menu";
+
+  function switchMusicTrack(trackKey){
+    if(currentMusicTrack === trackKey) return;
+    currentMusicTrack = trackKey;
+    const bgMusic = el("bgMusic");
+    const wasPlaying = !bgMusic.paused;
+    bgMusic.src = trackKey === "result" ? RESULT_TRACK_URL : MENU_TRACK_URL;
+    bgMusic.load();
+    if(wasPlaying){
+      bgMusic.play().catch((err)=>{
+        console.error("[death-battle] Track switch failed to play:", err);
+      });
+    }
+  }
+
+  el("musicToggleBtn").addEventListener("click", ()=>{
+    const bgMusic = el("bgMusic");
+    bgMusic.volume = 0.22;
+    if(bgMusic.paused){
+      bgMusic.play().then(()=>{
+        el("soundWaveIcon").classList.remove("hidden");
+        el("muteXIcon").classList.add("hidden");
+      }).catch((err)=>{
+        console.error("[death-battle] Background music failed to play:", err);
+        el("statusLine").textContent = lang==="ar" ? "تعذر تشغيل الموسيقى (الرابط منتهي الصلاحية)" : "Music failed to play (link may have expired)";
+      });
+    }else{
+      bgMusic.pause();
+      el("soundWaveIcon").classList.add("hidden");
+      el("muteXIcon").classList.remove("hidden");
+    }
+  });
+
+  async function fetchRandomPool(){
+    const totalKnown = state.lastPage || 1;
+    const maxPage = Math.max(1, Math.min(totalKnown, 40));
+    const randomPage = 1 + Math.floor(Math.random()*maxPage);
+    try{
+      const res = await fetch(ANILIST_URL, {
+        method:"POST",
+        headers:{ "Content-Type":"application/json", "Accept":"application/json" },
+        body: JSON.stringify({ query: CHAR_QUERY, variables: { page: randomPage } })
+      });
+      const json = await res.json();
+      const chars = (json && json.data && json.data.Page && json.data.Page.characters) || [];
+      return chars.length >= 2 ? chars : (state.results || []);
+    }catch(e){
+      return state.results || [];
+    }
+  }
+
+  el("randomBtn").addEventListener("click", async ()=>{
+    const ok = await askConfirm("🎲", t("randomConfirmQuestion"));
+    if(!ok) return;
+    el("statusLine").textContent = t("loading");
+    let pool = await fetchRandomPool();
+    el("statusLine").textContent = "";
+    if(pool.length < 2 && state.favorites && state.favorites.length >= 2) pool = state.favorites;
+    if(pool.length < 2){
+      el("statusLine").textContent = t("noResults");
+      return;
+    }
+    const idx1 = Math.floor(Math.random()*pool.length);
+    let idx2 = Math.floor(Math.random()*pool.length);
+    while(idx2 === idx1 && pool.length > 1){ idx2 = Math.floor(Math.random()*pool.length); }
+    const c1 = pool[idx1], c2 = pool[idx2];
+    const name1 = c1.name && c1.name.full ? c1.name.full : c1.name;
+    const img1 = c1.image && c1.image.large ? c1.image.large : c1.image;
+    const name2 = c2.name && c2.name.full ? c2.name.full : c2.name;
+    const img2 = c2.image && c2.image.large ? c2.image.large : c2.image;
+    assign("p1", {...c1, name:name1, image:{large:img1}});
+    assign("p2", {...c2, name:name2, image:{large:img2}});
+    await new Promise(r=> setTimeout(r, 500));
+    el("fightBtn").click();
+  });
+
+  el("fightBtn").addEventListener("click", async ()=>{
+    if(!state.p1 || !state.p2){
+      el("statusLine").textContent = t("pickBoth");
+      el("fightHint").classList.add("shake-active");
+      setTimeout(()=> el("fightHint").classList.remove("shake-active"), 500);
+      return;
+    }
+
+    el("fightBtn").disabled = true;
+    el("selectSection").classList.add("hidden");
+
+    await playReelAnimation();
+
+    document.getElementById("app").classList.add("shake-active");
+    el("strobeOverlay").classList.remove("hidden");
+    el("strobeOverlay").classList.add("strobe-active");
+    el("fightOverlay").classList.remove("hidden");
+    el("fightOverlay").classList.add("flex");
+    el("fightErrorLine").classList.add("hidden");
+    el("fightErrorLine").textContent = "";
+
+    const minTransition = new Promise(r=> setTimeout(r, 1600));
+    let result, isOffline = false, lastErrorMessage = "";
+    try{
+      const [aiResult] = await Promise.all([ aiBattle(state.p1, state.p2, lang), minTransition ]);
+      result = aiResult;
+    }catch(err){
+      console.error("Battle generation failed:", err);
+      lastErrorMessage = err && err.message ? err.message : String(err);
+      el("fightErrorLine").textContent = t("serverError") + " (" + lastErrorMessage + ")";
+      el("fightErrorLine").classList.remove("hidden");
+      await new Promise(r=> setTimeout(r, 1400));
+      result = localBattle(state.p1.name, state.p2.name);
+      isOffline = true;
+    }
+
+    document.getElementById("app").classList.remove("shake-active");
+    el("strobeOverlay").classList.add("hidden");
+    el("strobeOverlay").classList.remove("strobe-active");
+    el("fightOverlay").classList.add("hidden");
+    el("fightOverlay").classList.remove("flex");
+    el("fightBtn").disabled = false;
+
+    try{
+      renderStats(el("p1Stats"), state.p1.name, result.p1, "bg-sky-400", "text-sky-300");
+      renderStats(el("p2Stats"), state.p2.name, result.p2, "bg-pink-400", "text-pink-300");
+      renderDialogue(result, isOffline, lastErrorMessage);
+      renderBattlePerformanceCharts(result, state.p1.name, state.p2.name);
+    }catch(renderErr){
+      console.error("[death-battle] Rendering the result failed, falling back to a safe local result:", renderErr);
+      result = localBattle(state.p1.name, state.p2.name);
+      renderStats(el("p1Stats"), state.p1.name, result.p1, "bg-sky-400", "text-sky-300");
+      renderStats(el("p2Stats"), state.p2.name, result.p2, "bg-pink-400", "text-pink-300");
+      renderDialogue(result, true, "render error, used local fallback");
+      renderBattlePerformanceCharts(result, state.p1.name, state.p2.name);
+    }
+
+    if(state.prediction && !isOffline){
+      if(state.prediction === result.winner){
+        state.streak = (state.streak||0) + 1;
+      }else{
+        state.streak = 0;
+      }
+      try{ localStorage.setItem("db_streak", String(state.streak)); }catch(e){}
+      updateStreakUI();
+    }
+    clearPrediction();
+
+    pushHistoryEntry(result, state.p1, state.p2);
+    switchMusicTrack("result");
+
+    el("resultSection").classList.remove("hidden");
+    el("resultSection").classList.add("flex");
+    el("resultSection").scrollIntoView({ behavior:"smooth", block:"start" });
+  });
+
+  el("resetBtn").addEventListener("click", ()=>{
+    state.p1 = null; state.p2 = null;
+    ["p1","p2"].forEach(slot=>{
+      el(slot+"Img").classList.add("hidden");
+      el(slot+"Img").src = "";
+      el(slot+"Placeholder").classList.remove("hidden");
+      el(slot+"Marker").classList.add("hidden");
+    });
+    el("radarSection").classList.add("hidden");
+    el("resultSection").classList.add("hidden");
+    el("resultSection").classList.remove("flex");
+    el("selectSection").classList.remove("hidden");
+    clearPrediction();
+    switchMusicTrack("menu");
+    window.scrollTo({ top:0, behavior:"smooth" });
+  });
+
+  const FLAME_PATTERN = [
+    [0,0,0,1,0,0,0],
+    [0,0,0,1,0,0,0],
+    [0,0,1,1,1,0,0],
+    [0,1,1,1,1,1,0],
+    [1,1,1,1,1,1,1],
+    [1,1,1,1,1,1,1],
+    [1,1,1,1,1,1,1],
+    [0,1,1,1,1,1,0],
+    [0,0,1,1,1,0,0]
+  ];
+  const FLAME_ROWS = FLAME_PATTERN.length;
+
+  function getStreakPalette(streak){
+    if(streak >= 60) return { colors:["#ef4444","#f97316","#facc15","#22c55e","#38bdf8","#6366f1","#a855f7","#a855f7","#ec4899"], shine:true };
+    if(streak >= 50) return { colors:["#38bdf8","#38bdf8","#38bdf8","#818cf8","#a855f7","#a855f7","#7e22ce","#7e22ce","#7e22ce"], shine:false };
+    if(streak >= 40) return { colors:["#fbcfe8","#fbcfe8","#f9a8d4","#f472b6","#ec4899","#ec4899","#be185d","#be185d","#be185d"], shine:false };
+    if(streak >= 30) return { colors:["#bbf7d0","#bbf7d0","#86efac","#4ade80","#22c55e","#22c55e","#15803d","#15803d","#15803d"], shine:false };
+    if(streak >= 20) return { colors:["#e9d5ff","#e9d5ff","#d8b4fe","#c084fc","#a855f7","#a855f7","#7e22ce","#7e22ce","#7e22ce"], shine:false };
+    if(streak >= 10) return { colors:["#bae6fd","#bae6fd","#7dd3fc","#38bdf8","#0ea5e9","#0ea5e9","#0369a1","#0369a1","#0369a1"], shine:false };
+    if(streak >= 5) return { colors:["#fecaca","#fecaca","#fca5a5","#f87171","#ef4444","#ef4444","#b91c1c","#b91c1c","#b91c1c"], shine:false };
+    return { colors:["#fde047","#fde047","#fde047","#fb923c","#f97316","#f97316","#dc2626","#dc2626","#dc2626"], shine:false };
+  }
+
+  function renderFlameIcon(palette){
+    let html = "";
+    FLAME_PATTERN.forEach((row,ri)=>{
+      row.forEach(cell=>{
+        html += cell ? `<span style="background:${palette.colors[ri]}"></span>` : `<span></span>`;
+      });
+    });
+    el("flameIcon").innerHTML = html;
+  }
+
+  function initFlameIcon(){
+    renderFlameIcon(getStreakPalette(state.streak));
+  }
+
+  function updateStreakUI(){
+    el("streakText").textContent = "x" + state.streak;
+    const palette = getStreakPalette(state.streak);
+    renderFlameIcon(palette);
+    const flame = el("flameIcon");
+    flame.classList.toggle("flame-shine", palette.shine && state.streak > 0);
+    if(state.streak > 0){
+      flame.classList.remove("grayscale","opacity-40");
+      flame.classList.add("opacity-100");
+    }else{
+      flame.classList.add("grayscale","opacity-40");
+      flame.classList.remove("opacity-100");
+    }
+  }
+
+  function clearPrediction(){
+    state.prediction = null;
+    el("predictP1Btn").classList.remove("bg-sky-500/50","border-sky-300");
+    el("predictP2Btn").classList.remove("bg-pink-500/50","border-pink-300");
+  }
+
+  el("predictP1Btn").addEventListener("click", ()=>{
+    state.prediction = state.prediction === "p1" ? null : "p1";
+    el("predictP1Btn").classList.toggle("bg-sky-500/50", state.prediction==="p1");
+    el("predictP1Btn").classList.toggle("border-sky-300", state.prediction==="p1");
+    el("predictP2Btn").classList.remove("bg-pink-500/50","border-pink-300");
+  });
+  el("predictP2Btn").addEventListener("click", ()=>{
+    state.prediction = state.prediction === "p2" ? null : "p2";
+    el("predictP2Btn").classList.toggle("bg-pink-500/50", state.prediction==="p2");
+    el("predictP2Btn").classList.toggle("border-pink-300", state.prediction==="p2");
+    el("predictP1Btn").classList.remove("bg-sky-500/50","border-sky-300");
+  });
+
+  function saveHistory(){
+    try{ localStorage.setItem("db_history", JSON.stringify(state.history)); }catch(e){}
+  }
+
+  function pushHistoryEntry(result, p1, p2){
+    const entry = {
+      timestamp: Date.now(),
+      p1Name: p1.name, p2Name: p2.name,
+      p1Img: p1.image && p1.image.large ? p1.image.large : "",
+      p2Img: p2.image && p2.image.large ? p2.image.large : "",
+      result: result
+    };
+    state.history.unshift(entry);
+    if(state.history.length > 20) state.history = state.history.slice(0,20);
+    saveHistory();
+  }
+
+  function formatHistoryDate(ts){
+    try{
+      const d = new Date(ts);
+      return d.toLocaleDateString(lang==="ar" ? "ar" : "en", { month:"short", day:"numeric" }) + " " + d.toLocaleTimeString(lang==="ar" ? "ar" : "en", { hour:"2-digit", minute:"2-digit" });
+    }catch(e){ return ""; }
+  }
+
+  function renderHistoryList(){
+    const list = el("historyList");
+    el("historyTitleEl").textContent = t("historyTitle");
+    if(!state.history || state.history.length === 0){
+      list.innerHTML = `<div class="font-hud text-xs text-white/40 text-center py-4">${t("historyEmpty")}</div>`;
+      return;
+    }
+    list.innerHTML = state.history.map((entry, idx)=>{
+      const winnerName = entry.result.winner === "p1" ? entry.p1Name : entry.p2Name;
+      return `
+        <button class="history-entry w-full flex items-center gap-2 bg-white/5 border border-white/10 hover:border-emerald-400/40 pixel-corners-sm p-2 text-left" data-idx="${idx}">
+          <img src="${entry.p1Img}" class="w-8 h-8 object-cover pixel-corners-sm shrink-0" alt=""/>
+          <div class="flex-1 min-w-0 font-hud text-[11px] text-white/80 truncate">${entry.p1Name} <span class="text-white/30">vs</span> ${entry.p2Name}</div>
+          <img src="${entry.p2Img}" class="w-8 h-8 object-cover pixel-corners-sm shrink-0" alt=""/>
+          <div class="text-[9px] font-pixel text-amber-300 shrink-0 text-right leading-tight">${winnerName}<div class="text-white/30 text-[8px] mt-0.5">${formatHistoryDate(entry.timestamp)}</div></div>
+        </button>`;
+    }).join("");
+    list.querySelectorAll(".history-entry").forEach(btn=>{
+      btn.addEventListener("click", ()=>{
+        const idx = parseInt(btn.getAttribute("data-idx"),10);
+        loadHistoryEntry(state.history[idx]);
+      });
+    });
+  }
+
+  function loadHistoryEntry(entry){
+    el("historyOverlay").classList.add("hidden");
+    el("historyOverlay").classList.remove("flex");
+    state.p1 = { name: entry.p1Name, image: { large: entry.p1Img } };
+    state.p2 = { name: entry.p2Name, image: { large: entry.p2Img } };
+    el("p1Img").src = entry.p1Img; el("p1Img").classList.remove("hidden");
+    el("p1Placeholder").classList.add("hidden"); el("p1Marker").classList.remove("hidden");
+    el("p2Img").src = entry.p2Img; el("p2Img").classList.remove("hidden");
+    el("p2Placeholder").classList.add("hidden"); el("p2Marker").classList.remove("hidden");
+    el("selectSection").classList.add("hidden");
+    renderStats(el("p1Stats"), entry.p1Name, entry.result.p1, "bg-sky-400", "text-sky-300");
+    renderStats(el("p2Stats"), entry.p2Name, entry.result.p2, "bg-pink-400", "text-pink-300");
+    renderDialogue(entry.result, false, "");
+    renderBattlePerformanceCharts(entry.result, entry.p1Name, entry.p2Name);
+    switchMusicTrack("result");
+    el("resultSection").classList.remove("hidden");
+    el("resultSection").classList.add("flex");
+    el("resultSection").scrollIntoView({ behavior:"smooth", block:"start" });
+  }
+
+  el("historyBtn").addEventListener("click", ()=>{
+    renderHistoryList();
+    el("historyOverlay").classList.remove("hidden");
+    el("historyOverlay").classList.add("flex");
+  });
+  el("historyCloseBtn").addEventListener("click", ()=>{
+    el("historyOverlay").classList.add("hidden");
+    el("historyOverlay").classList.remove("flex");
+  });
+
+
+  initFlameIcon();
+  updateStreakUI();
+
+  applyI18n();
+  fetchCharacters();
+})();
 </script>
 </body>
 </html>
