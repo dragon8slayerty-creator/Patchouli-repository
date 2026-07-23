@@ -11,7 +11,8 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
-    if (url.pathname === "/api/gemini" || url.pathname === "/api/gemini/") {
+    // أي طلب يبدأ بـ /api/ يُعالج هنا
+    if (url.pathname.startsWith("/api/")) {
 
       if (request.method === "OPTIONS") {
         return new Response(null, { headers: corsHeaders() });
@@ -107,6 +108,7 @@ export default {
       return new Response(lastBody, { status: lastStatus, headers: corsHeaders() });
     }
 
+    // كل الطلبات الأخرى: خدم الملفات الثابتة
     return env.ASSETS.fetch(request);
   }
 };
